@@ -1,0 +1,43 @@
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: stretch;
+    align-content: normal;
+    height: 100vh;
+}
+
+.user-nav-container {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    align-self: stretch;
+    order: 0;
+}
+
+.user-page-container{
+    display: block;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: stretch;
+    order: 0;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 500px) {
+    .flex-container{
+        flex-direction: column;
+    }
+
+    .user-nav-container {
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 11;
+        flex-basis: auto;
+        align-self: stretch;
+        order: 0;
+    }
+}
