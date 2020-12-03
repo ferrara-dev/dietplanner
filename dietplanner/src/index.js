@@ -10,6 +10,7 @@ import firebase from "./config/firebaseConfig";
 import {reactReduxFirebaseConfig} from "./config/reactReduxFirebaseConfig";
 import {createFirebaseInstance, ReactReduxFirebaseProvider} from "react-redux-firebase";
 import {BrowserRouter as Router} from "react-router-dom";
+import {createFirestoreInstance} from "redux-firestore";
 
 const store = reduxStoreConfig();
 
@@ -17,6 +18,7 @@ const rrfProps = {
     firebase : firebase,
     config : reactReduxFirebaseConfig,
     dispatch : store.dispatch,
+    createFirestoreInstance
 }
 
 ReactDOM.render(

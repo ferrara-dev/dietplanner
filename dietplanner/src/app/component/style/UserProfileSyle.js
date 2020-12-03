@@ -1,7 +1,7 @@
 import {makeStyles} from "@material-ui/core";
 
 const useProfileStyle = makeStyles((theme) => ({
-    root: {
+    root2: {
         display: 'flex',
     },
     toolbar: {

@@ -2,7 +2,6 @@ import React from "react"
 import useForm from "../../helpers/hooks/useForm";
 import LoginForm from "../component/form/loginForm";
 import {useFirebase} from "react-redux-firebase";
-import useFirebaseState from "../../helpers/hooks/useFirebaseState";
 import {useDispatch} from "react-redux";
 import {loginUser} from "../../actions/user";
 import {useHistory} from "react-router-dom"

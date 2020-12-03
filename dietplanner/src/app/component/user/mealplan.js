@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function MealPlanView() {
+export default function MealPlanView({mealPlan}) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -77,7 +77,7 @@ export default function MealPlanView() {
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                {CurrentMealPlanView()}
+                {CurrentMealPlanView(mealPlan)}
             </TabPanel>
 
             <TabPanel value={value} index={1}>
@@ -121,7 +121,7 @@ const lists = [
     }
 ];
 
-function CurrentMealPlanView() {
+function CurrentMealPlanView(mealPlan) {
     const classes = useProfileStyle();
 
     return <div className={classes.root}>
@@ -132,7 +132,7 @@ function CurrentMealPlanView() {
                     {/* Recent Deposits */}
                     <Grid item xs={12} md={4} lg={5}>
                         <Paper className={classes.paper}>
-                            <NestedList lists={lists} classes={classes}/>
+                            <NestedList lists={mealPlan} classes={classes}/>
                         </Paper>
                     </Grid>
 
@@ -218,7 +218,6 @@ function CurrentMealPlanView() {
     </div>
 }
 
-
 class NestedList extends React.Component {
     state = {open: {}};
 
@@ -239,14 +238,11 @@ class NestedList extends React.Component {
                     }
                 >
                     {/**/}
-                    {lists.map(({meal, icon: Icon, alternatives}) => {
+                    {lists.map(({meal, alternatives}) => {
                         const open = this.state[meal] || false;
                         return (
                             <div key={meal}>
                                 <ListItem button onClick={this.handleClick(meal)}>
-                                    <ListItemIcon>
-                                        <Icon/>
-                                    </ListItemIcon>
                                     <ListItemText primary={meal}/>
                                     {open ? <ExpandLess/> : <ExpandMore/>}
                                 </ListItem>

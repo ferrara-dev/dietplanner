@@ -1,4 +1,7 @@
 
+
+
 export const reactReduxFirebaseConfig = {
-    userProfile : 'users'
+    userProfile : 'users',
+    useFirestoreForProfile: true
 }

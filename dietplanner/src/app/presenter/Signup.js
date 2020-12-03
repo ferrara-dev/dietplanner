@@ -2,7 +2,7 @@ import SignupForm from "../component/form/signup/signupForm";
 import useForm from "../../helpers/hooks/useForm";
 import usePages from "../../helpers/hooks/usePages";
 import {useDispatch} from "react-redux";
-import {registerUser, createMealPlan} from "../../actions/user";
+import {registerUser} from "../../actions/user";
 
 export default function Signup() {
     const dispatch = useDispatch();

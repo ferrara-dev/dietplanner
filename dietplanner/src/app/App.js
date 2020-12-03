@@ -11,10 +11,12 @@ import Signup from "./presenter/Signup";
 import StickyFooter from "./component/navigation/footer";
 import {createMealPlan} from "../actions/user";
 import ProtectedRoute from "./component/protectedRoute";
+import {getFirestore} from "redux-firestore";
 
 function App() {
     const appState = useSelector(state => state);
     const dispatch = useDispatch();
+
     console.log(appState)
 
     return (

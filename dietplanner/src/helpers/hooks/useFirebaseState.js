@@ -1,10 +1,8 @@
-import React from "react"
+import React, {useMemo} from "react"
 import {shallowEqual, useSelector} from "react-redux";
 
-export default function useFirebaseState(propertyName) {
-    const prop = useSelector( state => {
-        return state.firebase[propertyName];
-    }, shallowEqual);
-
-    return React.useMemo(()=> prop, [prop]);
+export default function useFirestoreData(propertyName) {
+    const data = useSelector(state => state.firestore.data[propertyName],shallowEqual);
+    const d = useMemo(() => data, [data]);
+    return d;
 }
