@@ -1,20 +1,21 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
-import {FDCSearch, FDCSearchById} from "../../../service/fooddatabase/foodSearch";
-import {setCurrentIngredient} from "../../../actions/nutrition";
+import {FDCSearch, FDCSearchById,EdamamSearch} from "../../../service/fooddatabase/foodSearch";
+import {setCurrentIngredient} from "../../../actions/ingredient";
 import IngredientSearchResultView from "../../component/user/ingredientsearch/ingredientSearchResultView";
 import IngredientSearchView from "../../component/user/ingredientsearch/ingredientSearchView";
 import {useRouteMatch} from "react-router-dom";
 import Modal from "../../component/common/modal/modal";
+import IngredientFactory from "../../../helpers/ingredientFactory";
 
-export default function IngredientSearch(){
+export default function IngredientSearch() {
     const {path, url} = useRouteMatch();
     const [searchResult, setSearchResult] = React.useState(null);
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const currentIngredient = useSelector(state => state.nutrition.currentIngredient);
+    const currentIngredient = useSelector(state => state.currentIngredient);
 
     React.useEffect(() => {
         setSearchResult(searchIngredient(""));
@@ -27,11 +28,9 @@ export default function IngredientSearch(){
         });
     };
 
-    const viewIngredient = (fdcId) => {
-        FDCSearchById(fdcId).then(data => {
-            history.push(`${url}/ingredient/${fdcId}`)
-            dispatch(setCurrentIngredient({ingredient: data, quantity: 100}))
-        })
+    const viewIngredient = (food) => {
+        dispatch(setCurrentIngredient(IngredientFactory(food)));
+        history.push(`${url}/ingredient/${food.fdcId}`);
     };
 
     return <Modal>

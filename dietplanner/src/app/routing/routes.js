@@ -11,7 +11,7 @@ import Modal from "../component/common/modal/modal";
 import DietPlan from "../presenter/dietplan/dietPlan";
 import CreateMealForm from "../component/form/createMealForm";
 import CreateMealCategory from "../presenter/dietplan/createMealCategory";
-
+import AddMeal from "../presenter/dietplan/addMeal";
 export const routes = [
     {
         path: "/home",
@@ -44,6 +44,24 @@ export const routes = [
         exact: true,
         sidebar: () => <Sidebar/>,
         main: () => <MealBank/>,
+    },
+    {
+        path: "/home/mealplan/:category/add",
+        sidebar: () => <Sidebar/>,
+        main: () => <AddMeal/>,
+        nested : [
+            {
+                path: "/home/mealplan/:category/add/search",
+                sidebar: () => <Sidebar/>,
+                exact : true,
+                main: () => <IngredientSearch/>
+            },
+            {
+                path: "/home/**/ingredient/:fdcId",
+                sidebar: () => <Sidebar/>,
+                main: () => <IngredientDetails/>
+            }
+        ]
     },
     {
         path: "/home/mealbank/createMeal",

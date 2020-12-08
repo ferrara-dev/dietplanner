@@ -2,6 +2,10 @@ import React, {useEffect} from "react";
 import SidebarView from "../../component/navigation/sidebar";
 
 export default function Sidebar(){
+    const nav = [
+        navFactory("profile", "/home/profile"),
+        navFactory("meal plan", "/home/mealplan")
+    ];
 
     const [state, setState] = React.useState({
         sideDrawerOpen: false,
@@ -18,5 +22,9 @@ export default function Sidebar(){
         setState({ ...state, sideDrawerOpen: open });
     };
 
-    return <SidebarView open={state.sideDrawerOpen} toggle={toggleDrawer}/>
+    return <SidebarView nav={nav} open={state.sideDrawerOpen} toggle={toggleDrawer}/>
+}
+
+function navFactory(label, link, icon){
+    return {label, link, icon}
 }

@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function SidebarView({open, toggle}) {
+export default function SidebarView({nav, open, toggle}) {
     const classes = useStyles();
 
     return <div className={classes.toolbar}>
@@ -42,16 +42,13 @@ export default function SidebarView({open, toggle}) {
             }}
             onClose={(e) => toggle(e, false)
             }>
-
-            <MenuItem>
-                <IconButton component={Link} to="/home/profile" edge="start" color="inherit" aria-label="menu"
-                            onClick={(e) => toggle(e, false)}>
-                    <AccountCircleIcon> Profile </AccountCircleIcon>
-                </IconButton>
-            </MenuItem>
-            <Button component={Link} to="/home/mealbank" edge="start" color="inherit" aria-label="menu" onClick={(e) => toggle(e, false)}>
-                Meal bank
-            </Button>
+            {nav.map((navigation, index) => {
+                return <Button key={index} component={Link} to={navigation.link} edge="start" color="inherit" aria-label="menu"
+                               onClick={(e) => toggle(e, false)}>
+                    {navigation.label}
+                </Button>
+            })
+            }
         </Drawer>
     </div>
 }

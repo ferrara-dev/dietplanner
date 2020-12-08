@@ -6,8 +6,6 @@ import {useStyle} from "../style/mui/createMealFormStyle";
 
 export default function CreateMealForm({fields, set, handleChange}) {
     const classes = useStyle();
-    const [title, setTitle] = React.useState(fields.title);
-    const [category, setCategory] = React.useState(fields.category);
 
     return (
         <div className={classes.root}>
@@ -22,21 +20,9 @@ export default function CreateMealForm({fields, set, handleChange}) {
                     fullWidth
                     id="title"
                     placeholder="Meal name / title"
-                    name="title"
+                    name="description"
                     type="text"
-                    defaultValue={title}
-                    onChange={handleChange}
-                />
-                <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="category"
-                    placeholder="Meal category"
-                    name="category"
-                    type="text"
-                    defaultValue={category}
+                    defaultValue={fields.description}
                     onChange={handleChange}
                 />
                 <button onClick={set}>

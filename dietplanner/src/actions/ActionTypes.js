@@ -11,6 +11,25 @@ export const authActions = {
     CREATE_MEAL_PLAN : "user/CREATE_MEAL_PLAN"
 }
 
+export const mealActions = {
+    ADD_INGREDIENT : "meal/ADD_INGREDIENT",
+    SET_TITLE : "meal/SET_LABEL",
+    REMOVE_INGREDIENT : "meal/REMOVE_INGREDIENT",
+    RESET_CURRENT_MEAL : "meal/RESET_CURRENT_MEAL"
+};
+
+export const ingredientActions = {
+    SET_CURRENT_INGREDIENT : "ingredient/SET_INGREDIENT",
+    SET_INGREDIENT_QUANTITY: "ingredient/SET_INGREDIENT_QUANTITY",
+};
+
+export const mealCategoryActions = {
+    SET_MEAL_CATEGORY_DESCRIPTION : "mealCategory/SET_MEAL_CATEGORY_DESCRIPTION",
+    ADD_MEAL_TO_CATEGORY : "mealCategory/ADD_MEAL_TO_CATEGORY",
+    REMOVE_MEAL_FROM_CATEGORY : "mealCategory/REMOVE_MEAL_FROM_CATEGORY",
+    SET_CURRENT_CATEGORY : "mealCategory/SET_CURRENT_CATEGORY",
+    RESET_CURRENT_CATEGORY : "mealCategory/RESET_CURRENT_CATEGORY"
+}
 export const nutritionActions = {
     SET_CURRENT_MEAL : "SET_CURRENT_MEAL",
     SET_CURRENT_ALTERNATIVE : "SET_CURRENT_ALTERNATIVE",

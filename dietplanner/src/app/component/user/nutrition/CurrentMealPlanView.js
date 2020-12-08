@@ -6,13 +6,13 @@ import {Link, useRouteMatch} from "react-router-dom";
 import {AccordionSummary, Accordion, AccordionDetails, IconButton} from "@material-ui/core";
 import {FormControlLabel} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core";
-import {List,ListItem} from "@material-ui/core"
+import {List, ListItem} from "@material-ui/core"
 import {Add} from "@material-ui/icons"
+
 export default function CurrentMealPlanView({meals, chooseMeal, addMeal}) {
     const classes = useStyles();
     const {url, path} = useRouteMatch()
     const [expanded, setExpanded] = React.useState({});
-
     const handleClick = (id) => {
         setExpanded({
             ...expanded,
@@ -26,33 +26,35 @@ export default function CurrentMealPlanView({meals, chooseMeal, addMeal}) {
                 Meal plan
             </Typography>
             <Paper component="ul" className={classes.list}>
-                {meals.map(({meal, alternatives}, index) => {
+                {meals.map(({description, alternatives}, index) => {
                     return (
                         <li key={index}>
                             <Accordion onClick={(e) => {
                                 e.preventDefault();
-                                chooseMeal({meal,alternatives});
                             }}>
                                 <AccordionSummary>
-                                <FormControlLabel
-                                    aria-label="Acknowledge"
-                                    onClick={(event) => {
-                                        event.stopPropagation()
-                                        chooseMeal({meal,alternatives})
-                                    }}
-                                    onFocus={(event) => event.stopPropagation()}
-                                    control={<IconButton component={Link} to={`${path}/${meal}/edit`}><Add fontSize="small"/></IconButton>}
-                                />
-                                    {meal}
-                            </AccordionSummary>
+                                    <FormControlLabel
+                                        aria-label="Acknowledge"
+                                        onClick={(event) => {
+                                            event.stopPropagation()
+                                            chooseMeal(index);
+                                        }}
+                                        onFocus={(event) => event.stopPropagation()}
+                                        control={<IconButton component={Link} to={`${url}/${description}/add`}><Add
+                                            fontSize="small"/></IconButton>}
+                                    />
+                                    {description}
+                                </AccordionSummary>
                                 <AccordionDetails>
-                                  <List>
-                                      {alternatives.map((alternative, index) => {
-                                          <ListItem key={index}>
-                                              {alternative.label}
-                                          </ListItem>
-                                      })}
-                                  </List>
+                                    <List>
+                                        {alternatives.map((alternative, index) => {
+                                            return <ListItem key={index}>
+                                               <Button>
+                                                   {alternative.title}
+                                               </Button>
+                                            </ListItem>
+                                        })}
+                                    </List>
                                 </AccordionDetails>
                             </Accordion>
                         </li>

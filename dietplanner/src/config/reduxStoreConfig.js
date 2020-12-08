@@ -7,6 +7,7 @@ import firebase ,{firebaseConfig} from "./firebaseConfig";
 import storage from 'redux-persist/lib/storage'
 import {persistReducer, persistStore} from "redux-persist";
 import reduxReset from "redux-reset"
+
 const persistConfig = {
     key: 'root',
     storage: storage

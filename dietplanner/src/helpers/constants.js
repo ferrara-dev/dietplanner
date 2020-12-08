@@ -22,9 +22,14 @@ export const nutritionalCodes = {
     sodium : 1093,
     cholesterol : 1253,
     carbsTotal : 1005,
+    calcium : 1087,
+    iron :1089,
+    vitaminA : 1104,
+    vitaminC : 1162,
     kcal : 1008,
     fatTotal : 1004,
-    fatSaturated : 1258
+    fatSaturated : 1258,
+    fatTrans : 1257,
 }
 
 export const nut = {

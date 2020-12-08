@@ -14,25 +14,22 @@ export default function DietSummaryView({mealPlan, chooseMeal, addMeal}) {
     const classes = useStyles();
 
     return <div className={classes.root}>
-        <Grid item xs={12} md={5} lg={4}>
+        <Grid item xs={12}>
             <AppBar position="static" className={classes.mealPlanBar}>
                 <Toolbar></Toolbar>
             </AppBar>
-
+        </Grid>
+        <Grid item xs={12} md={6}>
             <div className={classes.root}>
-                <main className={classes.content}>
-                    <Container maxWidth="lg" className={classes.container}>
-                        <Paper className={classes.paper}>
-                            <CurrentMealPlanView
-                                meals={mealPlan}
-                                chooseMeal={chooseMeal}
-                            />
-                            <Button component={Link} to="/home/mealPlan/createMealCategory">
-                                Add new meal
-                            </Button>
-                        </Paper>
-                    </Container>
-                </main>
+                <Paper className={classes.paper}>
+                    <CurrentMealPlanView
+                        meals={mealPlan}
+                        chooseMeal={chooseMeal}
+                    />
+                    <Button component={Link} to="/home/mealPlan/createMealCategory">
+                        Add new meal
+                    </Button>
+                </Paper>
             </div>
         </Grid>
     </div>

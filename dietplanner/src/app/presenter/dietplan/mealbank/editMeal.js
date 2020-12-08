@@ -15,14 +15,10 @@ export default function EditMeal() {
     const {path, url} = useRouteMatch();
     const dispatch = useDispatch();
     const history = useHistory();
-    const currentMeal = useSelector(state => state.nutrition);
+    const currentMeal = useSelector(state => state.currentMealCategory);
     const firestore = useFirestore();
 
     console.log(currentMeal);
-    useEffect(() => {
-        firestore.update()
-        EdamamSearch("jasmine rice").then(data => console.log(data));
-    }, []);
 
     const onFormChange = (title, category) => {
         const values = currentMeal.constructedMeal;
@@ -38,7 +34,7 @@ export default function EditMeal() {
         console.log("removed ingredient")
     };
 
-    return !currentMeal.constructedMeal && <div>...</div> || <React.Fragment>
+    return !currentMeal && <div>...</div> || <React.Fragment>
         <Grid container spacing={0}>
             <Grid item xs={12}>
                 <AppBar position="static" className="bg-dark">

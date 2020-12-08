@@ -5,6 +5,7 @@ import {useFirestore, useFirestoreConnect} from "react-redux-firebase";
 import useFirebaseAuth from "../../../helpers/hooks/usefirebaseAuth";
 import {useDispatch, useSelector} from "react-redux";
 import useFirestoreData from "../../../helpers/hooks/useFirebaseState";
+import {setCategoryDescription} from "../../../actions/mealCategory";
 
 export default function CreateMealCategory() {
     const userUID = useFirebaseAuth().uid;
@@ -18,20 +19,28 @@ export default function CreateMealCategory() {
     const dispatch = useDispatch();
     const firestore = useFirestore();
     const currentMealPlan = useFirestoreData("mealPlan");
-    const mealPlan = useSelector(state => state.nutrition.currentMeal);
-    const state  = useSelector(state => state);
-    const addMeal = () => {
-        const newMeal = {meal: fields.title, alternatives: []}
-        const updatedPlan = currentMealPlan.mealPlan.concat(newMeal);
-        const payload = {...currentMealPlan, mealPlan: updatedPlan};
-        firestore.collection('mealPlans').doc(`${userUID}`).set(payload);
-    }
-    console.log(state)
-    function submit() {
 
-    }
+    const addMealCategory = () => {
+        const isPresent = currentMealPlan.mealPlan.some(element => {
+            return element.description === fields.description
+        });
+        if(isPresent){
+            throw Error("Meal category with description " + fields.description + " is already present");
+        }
+        else{
+            const newMeal = {description: fields.description, alternatives: []}
+            const updatedPlan = currentMealPlan.mealPlan.concat(newMeal);
+            const payload = {...currentMealPlan, mealPlan: updatedPlan};
+            try {
+                firestore.collection('mealPlans').doc(`${userUID}`).set(payload);
+                dispatch(setCategoryDescription(fields.description));
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    };
 
-    const {fields, handleChange, handleSubmit} = useForm(addMeal);
+    const {fields, handleChange, handleSubmit} = useForm(addMealCategory);
 
     return <Modal>
         <CreateMealForm set={handleSubmit} fields={fields} handleChange={handleChange}/>

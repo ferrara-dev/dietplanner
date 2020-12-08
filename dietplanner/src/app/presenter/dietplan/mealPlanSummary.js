@@ -28,11 +28,11 @@ export default function MealPlanSummary(){
         const payload = {...currentMealPlan, mealPlan: updatedPlan};
         firestore.collection('mealPlans').doc(`${userUID}`).set(payload);
         console.log(name);
-    }
+    };
 
     const chooseMeal = (meal) => {
         dispatch(setCurrentMeal(meal));
-    }
+    };
 
     return !currentMealPlan && <div></div> || <DietSummaryView mealPlan={currentMealPlan.mealPlan} addMeal={addMeal} chooseMeal={chooseMeal}/>
 }

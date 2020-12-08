@@ -23,7 +23,7 @@ export default function IngredientSearchResultView({chooseIngredient, results = 
             results.map((food) => {
                 return <Grid key={food.fdcId} item md={6} xs={12}>
                     <ProductCard key={food.fdcId} title={food.description} seeMore={() => {
-                        chooseIngredient(food.fdcId);
+                        chooseIngredient(food);
                     }}/>
                 </Grid>
             })}

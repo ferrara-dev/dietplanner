@@ -128,6 +128,16 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
         justifyContent: 'center'
     },
+    nutrientCards : {
+        padding: theme.spacing(2),
+        display: 'flex',
+        overflow: 'auto',
+        flexDirection: 'row',
+        height: "100%",
+        justifyContent: 'space-evenly',
+        flexWrap : 'nowrap'
+    }
+    ,
     fixedHeight: {
         height: 240,
     },
@@ -163,6 +173,21 @@ const useStyles = makeStyles((theme) => ({
         width: "200px",
         margin: "5px",
     },
+    card1 : {
+        backgroundColor : fade("#22c1b9",0.5)
+    },
+    card2 : {
+        backgroundColor : fade("#2efd69",0.5)
+    },
+    card3 : {
+        backgroundColor : fade("#2efd31",0.5)
+    },
+    card4 : {
+        backgroundColor : fade("#6afd2e",0.5)
+    },
+    card5 : {
+        backgroundColor : fade("#b3fd2e",0.5)
+    }
 }));
 
 export default useStyles;

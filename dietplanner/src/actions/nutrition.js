@@ -19,7 +19,7 @@ export const setMealTitle = (mealTitle, category) => (dispatch, getState, getFir
             category: category
         }
     })
-}
+};
 
 export const setCurrentMeal = (meal) => (dispatch, getState, getFirebase) => {
     dispatch({type: nutritionActions.SET_CURRENT_MEAL, payload: meal})
