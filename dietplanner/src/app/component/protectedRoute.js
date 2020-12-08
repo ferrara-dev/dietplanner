@@ -1,7 +1,6 @@
 import React from "react";
 import {Route, Redirect} from "react-router-dom";
 import { isLoaded, isEmpty } from 'react-redux-firebase'
-import useFirebaseAuth from "../../helpers/hooks/usefirebaseAuth";
 import {useSelector} from "react-redux";
 
 function ProtectedRoute({ children,Component, ...rest }) {
