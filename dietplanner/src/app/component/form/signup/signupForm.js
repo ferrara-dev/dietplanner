@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSignupFormStyle} from "../../style/signupFormStyle";
+import {useSignupFormStyle} from "../../style/mui/signupFormStyle";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Paper from '@material-ui/core/Paper';

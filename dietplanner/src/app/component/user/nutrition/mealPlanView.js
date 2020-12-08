@@ -4,9 +4,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import {Container, Grid, Paper} from "@material-ui/core";
+import {Button, Container, Grid, Paper} from "@material-ui/core";
 
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
@@ -14,37 +12,15 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Fab';
-// temp
-import useProfileStyle from "../style/UserProfileSyle";
-import clsx from "clsx";
-import TabPanel from "../common/TabbedPanel";
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import WorkIcon from '@material-ui/icons/Work';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
-import Divider from '@material-ui/core/Divider';
-import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
-import IconButton from "@material-ui/core/IconButton";
-import {StyledTableRow} from "../common/StyledTableRow";
-import FormDialog from "../common/FormDialog";
-
-
+import TabPanel from "../../common/TabbedPanel";
+import Toolbar from "@material-ui/core/Toolbar";
+import FormDialog from "../../common/FormDialog";
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import CurrentMealPlanView from "./CurrentMealPlanView";
+import {Link, useRouteMatch} from "react-router-dom"
 const lists = [
     {
         meal: "Breakfast",
@@ -73,14 +49,15 @@ const lists = [
                 label: "Chicken wrap",
             }
         ]
-    }
+    },
+
 ];
 
-export default function MealPlanView({mealPlan, addMeal}) {
+export default function MealPlanView({mealPlan, addMeal, chooseMeal, currentMeal}) {
     const classes = useStyles();
     const [open, setOpen] = React.useState({});
     const [currentTab, setCurrentTab] = React.useState(0);
-
+    const { url, path } = useRouteMatch();
     const changeTab = (event, newValue) => {
         setCurrentTab(newValue);
     };
@@ -95,12 +72,9 @@ export default function MealPlanView({mealPlan, addMeal}) {
     return (
         <div className={classes.root}>
             <AppBar position="static" className={classes.mealPlanBar}>
-                <Tabs value={currentTab} onChange={changeTab} aria-label="simple tabs example">
-                    <Tab label="Current meal plan" {...a11yProps(0)} />
-                    <Tab label="Edit your meal plan" {...a11yProps(1)} />
-                </Tabs>
+                <Toolbar></Toolbar>
             </AppBar>
-            <TabPanel value={currentTab} index={0}>
+
                 <div className={classes.root}>
                     <main className={classes.content}>
                         <Container maxWidth="lg" className={classes.container}>
@@ -109,7 +83,10 @@ export default function MealPlanView({mealPlan, addMeal}) {
                                 {/* Recent Deposits */}
                                 <Grid item xs={12} md={4} lg={5}>
                                     <Paper className={classes.paper}>
-                                        <NestedList lists={mealPlan} classes={classes}/>
+                                        <CurrentMealPlanView
+                                            meals={mealPlan}
+                                            chooseMeal={chooseMeal}
+                                        />
                                         <FormDialog onAdd={addMeal}>
                                         </FormDialog>
                                     </Paper>
@@ -117,8 +94,22 @@ export default function MealPlanView({mealPlan, addMeal}) {
 
                                 <Grid item xs={12} md={8} lg={7}>
                                     <Paper className={classes.paper}>
-                                        current meal
-                                        <Grid container spacing={2}>
+                                        {currentMeal.meal} alternatives
+                                        <Button component={Link} to={`${path}/mealplanedit`}
+                                                onClick={(e) => {
+                                                    console.log("adding alternative!")
+                                                }}>
+                                            add alternative to this meal
+                                        </Button>
+                                        <List>
+                                            {currentMeal.alternatives && currentMeal.alternatives.map((alternative, index) => {
+                                                return <ListItem
+                                                    key={index}>
+                                                    {JSON.stringify(alternative)}
+                                                </ListItem>
+                                            })}
+                                        </List>
+                                        {/*<Grid container spacing={2}>
                                             <Grid item xs={6}>
                                                 <Typography className={classes.title} variant="h6" id="tableTitle"
                                                             component="div">
@@ -187,7 +178,7 @@ export default function MealPlanView({mealPlan, addMeal}) {
                                                     </Table>
                                                 </TableContainer>
                                             </Grid>
-                                        </Grid>
+                                        </Grid> */}
 
                                     </Paper>
                                 </Grid>
@@ -203,11 +194,6 @@ export default function MealPlanView({mealPlan, addMeal}) {
                         </Container>
                     </main>
                 </div>
-            </TabPanel>
-
-            <TabPanel value={currentTab} index={1}>
-                Item Two
-            </TabPanel>
         </div>
     );
 }
@@ -236,9 +222,12 @@ class NestedList extends React.Component {
                         const open = this.state[meal] || false;
                         return (
                             <div key={meal}>
-                                <ListItem button onClick={this.handleClick(meal)}>
+                                <ListItem onClick={this.handleClick(meal)}>
                                     <ListItemText primary={meal}/>
                                     {open ? <ExpandLess/> : <ExpandMore/>}
+                                    <ListItemIcon>
+                                        <ArrowDropDownIcon/>
+                                    </ListItemIcon>
                                 </ListItem>
                                 <Collapse in={open} timeout="auto" unmountOnExit>
                                     <List disablePadding>
@@ -271,6 +260,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
+    },
+    list: {
+        listStyle: 'none',
+        marginBottom: 2,
     },
     mealPlanBar: {
         background: '#2E3B55',
@@ -336,6 +329,7 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'auto',
         flexDirection: 'column',
         height: "100%",
+        justifyContent: 'center'
     },
     fixedHeight: {
         height: 240,

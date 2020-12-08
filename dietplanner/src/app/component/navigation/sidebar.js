@@ -9,6 +9,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Drawer from "@material-ui/core/Drawer";
 import MenuItem from "@material-ui/core/MenuItem";
 import {Link} from "react-router-dom"
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
     toolbar: {
@@ -19,64 +20,38 @@ const useStyles = makeStyles({
     },
     fullList: {
         width: 'auto',
-        anchor : 'left'
+        anchor: 'left'
     },
 });
 
-export default function SidebarView(){
+export default function SidebarView({open, toggle}) {
     const classes = useStyles();
 
-    const [state, setState] = React.useState({
-        sideDrawerOpen: false,
-    });
-
-    const list = () => (
-        <div
-            className={classes.fullList}
-            role="presentation"
-            onClick={toggleDrawer(false)}
-            onKeyDown={toggleDrawer(false)}
-        >
-            <Divider />
-            <List>
-                <ListItem>
-                    <ListItemIcon onClick={toggleDrawer( false)}> <AccountCircleIcon/> </ListItemIcon>
-                    <ListItemText primary={"profile"} />
-                </ListItem>
-            </List>
-        </div>
-    );
-
-    const toggleDrawer = (open) => (event) => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-            return;
-        }
-
-        setState({ ...state, sideDrawerOpen: open });
-    };
-
-   return <div className={classes.toolbar}>
+    return <div className={classes.toolbar}>
         <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
+            <IconButton edge="start" color="inherit" aria-label="menu" onClick={(e) => toggle(e, true)}>
                 <MenuIcon/>
             </IconButton>
         </Toolbar>
-       <Drawer
-           anchor={"left"}
-           open={state.sideDrawerOpen}
-           className={classes.drawer}
-           classes={{
-               paper: classes.drawerPaper
-           }}
-           onClose={toggleDrawer(false)
-           }>
+        <Drawer
+            anchor={"left"}
+            open={open}
+            className={classes.drawer}
+            classes={{
+                paper: classes.drawerPaper
+            }}
+            onClose={(e) => toggle(e, false)
+            }>
 
-           <MenuItem primaryText="Profile">
-               <IconButton component={Link} to="/home/profile" edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
-                   <AccountCircleIcon> Profile </AccountCircleIcon>
-               </IconButton>
-           </MenuItem>
-           <MenuItem>Menu Item 2</MenuItem>
-       </Drawer>
+            <MenuItem>
+                <IconButton component={Link} to="/home/profile" edge="start" color="inherit" aria-label="menu"
+                            onClick={(e) => toggle(e, false)}>
+                    <AccountCircleIcon> Profile </AccountCircleIcon>
+                </IconButton>
+            </MenuItem>
+            <Button component={Link} to="/home/mealbank" edge="start" color="inherit" aria-label="menu" onClick={(e) => toggle(e, false)}>
+                Meal bank
+            </Button>
+        </Drawer>
     </div>
 }

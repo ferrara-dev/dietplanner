@@ -11,22 +11,28 @@ import {reactReduxFirebaseConfig} from "./config/reactReduxFirebaseConfig";
 import {createFirebaseInstance, ReactReduxFirebaseProvider} from "react-redux-firebase";
 import {BrowserRouter as Router} from "react-router-dom";
 import {createFirestoreInstance} from "redux-firestore";
+import {createBrowserHistory} from 'history'
+import {PersistGate} from 'redux-persist/integration/react'
 
-const store = reduxStoreConfig();
+const initialState = {}
+
+const {store, persistor} = reduxStoreConfig(initialState, createBrowserHistory());
 
 const rrfProps = {
-    firebase : firebase,
-    config : reactReduxFirebaseConfig,
-    dispatch : store.dispatch,
+    firebase: firebase,
+    config: reactReduxFirebaseConfig,
+    dispatch: store.dispatch,
     createFirestoreInstance
 }
 
 ReactDOM.render(
     <Provider store={store}>
         <ReactReduxFirebaseProvider {...rrfProps}>
-            <Router>
-            <App/>
-            </Router>
+            <PersistGate loading={null} persistor={persistor}>
+                <Router>
+                    <App/>
+                </Router>
+            </PersistGate>
         </ReactReduxFirebaseProvider>
     </Provider>,
     document.getElementById('root')

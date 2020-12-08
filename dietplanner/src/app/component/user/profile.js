@@ -1,5 +1,5 @@
-import useProfileStyle from "../style/UserProfileSyle";
-import {CssBaseline, Container, Grid,Paper} from "@material-ui/core";
+import useProfileStyle from "../style/mui/UserProfileSyle";
+import {Container, Grid,Paper} from "@material-ui/core";
 
 import clsx from "clsx";
 export default function UserProfileView(){

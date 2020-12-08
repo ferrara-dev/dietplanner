@@ -14,3 +14,26 @@ export const activityLevels = [
     {description: "very active (hard exercise/sports 6 to 7 days per week)", val : 4, factor: 1.725},
     {description: "extra active (very hard exercise/sports 6 to 7 days per week and physical job)", val : 5, factor: 1.9}
 ]
+
+
+export const nutritionalCodes = {
+    protein : 1003,
+    sugars : 2000,
+    sodium : 1093,
+    cholesterol : 1253,
+    carbsTotal : 1005,
+    kcal : 1008,
+    fatTotal : 1004,
+    fatSaturated : 1258
+}
+
+export const nut = {
+    1003 : "protein",
+    2000 : "sugars",
+    1093 : "sodium",
+    cholesterol : 1253,
+    carbsTotal : 1005,
+    kcal : 1008,
+    fatTotal : 1004,
+    fatSaturated : 1258
+}

@@ -3,7 +3,7 @@ import {Route, Redirect} from "react-router-dom";
 import { isLoaded, isEmpty } from 'react-redux-firebase'
 import {useSelector} from "react-redux";
 
-function ProtectedRoute({ children,Component, ...rest }) {
+function ProtectedRoute({ children,component : Component, ...rest }) {
     const auth = useSelector(state => state.firebase.auth);
     const isVerifying = !isLoaded(auth) && isEmpty(auth);
     const isAuthenticated = !isEmpty(auth) && isLoaded(auth);
@@ -17,4 +17,6 @@ function ProtectedRoute({ children,Component, ...rest }) {
         />
     );
 }
+
+
 export default ProtectedRoute;

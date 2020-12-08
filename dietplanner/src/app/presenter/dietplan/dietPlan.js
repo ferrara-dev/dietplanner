@@ -1,14 +1,16 @@
+import Sidebar from "../../component/navigation/sidebar";
+import {Route, Switch, useRouteMatch} from "react-router-dom";
+import UserProfile from "../Profile";
+import MealPlan from "../nutrition/mealPlan";
 import React from "react";
-import {Switch, Route, useRouteMatch} from "react-router-dom"
-import Sidebar from "../../presenter/navigation/sidebar";
-import "../style/css/home.css"
+import MealPlanSummary from "./mealPlanSummary";
+import MealEdit from "./mealEdit";
+import {useSelector} from "react-redux";
 import {useFirestoreConnect} from "react-redux-firebase";
 import useFirebaseAuth from "../../../helpers/hooks/usefirebaseAuth";
-import RenderRoutes from "../../routing/routes";
 
-export default function Home() {
+export default function DietPlan(){
     const {url, path} = useRouteMatch();
-
     const userUID = useFirebaseAuth().uid;
 
     useFirestoreConnect({
@@ -17,12 +19,14 @@ export default function Home() {
         storeAs: "mealPlan"
     });
 
+    console.log(path);
+
     return (
         <div className="flex-container">
-            <Sidebar/>
+
             <div className="user-page-container bg-danger">
-                <RenderRoutes/>
+                    <MealPlanSummary/>
             </div>
         </div>
-    );
+    )
 }
