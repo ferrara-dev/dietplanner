@@ -12,16 +12,11 @@ export default function mealReducer(state = initialState, action) {
                 ...state,
                 title: action.title
             };
-        case mealActions.ADD_INGREDIENT :
+        case mealActions.UPDATE_INGREDIENTS:
             return {
                 ...state,
-                ingredients: [...state.ingredients.filter((_ingr) => _ingr.ingredient.foodId !== action.ingredient.ingredient.foodId),action.ingredient]
-            };
-        case mealActions.REMOVE_INGREDIENT :
-            return {
-                ...state,
-                ingredients: state.ingredients.filter((ingr, i) => (ingr.ingredient.fdcId !== action.ingredientFdcId))
-            };
+                ingredients: action.ingredients
+            }
         case mealActions.RESET_CURRENT_MEAL :
             return {
                 ...initialState

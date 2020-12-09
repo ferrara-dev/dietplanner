@@ -13,31 +13,34 @@
     <list default="true" id="e1a0c1da-2520-4992-9501-338dfa9a5506" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actions/ActionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/ActionTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/ingredient.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/ingredient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/meal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/meal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actions/mealCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/mealCategory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/nutrition.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/nutrition.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actions/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/dietplan/dietSummaryView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/user/dietplan/dietSummaryView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/dietplan/editMealView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/user/dietplan/editMealView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/ingredientsearch/ProductCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/user/ingredientsearch/ProductCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/ingredientsearch/ingredientDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/user/ingredientsearch/ingredientDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/ingredientsearch/ingredientSearchResultView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/user/ingredientsearch/ingredientSearchResultView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/common/table/expandableTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/common/table/expandableTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/component/user/nutrition/CurrentMealPlanView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/user/nutrition/CurrentMealPlanView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/addMeal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/dietplan/addMeal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/createMealCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/dietplan/createMealCategory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/dietPlan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/dietplan/dietPlan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/mealEdit.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/mealbank/ingredientDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/dietplan/mealbank/ingredientDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/mealAlternatives.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/mealPlanSummary.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/mealbank/editMeal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/mealbank/ingredientDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/dietplan/ingredientDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/mealbank/mealBank.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/nutrition/currentMealPlan.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/presenter/nutrition/ingredientSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/nutrition/ingredientSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/nutrition/mealEdit.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/nutrition/mealPlan.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/routing/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routing/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/ingredientReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/ingredientReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/calculations/getNutrientValue.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/hooks/useNutritionData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/hooks/useScrollLock.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/hooks/useStateVal.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/reducer/mealCategoryReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/mealCategoryReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/mealPlanReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/mealPlanReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/mealPlanReducer.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/reducer/mealReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/mealReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/fooddatabase/foodSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/fooddatabase/foodSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducer/rootReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/rootReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,11 +77,11 @@
       <recent name="$PROJECT_DIR$/src/config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/helpers/calculation" />
+      <recent name="$PROJECT_DIR$/src/app/presenter/dietplan" />
       <recent name="$PROJECT_DIR$/src/app/component/style/css" />
       <recent name="$PROJECT_DIR$/src/app/component/style/mui" />
       <recent name="$PROJECT_DIR$/src/app/component/navigation/topnav" />
-      <recent name="$PROJECT_DIR$/src/app/presenter" />
-      <recent name="$PROJECT_DIR$/src/app/style" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -92,7 +95,7 @@
       <workItem from="1606585589760" duration="68378000" />
       <workItem from="1606809242236" duration="53476000" />
       <workItem from="1607417070915" duration="2646000" />
-      <workItem from="1607419876574" duration="63671000" />
+      <workItem from="1607419876574" duration="69087000" />
     </task>
     <servers />
   </component>

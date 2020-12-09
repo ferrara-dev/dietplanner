@@ -1,13 +1,12 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
-import {FDCSearch, FDCSearchById, EdamamSearch} from "../../../service/fooddatabase/foodSearch";
+import {EdamamSearch} from "../../../service/fooddatabase/foodSearch";
 import {setCurrentIngredient} from "../../../actions/ingredient";
 import IngredientSearchResultView from "../../component/user/ingredientsearch/ingredientSearchResultView";
 import IngredientSearchView from "../../component/user/ingredientsearch/ingredientSearchView";
 import {useRouteMatch} from "react-router-dom";
 import Modal from "../../component/common/modal/modal";
-import IngredientFactory from "../../../helpers/ingredientFactory";
 
 export default function IngredientSearch() {
     const {path, url} = useRouteMatch();

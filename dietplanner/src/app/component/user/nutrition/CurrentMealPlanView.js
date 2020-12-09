@@ -12,15 +12,12 @@ import {
     Table,
     TableHead, TableRow, TableCell, TableBody, Grid
 } from "@material-ui/core";
-import {FormControlLabel} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core";
-import {List, ListItem} from "@material-ui/core"
 import {Add} from "@material-ui/icons"
-import AddIcon from "@material-ui/icons/Add";
-import {nutritionalCodes} from "../../../../helpers/constants";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ExpandableTableRow from "../../common/table/expandableTable";
 import EditIcon from '@material-ui/icons/Edit';
+import {options, randomID} from "../../../../helpers/random";
 
 export default function CurrentMealPlanView({meals, chooseMeal, addMeal}) {
     const classes = useStyles();
@@ -53,7 +50,7 @@ export default function CurrentMealPlanView({meals, chooseMeal, addMeal}) {
                                 k={id}
                                 expandComponent={
                                     meals.map(({title}) => (
-                                        <TableCell key={id} colSpan="2"><Button>{title}</Button></TableCell>
+                                        <TableCell  key={randomID(12,options.base64)} colSpan="3"><Button>{title}</Button></TableCell>
                                     ))
                                 }
                             >

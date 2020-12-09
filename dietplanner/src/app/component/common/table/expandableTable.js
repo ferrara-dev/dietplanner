@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import React from "react";
-import {Button} from "@material-ui/core";
+import {Button,List} from "@material-ui/core";
 
 const ExpandableTableRow = ({ children, expandComponent, k, ...otherProps }) => {
     const [isExpanded, setIsExpanded] = React.useState(false);
@@ -24,12 +24,11 @@ const ExpandableTableRow = ({ children, expandComponent, k, ...otherProps }) => 
                 </TableCell>
                 {children}
             </TableRow>
-            {isExpanded && (
-                <TableRow>
-                    <TableCell padding="checkbox" />
-                    {expandComponent}
+            {isExpanded && expandComponent.map((Component, index) => {
+                return <TableRow key={index}>
+                    {Component}
                 </TableRow>
-            )}
+            })}
         </>
     );
 };

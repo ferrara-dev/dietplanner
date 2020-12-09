@@ -13,18 +13,6 @@ export default function mealCategoryReducer(state = initialState, action) {
                 ...state,
                 description: action.description
             }
-
-        case mealCategoryActions.ADD_MEAL_TO_CATEGORY :
-            return {
-                ...state,
-                alternatives: [...state.mealAlternatives, action.alternative]
-            }
-
-        case mealCategoryActions.REMOVE_MEAL_FROM_CATEGORY :
-            return {
-                ...state,
-                alternatives: state.mealAlternatives.filter((meal, i) => (meal !== action.meal))
-            }
         case mealCategoryActions.SET_CURRENT_CATEGORY :
             return {
                ...state,

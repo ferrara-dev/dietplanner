@@ -1,6 +1,6 @@
 import EditMealView from "../../component/user/dietplan/editMealView";
-import {Route, Switch, useRouteMatch} from "react-router-dom";
-import React, {useEffect} from "react";
+import {useRouteMatch} from "react-router-dom";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
 import {setMealTitle, removeIngredient, resetCurrentMeal} from "../../../actions/meal";
@@ -10,10 +10,9 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 
 import {useFirestore} from "react-redux-firebase";
-import IngredientFactory from "../../../helpers/ingredientFactory";
 import {setCurrentIngredient, setIngredientQuantity} from "../../../actions/ingredient";
 import useFirestoreData from "../../../helpers/hooks/useFirebaseState";
-import {addMealToCategory, updateCurrentMealCategory} from "../../../actions/mealCategory";
+import {addMealToCategory} from "../../../actions/mealCategory";
 
 export default function AddMeal() {
     const {path, url} = useRouteMatch();

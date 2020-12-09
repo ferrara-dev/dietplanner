@@ -1,18 +1,9 @@
 import {mealCategoryActions} from "./ActionTypes";
 import {randomID, options} from "../helpers/random";
-import {resetCurrentMeal} from "./meal";
 
 function setCategoryDescriptionAction(description) {
     return {type: mealCategoryActions.SET_MEAL_CATEGORY_DESCRIPTION, description: description}
 };
-
-function addAlternativeToCategoryAction(alternative) {
-    return {type: mealCategoryActions.ADD_MEAL_TO_CATEGORY, alternative: alternative}
-}
-
-function removeAlternativeFromCategoryAction(meal) {
-    return {type: mealCategoryActions.ADD_MEAL_TO_CATEGORY, meal: meal}
-}
 
 function setCategoryAction(mealCategory) {
     return {
@@ -23,22 +14,11 @@ function setCategoryAction(mealCategory) {
 
 function resetCategoryAction() {
     return {type : mealCategoryActions.RESET_CURRENT_CATEGORY}
-}
-// action creator for creating a new meal category.
-function createMealCategoryAction(category){
-    return {type : mealCategoryActions.CREATE_MEAL_CATEGORY , payload : category}
 };
 
 export const setCategoryDescription = (description) => (dispatch) => {
     dispatch(setCategoryDescriptionAction(description));
 };
-
-export const updateCurrentMealCategory = (currentMeal) => (dispatch, getState) => {
-    const updatedCurrentMealCategory = getState().currentMealCategory.alternatives.filter(meal => {
-
-    })
-};
-
 
 export const addMealToCategory = (meal) => (dispatch, getState, {getFirestore, getFirebase}) => {
     const currentCategoryID = getState().currentMealCategory.id;
@@ -86,11 +66,6 @@ export const createMealCategory = (description) => (dispatch, getState, {getFire
             })
         });
     }
-};
-
-
-export const removeMealFromCategory = (meal) => (dispatch) => {
-    dispatch(removeAlternativeFromCategoryAction(meal));
 };
 
 export const setCurrentCategory = (mealCategory) =>  (dispatch, getState, {getFirestore, getFirebase}) => {

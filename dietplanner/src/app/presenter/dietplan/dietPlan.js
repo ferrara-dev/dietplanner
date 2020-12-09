@@ -1,12 +1,11 @@
-import React, {useEffect} from "react";
-import MealPlanSummary from "./mealPlanSummary";
+import React from "react";
 import {useFirestoreConnect} from "react-redux-firebase";
 import useFirebaseAuth from "../../../helpers/hooks/usefirebaseAuth";
 import useFirestoreData from "../../../helpers/hooks/useFirebaseState";
 import {useDispatch, useSelector} from "react-redux";
 import DietSummaryView from "../../component/user/dietplan/dietSummaryView";
 import {setCurrentCategory} from "../../../actions/mealCategory";
-import {resetCurrentMeal} from "../../../actions/meal";
+import {resetCurrentIngredient} from "../../../actions/ingredient";
 
 export default function DietPlan() {
     const userUID = useFirebaseAuth().uid;
@@ -20,6 +19,10 @@ export default function DietPlan() {
         storeAs: "mealPlan"
     });
 
+    React.useEffect(() => {
+        dispatch(resetCurrentIngredient());
+    }, []);
+
     const mealPlan = useFirestoreData("mealPlan");
 
     const chooseCurrentCategory = (index) => {
@@ -28,4 +31,4 @@ export default function DietPlan() {
 
     return (!mealPlan && <div>...</div> ||
         <DietSummaryView chooseMeal={chooseCurrentCategory} mealPlan={mealPlan.mealCategories}/>);
-}
+};
