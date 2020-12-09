@@ -17,6 +17,11 @@ export default function ingredientReducer(state = initialState, action) {
                 ...state,
                 quantity: action.quantity
             };
+        case ingredientActions.RESET_CURRENT_INGREDIENT:
+            return {
+                ...initialState
+            };
+
         default :
             return state;
     }

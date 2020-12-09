@@ -18,12 +18,18 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ProductCard({title, seeMore}) {
+export default function ProductCard({title, seeMore ,img}) {
     const classes = useStyles();
 
     return (
         <Card className={classes.root}>
             <CardActionArea>
+                <CardMedia
+
+                    className={classes.media}
+                    image={img || "https://via.placeholder.com/728x90.png?text=No+Picture"}
+                    title={title}
+                />
                 <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {title}

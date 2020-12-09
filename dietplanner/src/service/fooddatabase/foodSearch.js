@@ -13,7 +13,7 @@ function apiCall(url){
     })
 }
 export function EdamamSearch(query){
-    return apiCall(edamamApiConfig.getUrl(query)).then(res => res.data);
+    return apiCall(edamamApiConfig.getUrl(query || ' ')).then(res => res.data);
 }
 
 export function FDCSearch(search){

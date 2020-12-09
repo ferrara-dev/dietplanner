@@ -3,7 +3,7 @@ import {Route, Switch, useRouteMatch} from "react-router-dom";
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
-import {setMealTitle, removeIngredient} from "../../../actions/meal";
+import {setMealTitle, removeIngredient, resetCurrentMeal} from "../../../actions/meal";
 
 import {Button, Grid} from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
@@ -13,7 +13,7 @@ import {useFirestore} from "react-redux-firebase";
 import IngredientFactory from "../../../helpers/ingredientFactory";
 import {setCurrentIngredient, setIngredientQuantity} from "../../../actions/ingredient";
 import useFirestoreData from "../../../helpers/hooks/useFirebaseState";
-import {addMealToCategory, setCategoryDescription} from "../../../actions/mealCategory";
+import {addMealToCategory, updateCurrentMealCategory} from "../../../actions/mealCategory";
 
 export default function AddMeal() {
     const {path, url} = useRouteMatch();
@@ -25,15 +25,17 @@ export default function AddMeal() {
     const firestore = useFirestore();
 
     console.log(state);
+
     function addMeal() {
-       dispatch(addMealToCategory(currentMeal));
-       history.push(`/home/mealplan`)
+        dispatch(addMealToCategory(currentMeal));
+        dispatch(resetCurrentMeal());
+        history.push(`/home/mealplan`)
     };
 
     function editIngredient(ingredient) {
         dispatch(setCurrentIngredient(ingredient.ingredient));
         dispatch(setIngredientQuantity(ingredient.quantity));
-        history.push(`${url}/ingredient/${ingredient.ingredient.fdcId}`);
+        history.push(`${url}/ingredient/${ingredient.ingredient.foodId}`);
     };
 
     function deleteIngredient(ingredient) {

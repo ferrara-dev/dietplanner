@@ -12,6 +12,7 @@ import DietPlan from "../presenter/dietplan/dietPlan";
 import CreateMealForm from "../component/form/createMealForm";
 import CreateMealCategory from "../presenter/dietplan/createMealCategory";
 import AddMeal from "../presenter/dietplan/addMeal";
+import MealCategoryDetails from "../presenter/nutrition/mealCategoryDetails";
 export const routes = [
     {
         path: "/home",
@@ -40,10 +41,10 @@ export const routes = [
         ]
     },
     {
-        path: "/home/mealbank",
+        path: "/home/mealplan/:category",
         exact: true,
         sidebar: () => <Sidebar/>,
-        main: () => <MealBank/>,
+        main: () => <MealCategoryDetails/>,
     },
     {
         path: "/home/mealplan/:category/add",

@@ -20,9 +20,9 @@ export default function IngredientSearchResultView({chooseIngredient, results = 
             {loading && <Grid item xs={12}>
                 <LoadingSpinner/>
             </Grid> ||
-            results.map((food) => {
-                return <Grid key={food.fdcId} item md={6} xs={12}>
-                    <ProductCard key={food.fdcId} title={food.description} seeMore={() => {
+            results.map(({food}, index) => {
+                return <Grid key={`${food.foodId}${index}`} item md={6} xs={12}>
+                    <ProductCard key={`${food.foodId}${index}`} title={food.label} img={food.image} seeMore={() => {
                         chooseIngredient(food);
                     }}/>
                 </Grid>

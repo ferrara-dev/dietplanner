@@ -3,80 +3,105 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button"
 import Paper from "@material-ui/core/Paper"
 import {Link, useRouteMatch} from "react-router-dom";
-import {AccordionSummary, Accordion, AccordionDetails, IconButton} from "@material-ui/core";
+import {
+    AccordionSummary,
+    Accordion,
+    AccordionDetails,
+    IconButton,
+    TableContainer,
+    Table,
+    TableHead, TableRow, TableCell, TableBody, Grid
+} from "@material-ui/core";
 import {FormControlLabel} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core";
 import {List, ListItem} from "@material-ui/core"
 import {Add} from "@material-ui/icons"
+import AddIcon from "@material-ui/icons/Add";
+import {nutritionalCodes} from "../../../../helpers/constants";
+import DeleteIcon from "@material-ui/icons/Delete";
+import ExpandableTableRow from "../../common/table/expandableTable";
+import EditIcon from '@material-ui/icons/Edit';
 
 export default function CurrentMealPlanView({meals, chooseMeal, addMeal}) {
     const classes = useStyles();
     const {url, path} = useRouteMatch()
-    const [expanded, setExpanded] = React.useState({});
-    const handleClick = (id) => {
-        setExpanded({
-            ...expanded,
-            [id]: !expanded[id]
-        });
-    };
+    const [edit, setEdit] = React.useState(false);
+
 
     return (
         <div className={classes.mealsRoot}>
             <Typography className={classes.header}>
                 Meal plan
             </Typography>
-            <Paper component="ul" className={classes.list}>
-                {meals.map(({description, alternatives}, index) => {
-                    return (
-                        <li key={index}>
-                            <Accordion onClick={(e) => {
-                                e.preventDefault();
-                            }}>
-                                <AccordionSummary>
-                                    <FormControlLabel
-                                        aria-label="Acknowledge"
-                                        onClick={(event) => {
-                                            event.stopPropagation()
-                                            chooseMeal(index);
-                                        }}
-                                        onFocus={(event) => event.stopPropagation()}
-                                        control={<IconButton component={Link} to={`${url}/${description}/add`}><Add
-                                            fontSize="small"/></IconButton>}
-                                    />
-                                    {description}
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <List>
-                                        {alternatives.map((alternative, index) => {
-                                            return <ListItem key={index}>
-                                               <Button>
-                                                   {alternative.title}
-                                               </Button>
-                                            </ListItem>
-                                        })}
-                                    </List>
-                                </AccordionDetails>
-                            </Accordion>
-                        </li>
-                    );
-                })}
+            <Paper component="div">
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>
+                                <IconButton onClick={() => setEdit(!edit)}>
+                                    <EditIcon fontSize="small"/>
+                                </IconButton>
+                            </TableCell>
+                            <TableCell>Meal plan</TableCell>
+                            <TableCell padding="checkbox"/>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {meals.map(({description, meals, id}, index) => (
+                            <ExpandableTableRow
+                                key={id}
+                                k={id}
+                                expandComponent={
+                                    meals.map(({title}) => (
+                                        <TableCell key={id} colSpan="2"><Button>{title}</Button></TableCell>
+                                    ))
+                                }
+                            >
+
+                                <TableCell key={index}>{description}</TableCell>
+                                <TableCell key={index + 1}>
+                                    {edit && <IconButton key={index - 1} component={Link}
+                                                         to={`/home/mealplan/${description}/add`} onClick={() => {
+                                        chooseMeal(index);
+                                    }}>
+                                        <Add fontSize="small"/>
+                                    </IconButton>}
+                                </TableCell>
+                                <TableCell key={index + 2}>
+                                    {edit && <IconButton key={index - 2}>
+                                        <DeleteIcon fontSize="small"/>
+                                    </IconButton>}
+                                </TableCell>
+                            </ExpandableTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+                <Button component={Link} to="/home/mealPlan/createMealCategory"
+                        fullWidth>
+                    Add new meal category
+                </Button>
             </Paper>
         </div>
     )
-}
+
+};
 
 
 const useStyles = makeStyles((theme) => ({
+    tableRow: {
+        height: 100,
+    },
     list: {
         listStyle: 'none',
         marginBottom: 2,
     },
     title: {
         flex: '1 1 100%',
-    },
+    }
+    ,
     mealsRoot: {
         width: '100%',
         maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
     }
-}));
+}))

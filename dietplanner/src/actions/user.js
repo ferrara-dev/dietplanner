@@ -18,7 +18,7 @@ export const createMealPlan = (mealPlan) => (dispatch, getState, getFirebase) =>
     const path = `mealPlans/${userUID}`;
     const userUID = getState().firebase.auth.uid;
     console.log(userUID);
-    dispatch({type: "user/CREATE_MEAL_PLAN", mealPlan: mealPlan.meals})
+    dispatch({type: "user/CREATE_MEAL_PLAN", meals: mealPlan.meals})
     firebase
         .ref(path)
         .push({...mealPlan, userID : userUID})
@@ -37,7 +37,7 @@ export const registerUser = (email, password, userProfile) => (dispatch, getStat
         const firestore = getFirestore();
         firestore.collection('mealPlans').doc(`${userUID}`).set({
             owner : userUID,
-            mealPlan : []
+            mealCategories : []
         });
 
         firestore.collection('mealBank').doc(`${userUID}`).set({

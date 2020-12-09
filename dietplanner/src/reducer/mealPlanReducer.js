@@ -2,7 +2,7 @@ import {authActions, userActions, nutritionActions} from "../actions/ActionTypes
 
 const initialState = {
     currentMeal: {},
-    constructedMeal : null
+    constructedMeal : null,
 }
 
 export function mealPlanReducer(state = initialState, action) {

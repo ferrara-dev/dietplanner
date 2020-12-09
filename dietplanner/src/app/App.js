@@ -4,15 +4,16 @@ import {Switch, Route} from "react-router-dom";
 import {isLoaded} from "react-redux-firebase";
 import {useSelector} from "react-redux";
 import Navigation from "./presenter/Navigation";
+
+
 /// view presenters
 import Login from "./presenter/Login";
 import Home from "./component/user/home";
 import Signup from "./presenter/Signup";
-import StickyFooter from "./component/navigation/footer";
 import ProtectedRoute from "./component/protectedRoute";
 
 function App() {
-    const auth = useSelector(state => state);
+    //const auth = useSelector(state => state);
     //console.log(auth);
     return (
         <AuthIsLoaded>

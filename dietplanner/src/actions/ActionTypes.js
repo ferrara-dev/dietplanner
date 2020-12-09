@@ -21,6 +21,7 @@ export const mealActions = {
 export const ingredientActions = {
     SET_CURRENT_INGREDIENT : "ingredient/SET_INGREDIENT",
     SET_INGREDIENT_QUANTITY: "ingredient/SET_INGREDIENT_QUANTITY",
+    RESET_CURRENT_INGREDIENT : "ingredient/RESET_CURRENT_INGREDIENT"
 };
 
 export const mealCategoryActions = {
@@ -28,8 +29,10 @@ export const mealCategoryActions = {
     ADD_MEAL_TO_CATEGORY : "mealCategory/ADD_MEAL_TO_CATEGORY",
     REMOVE_MEAL_FROM_CATEGORY : "mealCategory/REMOVE_MEAL_FROM_CATEGORY",
     SET_CURRENT_CATEGORY : "mealCategory/SET_CURRENT_CATEGORY",
-    RESET_CURRENT_CATEGORY : "mealCategory/RESET_CURRENT_CATEGORY"
-}
+    RESET_CURRENT_CATEGORY : "mealCategory/RESET_CURRENT_CATEGORY",
+    CREATE_MEAL_CATEGORY : "mealCategory/RESET_CURRENT_CATEGORY"
+};
+
 export const nutritionActions = {
     SET_CURRENT_MEAL : "SET_CURRENT_MEAL",
     SET_CURRENT_ALTERNATIVE : "SET_CURRENT_ALTERNATIVE",

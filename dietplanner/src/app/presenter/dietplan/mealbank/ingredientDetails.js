@@ -1,11 +1,12 @@
 import IngredientDetailsView from "../../../component/user/ingredientsearch/ingredientDetails";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "../../../component/common/modal/modal";
-import {setIngredientQuantity} from "../../../../actions/ingredient";
+import {resetCurrentIngredient, setIngredientQuantity} from "../../../../actions/ingredient";
 import {addIngredient} from "../../../../actions/meal";
-
+import {useHistory} from "react-router";
 
 export default function IngredientDetails() {
+    const history = useHistory();
     const currentIngredient = useSelector(state => state.currentIngredient);
     const state = useSelector(state =>state);
     console.log(state);
@@ -18,11 +19,13 @@ export default function IngredientDetails() {
 
     function addToMeal () {
         dispatch(addIngredient(currentIngredient));
+        dispatch(resetCurrentIngredient());
+        history.goBack();
     }
 
     return <Modal>
         {!currentIngredient && <div>loading...</div> || <IngredientDetailsView
-            ingredientDescription={currentIngredient.ingredient.description}
+            ingredientDescription={currentIngredient.ingredient.label}
             nutritionData={currentIngredient.ingredient.nutrients}
             quantity={currentIngredient.quantity}
             changeQuantity={changeQuantity}

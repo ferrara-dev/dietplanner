@@ -1,4 +1,6 @@
 import {mealCategoryActions} from "./ActionTypes";
+import {randomID, options} from "../helpers/random";
+import {resetCurrentMeal} from "./meal";
 
 function setCategoryDescriptionAction(description) {
     return {type: mealCategoryActions.SET_MEAL_CATEGORY_DESCRIPTION, description: description}
@@ -12,59 +14,86 @@ function removeAlternativeFromCategoryAction(meal) {
     return {type: mealCategoryActions.ADD_MEAL_TO_CATEGORY, meal: meal}
 }
 
-function setCategoryAction(meal) {
+function setCategoryAction(mealCategory) {
     return {
         type: mealCategoryActions.SET_CURRENT_CATEGORY,
-        payload: {description: meal.description, mealAlternatives: meal.alternatives}
+        payload: mealCategory
     }
 };
 
 function resetCategoryAction() {
     return {type : mealCategoryActions.RESET_CURRENT_CATEGORY}
 }
+// action creator for creating a new meal category.
+function createMealCategoryAction(category){
+    return {type : mealCategoryActions.CREATE_MEAL_CATEGORY , payload : category}
+};
+
 export const setCategoryDescription = (description) => (dispatch) => {
     dispatch(setCategoryDescriptionAction(description));
 };
 
-export const addMealToCategory = (meal) => (dispatch, getState, {getFirestore, getFirebase}) => {
-    const mealPlan = getState().firestore.data.mealPlan.mealPlan;
-    const currentMealCategory = getState().currentMealCategory;
-    const updatedMealPlan = mealPlan.map(({description, alternatives}) => {
-        if (description === currentMealCategory.description) {
+export const updateCurrentMealCategory = (currentMeal) => (dispatch, getState) => {
+    const updatedCurrentMealCategory = getState().currentMealCategory.alternatives.filter(meal => {
 
-            return {description, alternatives: alternatives.filter(alt => alt.title !== meal.title).concat(meal)}
-        } else
-            return {description, alternatives};
+    })
+};
+
+
+export const addMealToCategory = (meal) => (dispatch, getState, {getFirestore, getFirebase}) => {
+    const currentCategoryID = getState().currentMealCategory.id;
+    const updatedMealCategories = getState().firestore.data.mealPlan.mealCategories.map(category => {
+        if(category.id === currentCategoryID){
+            return {...category, meals : category.meals.filter(m => m.title !== meal.title).concat({
+                    ingredients : meal.ingredients,
+                    title : meal.title
+                })}
+        }
+        else
+            return {...category};
     });
 
     const userUID = getState().firebase.auth.uid;
     const firestore = getFirestore();
-    firestore.collection("mealPlans").doc(`${userUID}`).update({
-        "mealPlan": updatedMealPlan
-    }).then(res => {
-        dispatch(resetCategoryAction());
 
-    }).catch(err => {
-        console.log(err);
+    firestore.collection("mealPlans").doc(`${userUID}`).update({
+        mealCategories : updatedMealCategories
     });
 
-    /*
-    dispatch(addAlternativeToCategoryAction(meal));
-
-    const currentMealCategory = getState().currentMealCategory;
-    const firestore = getFirestore();
-    firestore.collection("mealPlans").doc(`${userUID}`).update({
-        "mealPlan" : [...getState().firestore.data.mealPlan.mealPlan, meal]
-    });
-     */
-    //dispatch(addAlternativeToCategoryAction(meal));
+    dispatch(resetCategoryAction());
 };
+
+export const createMealCategory = (description) => (dispatch, getState, {getFirestore, getFirebase}) => {
+    const mealPlan = getState().firestore.data.mealPlan;
+    const isPresent = mealPlan.mealCategories.some(element => {
+        return element.description === description
+    });
+
+    if(isPresent)
+        throw "Meal plan already has a meal named " + description;
+
+    else {
+        // 1. create unique id for the category
+        const mealCategoryId = randomID(36, options.alphanumeric);
+        const userUID = getState().firebase.auth.uid;
+        const firestore = getFirestore();
+        // 2. add the newly created category to the meal plans mealCategories [] field.
+        firestore.collection('mealPlans').doc(`${userUID}`).update({
+            mealCategories: mealPlan.mealCategories.concat({
+                description : description,
+                id : mealCategoryId,
+                meals : []
+            })
+        });
+    }
+};
+
 
 export const removeMealFromCategory = (meal) => (dispatch) => {
     dispatch(removeAlternativeFromCategoryAction(meal));
 };
 
-export const setCurrentCategory = (category, pos) => (dispatch) => {
-    dispatch(setCategoryAction(category, pos));
+export const setCurrentCategory = (mealCategory) =>  (dispatch, getState, {getFirestore, getFirebase}) => {
+    dispatch(setCategoryAction(mealCategory));
 };
 

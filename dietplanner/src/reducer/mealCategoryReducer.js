@@ -1,8 +1,9 @@
 import {mealCategoryActions} from "../actions/ActionTypes";
 
 const initialState = {
+    id : null,
     description: null,
-    alternatives: []
+    meals: []
 }
 
 export default function mealCategoryReducer(state = initialState, action) {
@@ -27,8 +28,9 @@ export default function mealCategoryReducer(state = initialState, action) {
         case mealCategoryActions.SET_CURRENT_CATEGORY :
             return {
                ...state,
-                mealAlternatives: action.payload.mealAlternatives,
-                description: action.payload.description
+                id : action.payload.id,
+                description: action.payload.description,
+                meals : [...action.payload.meals]
             };
         case mealCategoryActions.RESET_CURRENT_CATEGORY :
             return {

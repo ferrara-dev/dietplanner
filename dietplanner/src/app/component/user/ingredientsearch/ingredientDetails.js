@@ -10,7 +10,7 @@ import {nutritionalCodes} from "../../../../helpers/constants";
 export default function IngredientDetailsView({addIngredient, changeQuantity, ingredientDescription, nutritionData, quantity}) {
     const classes = useStyles();
     const history = useHistory();
-    console.log(quantity);
+    console.log(nutritionData);
 
     return <div>
         <AppBar position="static" className={classes.mealPlanBar}>
@@ -44,22 +44,46 @@ export default function IngredientDetailsView({addIngredient, changeQuantity, in
                         Quantity : {quantity}
                     </ListItem>
                     <ListItem>
-                        {nutritionData[nutritionalCodes.protein].name} : {nutritionData[nutritionalCodes.protein].amount * (quantity/100).toFixed(1)} {nutritionData[nutritionalCodes.protein].unit}
+                        Kcal : {(nutritionData.ENERC_KCAL * (quantity/100)).toFixed(1)}
                     </ListItem>
                     <ListItem>
-                        {nutritionData[nutritionalCodes.carbsTotal].name} : {nutritionData[nutritionalCodes.carbsTotal].amount* (quantity/100).toFixed(1)} {nutritionData[nutritionalCodes.carbsTotal].unit}
+                        Protein : {(nutritionData.PROCNT * (quantity/100)).toFixed(1)}
                     </ListItem>
                     <ListItem>
-                        {nutritionData[nutritionalCodes.sugars].name} : {nutritionData[nutritionalCodes.sugars].amount* (quantity/100).toFixed(1)} {nutritionData[nutritionalCodes.sugars].unit}
+                        Carbs : {(nutritionData.CHOCDF * (quantity/100)).toFixed(1)}
                     </ListItem>
                     <ListItem>
-                        {nutritionData[nutritionalCodes.fatTotal].name} : {nutritionData[nutritionalCodes.fatTotal].amount* (quantity/100).toFixed(1)} {nutritionData[nutritionalCodes.fatTotal].unit}
+                        Which of fibers : {(nutritionData.FIBTG * (quantity/100)).toFixed(1)}
                     </ListItem>
                     <ListItem>
-                        {nutritionData[nutritionalCodes.kcal].name} : {nutritionData[nutritionalCodes.kcal].amount* (quantity/100).toFixed(1)} {nutritionData[nutritionalCodes.kcal].unit}
+                        Fat : {(nutritionData.FAT * (quantity/100)).toFixed(1)}
                     </ListItem>
                 </List>
             </Grid>
         </Grid>
     </div>
 }
+/*
+<Grid item xs={6} md={12}>
+    <List>
+        <ListItem>
+            Quantity : {quantity}
+        </ListItem>
+        <ListItem>
+            {nutritionData[nutritionalCodes.protein].name} : {nutritionData[nutritionalCodes.protein].amount * (quantity/100).toFixed(1)} {nutritionData[nutritionalCodes.protein].unit}
+        </ListItem>
+        <ListItem>
+            {nutritionData[nutritionalCodes.carbsTotal].name} : {nutritionData[nutritionalCodes.carbsTotal].amount* (quantity/100).toFixed(1)} {nutritionData[nutritionalCodes.carbsTotal].unit}
+        </ListItem>
+        <ListItem>
+            {nutritionData[nutritionalCodes.sugars].name} : {nutritionData[nutritionalCodes.sugars].amount* (quantity/100).toFixed(1)} {nutritionData[nutritionalCodes.sugars].unit}
+        </ListItem>
+        <ListItem>
+            {nutritionData[nutritionalCodes.fatTotal].name} : {nutritionData[nutritionalCodes.fatTotal].amount* (quantity/100).toFixed(1)} {nutritionData[nutritionalCodes.fatTotal].unit}
+        </ListItem>
+        <ListItem>
+            {nutritionData[nutritionalCodes.kcal].name} : {nutritionData[nutritionalCodes.kcal].amount* (quantity/100).toFixed(1)} {nutritionData[nutritionalCodes.kcal].unit}
+        </ListItem>
+    </List>
+</Grid>
+ */

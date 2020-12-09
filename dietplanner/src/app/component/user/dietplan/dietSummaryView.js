@@ -19,16 +19,13 @@ export default function DietSummaryView({mealPlan, chooseMeal, addMeal}) {
                 <Toolbar></Toolbar>
             </AppBar>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12}>
             <div className={classes.root}>
                 <Paper className={classes.paper}>
                     <CurrentMealPlanView
                         meals={mealPlan}
                         chooseMeal={chooseMeal}
                     />
-                    <Button component={Link} to="/home/mealPlan/createMealCategory">
-                        Add new meal
-                    </Button>
                 </Paper>
             </div>
         </Grid>

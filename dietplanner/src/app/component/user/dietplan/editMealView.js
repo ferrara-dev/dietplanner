@@ -39,7 +39,6 @@ export default function EditMealView({
     const classes = useStyles();
 
     const history = useHistory();
-    const totalNutrients = NutrientAccumulator(data);
 
     const {url, path} = useRouteMatch();
     return (
@@ -83,25 +82,25 @@ export default function EditMealView({
                                 </TableRow> : data.map(({ingredient, quantity}, index) => {
                                     return <TableRow key={index}>
                                         <TableCell component="th" scope="row" key={index}>
-                                            <Button component={Link} to={`${url}/ingredient/${ingredient.fdcId}`}
+                                            <Button component={Link} to={`${url}/ingredient/${ingredient.foodId}`}
                                                     onClick={() => editIngredient({ingredient, quantity})}>
-                                                {ingredient.description}
+                                                {ingredient.label}
                                             </Button>
                                         </TableCell>
                                         <TableCell component="th" scope="row" key={index + 1}>
                                             {quantity}
                                         </TableCell>
                                         <TableCell component="th" scope="row" key={index + 2}>
-                                            {getNutrientValue(ingredient, quantity, nutritionalCodes.protein)}
+                                            {(ingredient.nutrients.PROCNT * (quantity/100)).toFixed(1)}
                                         </TableCell>
                                         <TableCell component="th" scope="row" key={index + 3}>
-                                            {getNutrientValue(ingredient, quantity, nutritionalCodes.carbsTotal)}
+                                            {(ingredient.nutrients.CHOCDF * (quantity/100)).toFixed(1)}
                                         </TableCell>
                                         <TableCell component="th" scope="row" key={index + 4}>
-                                            {getNutrientValue(ingredient, quantity, nutritionalCodes.fatTotal)}
+                                            {(ingredient.nutrients.FAT * (quantity/100)).toFixed(1)}
                                         </TableCell>
                                         <TableCell component="th" scope="row" key={index + 5}>
-                                            {getNutrientValue(ingredient, quantity, nutritionalCodes.kcal)}
+                                            {(ingredient.nutrients.ENERC_KCAL * (quantity/100)).toFixed(1)}
                                         </TableCell>
                                         <TableCell component="th" scope="row" key={index + 6}>
                                             <IconButton aria-label="delete" onClick={() => {
@@ -118,7 +117,7 @@ export default function EditMealView({
                 </Grid>
                 <Grid item xs={6}>
                     <Grid container spacing={1}>
-                        {Object.entries(totalNutrients).map(([key, val], index) => {
+                        {/*Object.entries(totalNutrients).map(([key, val], index) => {
                             const colors = [classes.card1, classes.card2, classes.card3, classes.card4, classes.card5]
                             return <Grid item xs={6} key={key}>
                                 <Card
@@ -134,7 +133,7 @@ export default function EditMealView({
                                     </CardContent>
                                 </Card>
                             </Grid>
-                        })}
+                        })*/}
                     </Grid>
                 </Grid>
                 <Grid item xs={6}>

@@ -15,7 +15,7 @@ export default function mealReducer(state = initialState, action) {
         case mealActions.ADD_INGREDIENT :
             return {
                 ...state,
-                ingredients: [...state.ingredients.filter((_ingr) => _ingr.ingredient.fdcId !== action.ingredient.ingredient.fdcId),action.ingredient]
+                ingredients: [...state.ingredients.filter((_ingr) => _ingr.ingredient.foodId !== action.ingredient.ingredient.foodId),action.ingredient]
             };
         case mealActions.REMOVE_INGREDIENT :
             return {

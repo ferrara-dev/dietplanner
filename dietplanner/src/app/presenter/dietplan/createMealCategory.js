@@ -5,22 +5,15 @@ import {useFirestore, useFirestoreConnect} from "react-redux-firebase";
 import useFirebaseAuth from "../../../helpers/hooks/usefirebaseAuth";
 import {useDispatch, useSelector} from "react-redux";
 import useFirestoreData from "../../../helpers/hooks/useFirebaseState";
-import {setCategoryDescription} from "../../../actions/mealCategory";
+import {createMealCategory, setCategoryDescription} from "../../../actions/mealCategory";
 
 export default function CreateMealCategory() {
     const userUID = useFirebaseAuth().uid;
-
-    useFirestoreConnect({
-        collection : "mealPlans",
-        doc: userUID,
-        storeAs: "mealPlan"
-    });
-
     const dispatch = useDispatch();
-    const firestore = useFirestore();
-    const currentMealPlan = useFirestoreData("mealPlan");
 
     const addMealCategory = () => {
+        dispatch(createMealCategory(fields.description))
+        /*
         const isPresent = currentMealPlan.mealPlan.some(element => {
             return element.description === fields.description
         });
@@ -38,6 +31,7 @@ export default function CreateMealCategory() {
                 console.log(err);
             }
         }
+         */
     };
 
     const {fields, handleChange, handleSubmit} = useForm(addMealCategory);
