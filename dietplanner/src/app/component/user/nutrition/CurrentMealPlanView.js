@@ -18,12 +18,12 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ExpandableTableRow from "../../common/table/expandableTable";
 import EditIcon from '@material-ui/icons/Edit';
 import {options, randomID} from "../../../../helpers/random";
+import AlertDialog from "../../common/alertDialog";
 
-export default function CurrentMealPlanView({meals, chooseMeal, addMeal}) {
+export default function CurrentMealPlanView({meals, chooseMeal, deleteCategory}) {
     const classes = useStyles();
     const {url, path} = useRouteMatch()
     const [edit, setEdit] = React.useState(false);
-
 
     return (
         <div className={classes.mealsRoot}>
@@ -65,9 +65,15 @@ export default function CurrentMealPlanView({meals, chooseMeal, addMeal}) {
                                     </IconButton>}
                                 </TableCell>
                                 <TableCell key={index + 2}>
-                                    {edit && <IconButton key={index - 2}>
-                                        <DeleteIcon fontSize="small"/>
-                                    </IconButton>}
+                                    {edit && <AlertDialog
+                                        onConfirm={() => {
+                                        deleteCategory(index);
+                                        setEdit(!edit);
+                                    }}
+                                        content={"Do you want to delete the " + description + " category?"}
+                                        title={"Delete " + description + "?"}
+                                        OpenIcon={DeleteIcon}
+                                    />}
                                 </TableCell>
                             </ExpandableTableRow>
                         ))}

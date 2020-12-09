@@ -9,7 +9,7 @@ import {useRouteMatch} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 
-export default function DietSummaryView({mealPlan, chooseMeal, addMeal}) {
+export default function DietSummaryView({mealPlan, chooseMeal, deleteCategory}) {
 
     const classes = useStyles();
 
@@ -25,6 +25,7 @@ export default function DietSummaryView({mealPlan, chooseMeal, addMeal}) {
                     <CurrentMealPlanView
                         meals={mealPlan}
                         chooseMeal={chooseMeal}
+                        deleteCategory={deleteCategory}
                     />
                 </Paper>
             </div>

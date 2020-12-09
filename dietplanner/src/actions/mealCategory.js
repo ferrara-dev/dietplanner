@@ -68,6 +68,19 @@ export const createMealCategory = (description) => (dispatch, getState, {getFire
     }
 };
 
+export const removeCategory = (mealCategory) =>  (dispatch, getState, {getFirestore, getFirebase}) => {
+    const updatedMealCategories = getState().firestore.data.mealPlan.mealCategories.filter(category => {
+        return category.id !== mealCategory.id;
+    })
+
+    const userUID = getState().firebase.auth.uid;
+    const firestore = getFirestore();
+
+    firestore.collection('mealPlans').doc(`${userUID}`).update({
+        mealCategories: updatedMealCategories
+    })
+}
+
 export const setCurrentCategory = (mealCategory) =>  (dispatch, getState, {getFirestore, getFirebase}) => {
     dispatch(setCategoryAction(mealCategory));
 };
