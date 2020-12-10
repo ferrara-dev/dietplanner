@@ -14,7 +14,7 @@ import {setCurrentIngredient, setIngredientQuantity} from "../../../actions/ingr
 import useFirestoreData from "../../../helpers/hooks/useFirebaseState";
 import {addMealToCategory} from "../../../actions/mealCategory";
 
-export default function AddMeal() {
+export default function EditMeal() {
     const {path, url} = useRouteMatch();
     const dispatch = useDispatch();
     const history = useHistory();

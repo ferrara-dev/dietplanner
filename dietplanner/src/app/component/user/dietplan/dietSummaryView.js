@@ -1,38 +1,160 @@
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import {Container, Grid, Paper} from "@material-ui/core";
-import CurrentMealPlanView from "../nutrition/CurrentMealPlanView";
-import FormDialog from "../../common/FormDialog";
+import {Container, Grid, IconButton, Paper, Table, TableBody, TableCell, TableHead, TableRow} from "@material-ui/core";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import {useRouteMatch} from "react-router-dom";
+import {Link, useRouteMatch} from "react-router-dom";
+import Typography from "@material-ui/core/Typography";
+import EditIcon from "@material-ui/icons/Edit";
+import ExpandableTableRow from "../../common/table/expandableTable";
+import {options, randomID} from "../../../../helpers/random";
 import Button from "@material-ui/core/Button";
-import {Link} from "react-router-dom";
+import {
+    averageMealCategoryNutrients,
+    averageMealPlanNutrients
+} from "../../../../helpers/calculation/MealNutrientCalculator";
+import {Add} from "@material-ui/icons";
+import AlertDialog from "../../common/alertDialog";
+import DeleteIcon from "@material-ui/icons/Delete";
 
-export default function DietSummaryView({mealPlan, chooseMeal, deleteCategory}) {
 
+export default function DietSummaryView({mealPlan, chooseCategory, deleteCategory, chooseMeal}) {
     const classes = useStyles();
+    const {path, url} = useRouteMatch();
+    const [edit, setEdit] = React.useState(false);
+    const mealPlanNutrients = averageMealPlanNutrients(mealPlan);
 
-    return <div className={classes.root}>
+
+    return <Grid container>
         <Grid item xs={12}>
             <AppBar position="static" className={classes.mealPlanBar}>
                 <Toolbar></Toolbar>
             </AppBar>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={6}>
             <div className={classes.root}>
                 <Paper className={classes.paper}>
-                    <CurrentMealPlanView
-                        meals={mealPlan}
-                        chooseMeal={chooseMeal}
-                        deleteCategory={deleteCategory}
-                    />
+                    <div className={classes.mealsRoot}>
+                        <Typography className={classes.header}>
+                            Meal plan
+                        </Typography>
+                        <Paper component="div">
+                            <Table className={classes.table} aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>
+                                            <IconButton onClick={() => setEdit(!edit)}>
+                                                <EditIcon fontSize="small"/>
+                                            </IconButton>
+                                        </TableCell>
+                                        <TableCell>Meal plan</TableCell>
+                                        <TableCell padding="checkbox"/>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {mealPlan.map(({description, meals, id}, index) => (
+                                        <ExpandableTableRow
+                                            key={id}
+                                            k={id}
+                                            expandComponent={
+                                                meals.map((meal) => (
+                                                    <TableCell key={randomID(12, options.base64)}
+                                                               colSpan="3">
+                                                        <Button component={Link}
+                                                                to={`${url}/${meal.title}`}
+                                                                onClick={(e) => {
+
+                                                                    chooseMeal(meal)
+                                                                }}>{meal.title}
+                                                        </Button>
+                                                    </TableCell>
+                                                ))
+                                            }
+                                        >
+                                            <TableCell key={index}><Button
+                                                onClick={() => {
+                                                    chooseCategory(index);
+                                                }}>{description}</Button></TableCell>
+                                            <TableCell key={index + 1}>
+                                                {edit && <IconButton key={index - 1} component={Link}
+                                                                     to={`/home/mealplan/${description}/add`}
+                                                                     onClick={() => {
+                                                                         chooseCategory(index);
+                                                                     }}>
+                                                    <Add fontSize="small"/>
+                                                </IconButton>}
+                                            </TableCell>
+                                            <TableCell key={index + 2}>
+                                                {edit && <AlertDialog
+                                                    onConfirm={() => {
+                                                        deleteCategory(index);
+                                                        setEdit(!edit);
+                                                    }}
+                                                    content={"Do you want to delete the " + description + " category?"}
+                                                    title={"Delete " + description + "?"}
+                                                    OpenIcon={DeleteIcon}
+                                                />}
+                                            </TableCell>
+                                        </ExpandableTableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                            <Button component={Link} to="/home/mealPlan/createMealCategory"
+                                    fullWidth>
+                                Add new meal category
+                            </Button>
+                        </Paper>
+                    </div>
                 </Paper>
             </div>
         </Grid>
-    </div>
+        <Grid item xs={12} md={6}>
+            <div className={classes.root}>
+                <Paper className={classes.paper}>
+                    <div className={classes.mealsRoot}>
+                        <Paper component="div">
+                            <Typography component="h2" variant="h6" color="primary" gutterBottom>
+                                Average calculated calories
+                            </Typography>
+                            <Typography component="p" variant="h4">
+                                {mealPlanNutrients.kcal.toFixed(1)} kcal
+                            </Typography>
+                        </Paper>
+
+                        <Paper component="div">
+                            <Typography component="h2" variant="h6" color="primary" gutterBottom>
+                                Average calculated protein
+                            </Typography>
+                            <Typography component="p" variant="h4">
+                                {mealPlanNutrients.protein.toFixed(1)} g
+                            </Typography>
+                        </Paper>
+
+                    </div>
+                </Paper>
+            </div>
+        </Grid>
+    </Grid>
 }
 
+{/*
+
+<Grid item xs={12} md={6}>
+    <div className={classes.root}>
+        <Paper className={classes.paper}>
+            <React.Fragment>
+                <Typography component="h2" variant="h6" color="primary" gutterBottom>
+                    Average calculated calories
+                </Typography>
+                <Typography component="p" variant="h4">
+                    {currentMealCategory.meals.length > 0 && averageMealCategoryNutrients(currentMealCategory).kcal.toFixed(1)} kcal
+                </Typography>
+            </React.Fragment>
+        </Paper>
+    </div>
+</Grid>
+*/
+}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -132,5 +254,8 @@ const useStyles = makeStyles((theme) => ({
     tooltip: {
         backgroundColor: "transparent",
         color: theme.palette.common.black
-    }
+    },
+    tableRow: {
+        height: 100,
+    },
 }));

@@ -12,9 +12,8 @@ import Home from "./component/user/home";
 import Signup from "./presenter/Signup";
 import ProtectedRoute from "./component/protectedRoute";
 
+
 function App() {
-    //const auth = useSelector(state => state);
-    //console.log(auth);
     return (
         <AuthIsLoaded>
             <div className="App">

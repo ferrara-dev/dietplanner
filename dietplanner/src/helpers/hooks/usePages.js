@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-export default function usePages(afterLastStep, lastStep = 1) {
+export default function usePages(afterLastStep,lastStep = 1) {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {

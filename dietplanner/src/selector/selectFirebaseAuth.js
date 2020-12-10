@@ -1,4 +1,5 @@
 import {useMemo} from "react"
 export  const getFirebaseAuth = () => ({firebase:{auth}}) => {
-    return auth;
+    const authentication = useMemo(() => (auth), [auth])
+    return authentication;
 }

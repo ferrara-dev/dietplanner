@@ -1,11 +1,12 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Grid from '@material-ui/core/Grid';
+import {List, ListItemText, ListItemSecondaryAction, ListItem, Paper} from '@material-ui/core';
 
+import Grid from '@material-ui/core/Grid';
+import Divider from "@material-ui/core/Divider";
+import Button from "@material-ui/core/Button";
+import {useSignupFormStyle} from "../../style/mui/signupFormStyle";
 
 const useStyles = makeStyles((theme) => ({
     listItem: {
@@ -19,23 +20,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Review({onChange, fields}) {
-    const classes = useStyles();
+export default function Review({validator, onChange, fields, nav: {handleBack, handleNext}}) {
+    const classes = useSignupFormStyle();
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
                 Confirm
             </Typography>
             <List disablePadding>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary={"First name"}/>
-                    <Typography variant="body2">{fields.firstName}</Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary={"Last name"}/>
-                    <Typography variant="body2">{fields.lastName}</Typography>
-                </ListItem>
-
                 <ListItem className={classes.listItem}>
                     <ListItemText primary={"email"}/>
                     <Typography variant="body2">{fields.email}</Typography>
@@ -65,7 +57,34 @@ export default function Review({onChange, fields}) {
                     <ListItemText primary={"activity level"}/>
                     <Typography variant="body2">{fields.activityLevel && fields.activityLevel.description}</Typography>
                 </ListItem>
+                <ListItem className={classes.listItem}>
+                    <ListItemText primary={"Goals"}/>
+                    <Typography variant="body2">{fields.dietGoal}</Typography>
+                </ListItem>
             </List>
+
+            <div className={classes.buttons}>
+                <Button onClick={handleBack} className={classes.button}>
+                    Back
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleNext}
+                    className={classes.button}
+                    disabled={hasEmptyField(fields)}
+                >
+                    {'Register'}
+                </Button>
+            </div>
         </React.Fragment>
     );
+}
+
+
+function hasEmptyField(fields) {
+    return Object.keys(fields).some((propName) => {
+        if (!fields[propName])
+            return true;
+    });
 }

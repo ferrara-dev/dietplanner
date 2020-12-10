@@ -21,10 +21,6 @@ import useStyles from "../../style/mui/mealBankStyle";
 import {useHistory} from "react-router";
 import {Link} from "react-router-dom"
 import {useRouteMatch} from "react-router";
-import {nutritionalCodes} from "../../../../helpers/constants";
-import IngredientFactory from "../../../../helpers/ingredientFactory";
-import {NutrientAccumulator} from "../../../../helpers/ingredientFactory";
-
 
 export default function EditMealView({
                                          setMealName,

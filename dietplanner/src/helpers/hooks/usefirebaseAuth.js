@@ -5,7 +5,6 @@ import {getFirebaseAuth} from "../../selector/selectFirebaseAuth"
 
 export default function useFirebaseAuth(){
     const authState = useSelector(getFirebaseAuth());
-
     const auth = useMemo(() => (authState), [authState])
     return auth;
 }

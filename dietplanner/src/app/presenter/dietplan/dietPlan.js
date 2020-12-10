@@ -6,12 +6,11 @@ import {useDispatch, useSelector} from "react-redux";
 import DietSummaryView from "../../component/user/dietplan/dietSummaryView";
 import {setCurrentCategory, removeCategory} from "../../../actions/mealCategory";
 import {resetCurrentIngredient} from "../../../actions/ingredient";
+import {setCurrentMeal} from "../../../actions/meal";
 
 export default function DietPlan() {
     const userUID = useFirebaseAuth().uid;
-    const state = useSelector(state => state);
     const dispatch = useDispatch();
-    console.log(state);
 
     useFirestoreConnect({
         collection: "mealPlans",
@@ -29,11 +28,15 @@ export default function DietPlan() {
         dispatch(setCurrentCategory(mealPlan.mealCategories[index]))
     };
 
+    const chooseMealAlternative = (meal) => {
+        dispatch(setCurrentMeal(meal));
+    }
+
     const removeMealCategory = (index) => {
         const categoryToRemove = mealPlan.mealCategories[index];
         dispatch(removeCategory(categoryToRemove))
     };
 
-    return (!mealPlan && <div>...</div> ||
-        <DietSummaryView deleteCategory={removeMealCategory} chooseMeal={chooseCurrentCategory} mealPlan={mealPlan.mealCategories}/>);
+    return (!mealPlan && <div>...</div> || <DietSummaryView chooseMeal={chooseMealAlternative} deleteCategory={removeMealCategory} chooseCategory={chooseCurrentCategory}
+                         mealPlan={mealPlan.mealCategories}/>);
 };

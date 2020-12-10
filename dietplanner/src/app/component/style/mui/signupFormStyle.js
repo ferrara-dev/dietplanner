@@ -1,6 +1,9 @@
 import {makeStyles} from "@material-ui/core/styles";
 
 export const useSignupFormStyle = makeStyles((theme) => ({
+    errorMessage : {
+        color : "red"
+    },
     appBar: {
         position: 'relative',
     },

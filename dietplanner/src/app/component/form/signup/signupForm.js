@@ -8,27 +8,11 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import AccountSetupForm from "./accountSetupForm";
-import Review from "./reviewForm";
-import PhysicalDataForm from "./PhysicalDataForm";
-import usePages from "../../../../helpers/hooks/usePages";
 
-const steps = ['Account setup & contact information', 'Physical data', 'Confirm'];
+const steps = ['Account setup & contact information', 'Personal details','Goals & ambitions' ,'Confirm'];
 
-function getStepContent(step, handleChange, fields) {
-    switch (step) {
-        case 0:
-            return <AccountSetupForm onChange={handleChange} fields={fields} />;
-        case 1:
-            return <PhysicalDataForm onChange={handleChange} fields={fields}/>;
-        case 2:
-            return <Review onChange={handleChange} fields={fields}/>;
-        default:
-            throw new Error('Unknown step');
-    }
-}
+export default function SignupForm({children, activeStep, handleNext, handleBack, fields, handleChange, fieldError}) {
 
-export default function SignupForm({activeStep, handleNext, handleBack, fields, handleChange}) {
     const classes = useSignupFormStyle();
     return (
         <React.Fragment>
@@ -50,22 +34,7 @@ export default function SignupForm({activeStep, handleNext, handleBack, fields, 
                     </Stepper>
                     <React.Fragment>
                             <React.Fragment>
-                                {getStepContent(activeStep,handleChange,fields)}
-                                <div className={classes.buttons}>
-                                    {activeStep !== 0 && (
-                                        <Button onClick={handleBack} className={classes.button}>
-                                            Back
-                                        </Button>
-                                    )}
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={handleNext}
-                                        className={classes.button}
-                                    >
-                                        {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                                    </Button>
-                                </div>
+                                {children}
                             </React.Fragment>
                     </React.Fragment>
                 </Paper>

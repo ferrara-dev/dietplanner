@@ -21,6 +21,12 @@ export default function mealReducer(state = initialState, action) {
             return {
                 ...initialState
             };
+        case mealActions.SET_CURRENT_MEAL :
+            return {
+                ...state,
+                title: action.meal.title,
+                ingredients: action.meal.ingredients
+            }
         default :
             return state;
     }

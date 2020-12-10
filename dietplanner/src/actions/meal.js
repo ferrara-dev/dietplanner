@@ -12,8 +12,16 @@ function updateIngredientsAction(ingredients){
     return {type : mealActions.UPDATE_INGREDIENTS, ingredients : ingredients}
 };
 
+function setCurrentMealAction(meal){
+    return {type : mealActions.SET_CURRENT_MEAL, meal : meal}
+};
+
 export const setMealTitle = (mealTitle) => (dispatch) => {
     dispatch(setMealTitleAction(mealTitle));
+};
+
+export const setCurrentMeal = (mealTitle) => (dispatch) => {
+    dispatch(setCurrentMealAction(mealTitle))
 };
 
 export const addIngredient = (ingredient) => (dispatch, getState) => {

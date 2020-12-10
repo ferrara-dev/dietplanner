@@ -8,7 +8,11 @@ function logout() {
 
 export const registerUser = (email, password, userProfile) => (dispatch, getState, {getFirebase, getFirestore}) => {
     const firebase = getFirebase();
-    firebase.createUser({email, password}, userProfile).then(userData => {
+    const {firstName, lastName, email, age, gender, weight, height, activityLevel, dietGoal} = userProfile;
+    const profileData = {firstName, lastName, email, age, gender, weight, height, activityLevel, newUser : true, dietGoal};
+
+    debugger;
+    firebase.createUser({email, password}, profileData).then(userData => {
         const userUID = getState().firebase.auth.uid;
         const firestore = getFirestore();
         firestore.collection('mealPlans').doc(`${userUID}`).set({
@@ -20,8 +24,6 @@ export const registerUser = (email, password, userProfile) => (dispatch, getStat
             owner : userUID,
             meals : []
         });
-
-        console.log(userData);
     }).catch(error => {
         console.log(error)
     });

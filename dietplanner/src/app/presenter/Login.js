@@ -4,13 +4,15 @@ import LoginForm from "../component/form/loginForm";
 import {useFirebase, isEmpty} from "react-redux-firebase";
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
+import useFirebaseAuth from "../../helpers/hooks/usefirebaseAuth";
 
 export default function Login() {
     const [authError, setAuthError] = React.useState(null);
     const dispatch = useDispatch();
     const firebase = useFirebase();
 
-    const auth = useSelector(state => state.firebase.auth);
+    const auth = useFirebaseAuth();
+
     const onSubmit = () => {
         firebase.login({email : fields.email, password : fields.password});
     };
