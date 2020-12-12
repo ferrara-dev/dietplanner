@@ -3,10 +3,10 @@ import {useFirestoreConnect} from "react-redux-firebase";
 import useFirebaseAuth from "../../../helpers/hooks/usefirebaseAuth";
 import useFirestoreData from "../../../helpers/hooks/useFirebaseState";
 import {useDispatch, useSelector} from "react-redux";
-import DietSummaryView from "../../component/user/dietplan/dietSummaryView";
+import DietSummaryView from "../../component/user/dietplan/mealplan/dietSummaryView";
 import {setCurrentCategory, removeCategory} from "../../../actions/mealCategory";
 import {resetCurrentIngredient} from "../../../actions/ingredient";
-import {setCurrentMeal} from "../../../actions/meal";
+import {resetCurrentMeal, setCurrentMeal} from "../../../actions/meal";
 
 export default function DietPlan() {
     const userUID = useFirebaseAuth().uid;
@@ -30,13 +30,20 @@ export default function DietPlan() {
 
     const chooseMealAlternative = (meal) => {
         dispatch(setCurrentMeal(meal));
+    };
+
+    const addMealToCategory = (index) => {
+        dispatch(setCurrentCategory(mealPlan.mealCategories[index]));
+        dispatch(resetCurrentMeal());
     }
 
     const removeMealCategory = (index) => {
         const categoryToRemove = mealPlan.mealCategories[index];
-        dispatch(removeCategory(categoryToRemove))
+        dispatch(removeCategory(categoryToRemove));
     };
 
     return (!mealPlan && <div>...</div> || <DietSummaryView chooseMeal={chooseMealAlternative} deleteCategory={removeMealCategory} chooseCategory={chooseCurrentCategory}
-                         mealPlan={mealPlan.mealCategories}/>);
+                         mealPlan={mealPlan.mealCategories}
+                                                            addMealToCategory={addMealToCategory}
+    />);
 };

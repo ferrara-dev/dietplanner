@@ -3,12 +3,14 @@ import useForm from "../../../helpers/hooks/useForm";
 import Modal from "../../component/common/modal/modal";
 import {useDispatch} from "react-redux";
 import {createMealCategory} from "../../../actions/mealCategory";
-
+import {useHistory} from "react-router";
 export default function CreateMealCategory() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const addMealCategory = () => {
-        dispatch(createMealCategory(fields.description))
+        dispatch(createMealCategory(fields.description));
+        history.goBack();
     };
 
     const {fields, handleChange, handleSubmit} = useForm(addMealCategory);

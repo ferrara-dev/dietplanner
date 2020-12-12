@@ -64,7 +64,7 @@ const useProfileStyle = makeStyles((theme) => ({
         height: "100%",
     },
     fixedHeight: {
-        height: 240,
+
     },
     mealsRoot: {
         width: '100%',

@@ -39,3 +39,4 @@ export const logoutUser = () => (dispatch, getState, {getFirebase}) => {
         console.log(error);
     });
 };
+

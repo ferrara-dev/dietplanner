@@ -43,12 +43,12 @@ export const routes = [
         ]
     },
     {
-        path: "/home/mealplan/:category/add",
+        path: "/home/mealplan/:category/edit",
         sidebar: () => <Sidebar/>,
         main: () => <EditMeal/>,
         nested : [
             {
-                path: "/home/mealplan/:category/add/search",
+                path: "/home/mealplan/:category/edit/*/search",
                 sidebar: () => <Sidebar/>,
                 exact : true,
                 main: () => <IngredientSearch/>

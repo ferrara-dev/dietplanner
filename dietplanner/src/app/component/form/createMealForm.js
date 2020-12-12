@@ -25,7 +25,7 @@ export default function CreateMealForm({fields, set, handleChange}) {
                     defaultValue={fields.description}
                     onChange={handleChange}
                 />
-                <button onClick={set}>
+                <button onClick={set} disabled={!fields.description || fields.description.length <= 0}>
                     create category
                 </button>
             </div>

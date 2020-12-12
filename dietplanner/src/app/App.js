@@ -16,7 +16,6 @@ import ProtectedRoute from "./component/protectedRoute";
 function App() {
     return (
         <AuthIsLoaded>
-            <div className="App">
                 <Navigation/>
                 <Switch>
                     <ProtectedRoute path="/home" component={Home}/>
@@ -24,7 +23,6 @@ function App() {
                     <Route exact path="/signup" component={Signup}/>
                     <Route path="/home" component={Home}/>
                 </Switch>
-            </div>
         </AuthIsLoaded>
     );
 };

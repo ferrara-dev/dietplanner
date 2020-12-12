@@ -19,11 +19,19 @@ export function mealNutrientCalculator(ingredients) {
 
 export function averageMealCategoryNutrients({meals}) {
     let length = meals.length;
+    if(length === 0)
+        return {
+            carbs: 0,
+            kcal: 0,
+            fat: 0,
+            fibers: 0,
+            protein: 0
+        };
     const mealNutrients = meals.reduce(function (nutrientAccumulator, currentMeal) {
         const mealNutrients = mealNutrientCalculator(currentMeal.ingredients);
         nutrientAccumulator.carbs = nutrientAccumulator.carbs + mealNutrients.carbs
         nutrientAccumulator.kcal = nutrientAccumulator.kcal + mealNutrients.kcal
-        nutrientAccumulator.fat = nutrientAccumulator.carbs + mealNutrients.fat
+        nutrientAccumulator.fat = nutrientAccumulator.fat + mealNutrients.fat
         nutrientAccumulator.fibers = nutrientAccumulator.fibers + mealNutrients.fibers
         nutrientAccumulator.protein = nutrientAccumulator.protein + mealNutrients.protein
         return nutrientAccumulator;
@@ -47,7 +55,7 @@ export function averageMealPlanNutrients(mealPlan) {
         const mealCategoryNutrients = averageMealCategoryNutrients(currentMeal);
         nutrientAccumulator.carbs = nutrientAccumulator.carbs + mealCategoryNutrients.carbs
         nutrientAccumulator.kcal = nutrientAccumulator.kcal + mealCategoryNutrients.kcal
-        nutrientAccumulator.fat = nutrientAccumulator.carbs + mealCategoryNutrients.fat
+        nutrientAccumulator.fat = nutrientAccumulator.fat + mealCategoryNutrients.fat
         nutrientAccumulator.fibers = nutrientAccumulator.fibers + mealCategoryNutrients.fibers
         nutrientAccumulator.protein = nutrientAccumulator.protein + mealCategoryNutrients.protein
         return nutrientAccumulator;
@@ -59,4 +67,20 @@ export function averageMealPlanNutrients(mealPlan) {
         protein: 0
     });
     return mealNutrients;
+};
+
+export function pcfRatio(nutrients){
+    const pE = nutrients.protein * 4;
+    const cE = nutrients.carbs * 4;
+    const fE = nutrients.fat * 9;
+
+    const totalE = pE + cE + fE;
+
+    const pcfRatio = {
+        proteinRatio : pE/totalE,
+        carbRatio : cE/totalE,
+        fatRatio : fE/totalE
+    };
+
+    return pcfRatio;
 };

@@ -20,3 +20,8 @@ export function calculateBMR({gender,height,weight,age}){
     const basalMetabolicRate = (CONSTANTS.weightFactorMetric * weight) + (CONSTANTS.heightFactorMetric * height) - (CONSTANTS.ageFactor * age) + genderConstant
     return basalMetabolicRate;
 };
+
+export function calculateBMI({height, weight}){
+    const h = height / 100;
+    return weight /(h * h);
+};

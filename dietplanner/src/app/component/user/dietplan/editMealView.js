@@ -1,6 +1,5 @@
 import {
     Button,
-    Container,
     Grid,
     IconButton,
     Paper,
@@ -9,10 +8,6 @@ import {
     TableHead,
     TableRow,
     TextField,
-    Card,
-    CardActions,
-    Typography,
-    CardContent,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete"
@@ -24,7 +19,6 @@ import {useRouteMatch} from "react-router";
 
 export default function EditMealView({
                                          setMealName,
-                                         mealName,
                                          data = [],
                                          mealTitle,
                                          onSearch,
@@ -35,7 +29,6 @@ export default function EditMealView({
     const classes = useStyles();
 
     const history = useHistory();
-
     const {url, path} = useRouteMatch();
     return (
         <div className={classes.root}>
@@ -136,7 +129,7 @@ export default function EditMealView({
                     <TextField
                         id="meal-name"
                         label="Meal name"
-                        defaultValue={mealName}
+                        defaultValue={mealTitle}
                         onBlur={(e) => {
                             setMealName(e.target.value);
                         }}
@@ -145,7 +138,10 @@ export default function EditMealView({
 
                     <Button
                         fullWidth
-                        onClick={() => submitMeal()}
+                        disabled={!mealTitle || data.length === 0}
+                        onClick={() => {
+                            submitMeal()
+                        }}
                     >
                         Add meal
                     </Button>

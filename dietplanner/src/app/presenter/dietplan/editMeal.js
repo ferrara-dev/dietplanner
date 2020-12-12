@@ -13,7 +13,7 @@ import {useFirestore} from "react-redux-firebase";
 import {setCurrentIngredient, setIngredientQuantity} from "../../../actions/ingredient";
 import useFirestoreData from "../../../helpers/hooks/useFirebaseState";
 import {addMealToCategory} from "../../../actions/mealCategory";
-
+import MealEditView from "../../component/user/dietplan/mealedit/editMealView";
 export default function EditMeal() {
     const {path, url} = useRouteMatch();
     const dispatch = useDispatch();
@@ -28,17 +28,17 @@ export default function EditMeal() {
     function addMeal() {
         dispatch(addMealToCategory(currentMeal));
         dispatch(resetCurrentMeal());
-        history.push(`/home/mealplan`)
+        history.push(`/home/mealplan`);
     };
 
-    function editIngredient(ingredient) {
-        dispatch(setCurrentIngredient(ingredient.ingredient));
-        dispatch(setIngredientQuantity(ingredient.quantity));
-        history.push(`${url}/ingredient/${ingredient.ingredient.foodId}`);
+    function editIngredient(ingredient, quantity) {
+        dispatch(setCurrentIngredient(ingredient));
+        dispatch(setIngredientQuantity(quantity));
+        history.push(`${url}/ingredient/${ingredient.foodId}`);
     };
 
     function deleteIngredient(ingredient) {
-        dispatch(removeIngredient(ingredient.ingredient.fdcId))
+        dispatch(removeIngredient(ingredient.foodId))
     };
 
     function setMealName(name) {
@@ -57,8 +57,17 @@ export default function EditMeal() {
                 </AppBar>
             </Grid>
             <Grid item xs={12}>
-                <EditMealView editIngredient={editIngredient} submitMeal={addMeal} setMealName={setMealName}
-                              data={currentMeal.ingredients} removeIngredient={deleteIngredient}/>
+                {/*<EditMealView editIngredient={editIngredient} submitMeal={addMeal} setMealName={setMealName}
+                               data={currentMeal.ingredients} removeIngredient={deleteIngredient}
+                               mealTitle={currentMeal.title}/>*/}
+                               <MealEditView
+                                   data={currentMeal.ingredients}
+                                   removeIngredient={deleteIngredient}
+                                   editIngredient={editIngredient}
+                                   setMealName={setMealName}
+                                   submitMeal={addMeal}
+                                   mealTitle={currentMeal.title}
+                               />
             </Grid>
         </Grid>
     </React.Fragment>

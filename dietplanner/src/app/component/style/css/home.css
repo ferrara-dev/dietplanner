@@ -26,7 +26,7 @@
     order: 0;
 }
 
-/* Responsive layout - makes a one column layout instead of a two-column layout */
+/* Responsive layout - makes a one column layout instead of a two-column layout
 @media (max-width: 500px) {
     .flex-container{
         flex-direction: column;
@@ -41,3 +41,5 @@
         order: 0;
     }
 }
+
+ */

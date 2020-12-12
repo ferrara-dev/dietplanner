@@ -54,7 +54,8 @@ const useStyles = makeStyles((theme) => ({
         minWidth : "75%",
         minHeight : "75%",
         borderRadius: "5px 20px 5px",
-        right: -50
+        right: -50,
+        overflow : "auto",
     },
 }));
 export default Modal

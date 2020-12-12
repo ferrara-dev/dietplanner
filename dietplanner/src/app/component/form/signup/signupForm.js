@@ -16,7 +16,6 @@ export default function SignupForm({children, activeStep, handleNext, handleBack
     const classes = useSignupFormStyle();
     return (
         <React.Fragment>
-            <CssBaseline />
             <AppBar position="absolute" color="default" className={classes.appBar}>
             </AppBar>
 

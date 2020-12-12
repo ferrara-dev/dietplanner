@@ -11,40 +11,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1a0c1da-2520-4992-9501-338dfa9a5506" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/component/user/dietplan/meal/mealDetailsView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/ActionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/ActionTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/meal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/meal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/mealPlan.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/nutrition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actions/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/form/signup/PhysicalDataForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/form/signup/PhysicalDataForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/form/signup/accountSetupForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/form/signup/accountSetupForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/form/signup/reviewForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/form/signup/reviewForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/common/modal/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/common/modal/modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/common/modal/modalHeader.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/form/createMealForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/form/createMealForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/form/loginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/form/loginForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/component/form/signup/signupForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/form/signup/signupForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/style/mui/signupFormStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/style/mui/signupFormStyle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/dietplan/dietSummaryView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/user/dietplan/dietSummaryView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/style/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/style/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/style/mui/UserProfileSyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/style/mui/UserProfileSyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/user/dietplan/dietSummaryView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/user/dietplan/mealplan/dietSummaryView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/component/user/dietplan/editMealView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/user/dietplan/editMealView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/ingredientsearch/ingredientDetailsView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/ingredientsearch/ingredientSearchResultView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/user/ingredientsearch/ingredientSearchResultView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/nutrition/CurrentMealPlanView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/nutrition/currentMealView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/nutrition/mealEditView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/component/user/nutrition/mealPlanView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/presenter/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/presenter/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/addMeal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/dietplan/editMeal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/user/dietplan/mealBankView.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/user/dietplan/mealDetailsView.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/component/user/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/component/user/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/createMealCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/dietplan/createMealCategory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/dietPlan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/dietplan/dietPlan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/editMeal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/dietplan/editMeal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/presenter/dietplan/mealDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/presenter/dietplan/mealDetails.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/routing/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routing/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/hooks/useFirebaseState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/hooks/useFirebaseState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/hooks/useForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/hooks/useForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/hooks/usePages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/hooks/usePages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/hooks/usefirebaseAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/hooks/usefirebaseAuth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/mealReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/mealReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/selector/selectFirebaseAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/selector/selectFirebaseAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/calculation/MealNutrientCalculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/calculation/MealNutrientCalculator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/calculation/TdeeCalculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/calculation/TdeeCalculator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,11 +77,11 @@
       <recent name="$PROJECT_DIR$/src/config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/component/user/dietplan/mealplan" />
+      <recent name="$PROJECT_DIR$/src/app/component/user/dietplan/meal" />
       <recent name="$PROJECT_DIR$/src/helpers/calculation" />
       <recent name="$PROJECT_DIR$/src/app/presenter/dietplan" />
       <recent name="$PROJECT_DIR$/src/app/component/style/css" />
-      <recent name="$PROJECT_DIR$/src/app/component/style/mui" />
-      <recent name="$PROJECT_DIR$/src/app/component/navigation/topnav" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -99,7 +95,7 @@
       <workItem from="1606585589760" duration="68378000" />
       <workItem from="1606809242236" duration="53476000" />
       <workItem from="1607417070915" duration="2646000" />
-      <workItem from="1607419876574" duration="110385000" />
+      <workItem from="1607419876574" duration="160551000" />
     </task>
     <servers />
   </component>

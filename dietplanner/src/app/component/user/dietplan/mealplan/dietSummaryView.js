@@ -6,32 +6,49 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Link, useRouteMatch} from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import EditIcon from "@material-ui/icons/Edit";
-import ExpandableTableRow from "../../common/table/expandableTable";
-import {options, randomID} from "../../../../helpers/random";
+import ExpandableTableRow from "../../../common/table/expandableTable";
+import {options, randomID} from "../../../../../helpers/random";
 import Button from "@material-ui/core/Button";
-import {
-    averageMealCategoryNutrients,
-    averageMealPlanNutrients
-} from "../../../../helpers/calculation/MealNutrientCalculator";
 import {Add} from "@material-ui/icons";
-import AlertDialog from "../../common/alertDialog";
+import AlertDialog from "../../../common/alertDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
+import {averageMealPlanNutrients, pcfRatio} from "../../../../../helpers/calculation/MealNutrientCalculator";
+import {
+    Chart,
+    PieSeries,
+    Title,
+    Legend,
+    Tooltip
+} from '@devexpress/dx-react-chart-material-ui';
 
+import {Animation,} from '@devexpress/dx-react-chart';
+import PageLayout from "../../../common/layout/pageRoot";
+import MealPlanSummaryView from "./mealPlanSummaryView";
+import MealPlanTableView from "./mealPlanTable";
 
-export default function DietSummaryView({mealPlan, chooseCategory, deleteCategory, chooseMeal}) {
+export default function DietSummaryView({mealPlan, chooseCategory, deleteCategory, chooseMeal, addMealToCategory}) {
     const classes = useStyles();
     const {path, url} = useRouteMatch();
     const [edit, setEdit] = React.useState(false);
     const mealPlanNutrients = averageMealPlanNutrients(mealPlan);
 
+    const pcf = pcfRatio(averageMealPlanNutrients(mealPlan));
+    console.log(pcf);
 
-    return <Grid container>
+    return <PageLayout>
+        <MealPlanSummaryView mealPlan={mealPlan} chooseMeal={chooseMeal} deleteCategory={deleteCategory} addMealToCategory={addMealToCategory} chooseCategory={chooseCategory}/>
+        <MealPlanTableView mealPlan={mealPlan} chooseMeal={chooseMeal} deleteCategory={deleteCategory} addMealToCategory={addMealToCategory} chooseCategory={chooseCategory}/>
+    </PageLayout>
+}
+
+{/*
+<Grid container>
         <Grid item xs={12}>
             <AppBar position="static" className={classes.mealPlanBar}>
                 <Toolbar></Toolbar>
             </AppBar>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
             <div className={classes.root}>
                 <Paper className={classes.paper}>
                     <div className={classes.mealsRoot}>
@@ -63,7 +80,7 @@ export default function DietSummaryView({mealPlan, chooseCategory, deleteCategor
                                                         <Button component={Link}
                                                                 to={`${url}/${meal.title}`}
                                                                 onClick={(e) => {
-
+                                                                    chooseCategory(index);
                                                                     chooseMeal(meal)
                                                                 }}>{meal.title}
                                                         </Button>
@@ -77,9 +94,9 @@ export default function DietSummaryView({mealPlan, chooseCategory, deleteCategor
                                                 }}>{description}</Button></TableCell>
                                             <TableCell key={index + 1}>
                                                 {edit && <IconButton key={index - 1} component={Link}
-                                                                     to={`/home/mealplan/${description}/add`}
+                                                                     to={`/home/mealplan/${description}/edit`}
                                                                      onClick={() => {
-                                                                         chooseCategory(index);
+                                                                         addMealToCategory(index);
                                                                      }}>
                                                     <Add fontSize="small"/>
                                                 </IconButton>}
@@ -111,47 +128,96 @@ export default function DietSummaryView({mealPlan, chooseCategory, deleteCategor
         <Grid item xs={12} md={6}>
             <div className={classes.root}>
                 <Paper className={classes.paper}>
-                    <div className={classes.mealsRoot}>
-                        <Paper component="div">
-                            <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                                Average calculated calories
-                            </Typography>
-                            <Typography component="p" variant="h4">
-                                {mealPlanNutrients.kcal.toFixed(1)} kcal
-                            </Typography>
-                        </Paper>
+                        <Grid container spacing={3}>
+                            <Grid item xs={6}>
+                                <Paper component="div">
+                                    <Typography component="h2" variant="h6" color="primary" gutterBottom>
+                                        Average calculated calories
+                                    </Typography>
+                                    <Typography component="p" variant="h4">
+                                        {mealPlanNutrients.kcal.toFixed(0)} kcal
+                                    </Typography>
+                                </Paper>
+                            </Grid>
 
-                        <Paper component="div">
-                            <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                                Average calculated protein
-                            </Typography>
-                            <Typography component="p" variant="h4">
-                                {mealPlanNutrients.protein.toFixed(1)} g
-                            </Typography>
-                        </Paper>
+                            <Grid item xs={6}>
+                                <Paper component="div">
+                                    <Typography component="h2" variant="h6" color="primary" gutterBottom>
+                                        Average calculated protein
+                                    </Typography>
+                                    <Typography component="p" variant="h4">
+                                        {mealPlanNutrients.protein.toFixed(0)} g
+                                    </Typography>
+                                </Paper>
+                            </Grid>
 
-                    </div>
+                            <Grid item xs={6}>
+                                <Paper component="div">
+                                    <Typography component="h2" variant="h6" color="primary" gutterBottom>
+                                        Average calculated carbs
+                                    </Typography>
+                                    <Typography component="p" variant="h4">
+                                        {mealPlanNutrients.carbs.toFixed(0)} g
+                                    </Typography>
+                                </Paper>
+                            </Grid>
+
+                            <Grid item xs={6}>
+                                <Paper component="div">
+                                    <Typography component="h2" variant="h6" color="primary" gutterBottom>
+                                        Average calculated fat
+                                    </Typography>
+                                    <Typography component="p" variant="h4">
+                                        {mealPlanNutrients.fat.toFixed(0)} g
+                                    </Typography>
+                                </Paper>
+                            </Grid>
+
+                            <Grid item xs={12}>
+                                <Paper>
+                                    <Chart
+                                        data={[
+                                            {nutrient: "protein", val: (pcf.proteinRatio * 100).toFixed(1)},
+                                            {nutrient: "carbs", val: (pcf.carbRatio * 100).toFixed(1)},
+                                            {nutrient: "fat", val: (pcf.fatRatio * 100).toFixed(1)}
+                                        ]}
+                                        height={350}
+                                    >
+                                        <PieSeries
+                                            valueField="val"
+                                            argumentField="nutrient"
+                                            innerRadius={0.6}
+                                        />
+                                        <Legend>
+                                        </Legend>
+                                        <Title
+                                            text="Ratio between protein/carbs/fat"
+                                        />
+                                        <Tooltip>
+                                        </Tooltip>
+                                        <Animation/>
+                                    </Chart>
+                                </Paper>
+                            </Grid>
+                        </Grid>
+
                 </Paper>
             </div>
         </Grid>
     </Grid>
-}
-
-{/*
-
 <Grid item xs={12} md={6}>
-    <div className={classes.root}>
-        <Paper className={classes.paper}>
-            <React.Fragment>
-                <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                    Average calculated calories
-                </Typography>
-                <Typography component="p" variant="h4">
-                    {currentMealCategory.meals.length > 0 && averageMealCategoryNutrients(currentMealCategory).kcal.toFixed(1)} kcal
-                </Typography>
-            </React.Fragment>
-        </Paper>
-    </div>
+<div className={classes.root}>
+<Paper className={classes.paper}>
+<React.Fragment>
+<Typography component="h2" variant="h6" color="primary" gutterBottom>
+Average calculated calories
+</Typography>
+<Typography component="p" variant="h4">
+{currentMealCategory.meals.length > 0 && averageMealCategoryNutrients(currentMealCategory).kcal.toFixed(1)} kcal
+</Typography>
+</React.Fragment>
+</Paper>
+</div>
 </Grid>
 */
 }
