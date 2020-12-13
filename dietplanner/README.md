@@ -8,7 +8,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ... General description and demo screenshots/videos from the application goes here ...
 
-# Dependencies 
+### Dependencies 
 ... list of dependencies here ...
 
 ### Application demo
