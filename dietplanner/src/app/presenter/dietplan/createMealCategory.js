@@ -2,7 +2,7 @@ import CreateMealForm from "../../component/form/createMealForm";
 import useForm from "../../../helpers/hooks/useForm";
 import Modal from "../../component/common/modal/modal";
 import {useDispatch} from "react-redux";
-import {createMealCategory} from "../../../actions/mealCategory";
+import {createMealCategory} from "../../../model/actions/mealCategory";
 import {useHistory} from "react-router";
 export default function CreateMealCategory() {
     const dispatch = useDispatch();

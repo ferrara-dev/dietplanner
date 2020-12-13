@@ -1,4 +1,4 @@
-import { userActions} from "../actions/ActionTypes";
+import { userActions} from "./ActionTypes";
 
 function logout() {
     return {

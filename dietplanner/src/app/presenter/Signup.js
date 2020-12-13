@@ -2,7 +2,7 @@ import SignupForm from "../component/form/signup/signupForm";
 import useForm from "../../helpers/hooks/useForm";
 import usePages from "../../helpers/hooks/usePages";
 import {useDispatch} from "react-redux";
-import {registerUser} from "../../actions/user";
+import {registerUser} from "../../model/actions/user";
 import useFirebaseAuth from "../../helpers/hooks/usefirebaseAuth";
 import {isEmpty} from "react-redux-firebase";
 import {Redirect} from "react-router-dom";

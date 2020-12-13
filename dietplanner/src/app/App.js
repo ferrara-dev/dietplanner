@@ -14,6 +14,9 @@ import ProtectedRoute from "./component/protectedRoute";
 
 
 function App() {
+    const state = useSelector(state=>state);
+    console.log(state);
+
     return (
         <AuthIsLoaded>
                 <Navigation/>

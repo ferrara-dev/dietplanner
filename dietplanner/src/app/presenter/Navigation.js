@@ -1,7 +1,7 @@
 import React,{useEffect} from "react";
 import TopbarView from "../component/navigation/topnav/TopbarView";
 import {useDispatch, useSelector} from "react-redux";
-import {logoutUser} from "../../actions/user";
+import {logoutUser} from "../../model/actions/user";
 import {isEmpty, useFirebase} from "react-redux-firebase";
 import useFirebaseAuth from "../../helpers/hooks/usefirebaseAuth";
 

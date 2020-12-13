@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# Diet planner
+***
+#### Author: Samuel Ferrara
+#### Project Group XX
 
+## Project Description
+***
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+... General description and demo screenshots/videos from the application goes here ...
 
-## Available Scripts
+# Dependencies 
+... list of dependencies here ...
 
-In the project directory, you can run:
+### Application demo
+... screenshots/videos from the application goes here ...
 
-### `npm start`
+##### Live Demo: https://diet-planner-1.herokuapp.com
+## Architecture
+... information about how the model-view-presenter architecture was implemented goes here ...
+***
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation & setup
+***
+... information about installation and setup goes here ...
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+***
+## File Structure
+### dietplanner/public
+> Contains all global and static files :
+> *  public/index.html
+>    * Contains the static HTML file and contains the following :
+>       * The title showed in the browser tab
+>       * ``` <div id="app-root"></div> ``` that is populated to show the main application.
+>       * ``` <div id="modal-root"></div> ``` that is populated to display modal components that go over the main application view
+      
 
-### `npm test`
+### dietplanner/src
+> Contains the application source code,
+including all views, models, presenters, services, 
+configuration and utilities.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+#### src/model
+Contains the application domain model
+ 
+**model/actions**
+>   * ***model/actions/actionsTypes.js***
+>       * constants js objects that defines the action types
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+>   *  ***model/actions/ingredient.js***
+>       * Action creators and action dispatchers responsible 
+>         for dispatching actions related to manipulation of
+>         the **currentIngredient** model.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+>   *  ***model/actions/meal.js***
+>        * Action creators and action dispatchers responsible
+>          for dispatching actions related to manipulation of
+>          the **currentMeal** model.
 
-### `npm run eject`
+>   * ***model/actions/mealCategory.js***
+>       * Action creators and action dispatchers responsible
+>         for dispatching actions related to manipulation of
+>         the **currentMealCategory** model.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+>   * ***model/actions/user.js***
+>       * Action creators and action dispatchers responsible
+>         for dispatching actions related to user authentication as well as
+>         manipulation of firebase resources including the **firebase** and **firstore** model.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**model/reducer**
+> * ***model/reducer/ingredientReducer.js***
+>   * Contains redux reducer responsible for the **currentIngredient** model.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> * ***model/reducer/mealCategoryReducer.js***
+>   * Contains redux reducer responsible for the **currentMealCategory** model
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+> * ***model/reducer/mealReducer.js***
+>   * Contains redux reducer responsible for the **currentMeal** model
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> * ***model/reducer/rootReducer.js***
+>   * Contains a combined reducer created from the applications reducers, also persist the above 
+>     reducers to local state *(might change this to be persisted in firestore instead)*
+>   * Includes **firestoreReducer** and **firebaseReducer** from the ***react-redux-firebase*** API, 
+>     these reducers are responsible for changes in everything that is persisted in firebase
+>     which includes user authentication and models like the **userProfile** and **mealPlan**.
+>     *(see more detailed information about the api under the [Dependencies](#Dependencies) section)*.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+... description of tle structure goes here ...
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+***

@@ -1,8 +1,8 @@
 import IngredientDetailsView from "../../component/user/ingredientsearch/ingredientDetails";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "../../component/common/modal/modal";
-import {resetCurrentIngredient, setIngredientQuantity} from "../../../actions/ingredient";
-import {addIngredient} from "../../../actions/meal";
+import {resetCurrentIngredient, setIngredientQuantity} from "../../../model/actions/ingredient";
+import {addIngredient} from "../../../model/actions/meal";
 import {useHistory} from "react-router";
 
 export default function IngredientDetails() {

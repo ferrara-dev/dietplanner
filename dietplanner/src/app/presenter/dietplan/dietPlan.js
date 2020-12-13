@@ -4,9 +4,9 @@ import useFirebaseAuth from "../../../helpers/hooks/usefirebaseAuth";
 import useFirestoreData from "../../../helpers/hooks/useFirebaseState";
 import {useDispatch, useSelector} from "react-redux";
 import DietSummaryView from "../../component/user/dietplan/mealplan/dietSummaryView";
-import {setCurrentCategory, removeCategory} from "../../../actions/mealCategory";
-import {resetCurrentIngredient} from "../../../actions/ingredient";
-import {resetCurrentMeal, setCurrentMeal} from "../../../actions/meal";
+import {setCurrentCategory, removeCategory} from "../../../model/actions/mealCategory";
+import {resetCurrentIngredient} from "../../../model/actions/ingredient";
+import {resetCurrentMeal, setCurrentMeal} from "../../../model/actions/meal";
 
 export default function DietPlan() {
     const userUID = useFirebaseAuth().uid;

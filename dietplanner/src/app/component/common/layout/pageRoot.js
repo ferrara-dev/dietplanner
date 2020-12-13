@@ -55,7 +55,7 @@ export default function PageLayout(props){
                                         sidebarId={'insetSidebar'}
                                         classes={{
                                             paper: styles.sidebarBody,
-                                            bBkUCA : styles.sidebarBody
+                                            root : styles.sidebarBody
                                         }}
                                     >
                                         {props.children[0]}

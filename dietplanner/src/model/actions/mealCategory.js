@@ -1,5 +1,5 @@
 import {mealCategoryActions} from "./ActionTypes";
-import {randomID, options} from "../helpers/random";
+import {randomID, options} from "../../helpers/random";
 
 function setCategoryDescriptionAction(description) {
     return {type: mealCategoryActions.SET_MEAL_CATEGORY_DESCRIPTION, description: description}

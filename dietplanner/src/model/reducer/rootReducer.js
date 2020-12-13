@@ -4,10 +4,11 @@ import {firestoreReducer} from 'redux-firestore'
 import {persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
-import locationReducer, {updateLocation} from "../config/location";
+import locationReducer, {updateLocation} from "../../config/location";
 import mealReducer from "./mealReducer";
 import ingredientReducer from "./ingredientReducer";
 import mealCategoryReducer from "./mealCategoryReducer";
+
 const rootReducer = combineReducers({
         currentMeal: persistReducer({
             key: 'mealState',
