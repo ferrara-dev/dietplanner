@@ -91,7 +91,36 @@ Contains the application domain model
    * Includes **firestoreReducer** and **firebaseReducer** from the ***react-redux-firebase*** API, 
      these reducers are responsible for changes in everything that is persisted in firebase
      which includes user authentication and models like the **userProfile** and **mealPlan**.
-     *(see more detailed information about the api under the [Dependencies](#Dependencies) section)*.
+     *(see more detailed information about the react-redux-firebase api under the [Dependencies](#Dependencies) section)*.
+
+
+#### src/view
+###### view/common
+* Contains generic child components that are used in multiple views to reduce code complexity.
+
+##### view/form
+Contains all form views that are used in the application
+* ***view/form/signup***
+    * Contains view components that make up a multi step form to be filled by the user at registration.
+    
+* ***view/form/login.js***
+    * Login form that renders a form to be filled by the user at login.
+    
+* ***view/form/createMealForm.js***
+    * Form to be filled by the user when creating a new meal category, 
+      wrapped in the **Modal** component that is rendered on top of the main view from ``<div id="modal-root"></div>`` in ***public/index.html***
+
+##### view/navigation
+Contains view components related to navigating through the application
+
+
+##### view/style
+Contain files related to styling of view components
+
+
+##### view/user
+Contains view components related to the user, such as the user profile and 
+views regarding the meal plan.
 
 
 ... description of tle structure goes here ...
