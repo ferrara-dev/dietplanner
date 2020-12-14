@@ -9,10 +9,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 A webb application where users can tailor a diet plan after their own personal taste, goals and approximated energy expenditure. 
 
+* The project architecture follows the Model-View-Presenter architecture pattern.
+  
 
+* Redux and react context has been utilized for state management.
+
+
+* Firebase has been used for data persistance and user authentication.
+
+The [React-Redux-Firebase API](https://react-redux-firebase.com/) has been used to create bindings between
+redux and firebase.
 ### The Application
 
-### Registration
+#### Registration
 The user will be able to register an account 
 by submitting account details (email and password) and personal information that the application uses to
 approximate their total daily energy expenditure. The personal information which is needed includes 
@@ -25,7 +34,7 @@ Screenshots from the signup process are presented below.
 
 ![picture](doc/screenshots/signup_page3.png "title-2")
 
-### User profile
+#### User profile
 The user can update their personal information at any given time, 
 every update will be stored together with their current diet plan so that the users progress can be tracked and visualized.
 However, tracking and visualization of the users progress has not yet been implemented, more information on what is left to do
@@ -41,7 +50,7 @@ However updates are not saved at this point in time.
 ![picture](doc/screenshots/update.png "title-2")
 
 
-### The diet plan
+#### The diet plan
 The diet plan that is created by the user consist of meal categories that are given a name and a priority at creation, 
 where the priority indicates in what order to consume the meals.
 (e.g. Breakfast with priority 1, Midday snack with priority 2, Lunch with priority 3 etc).
@@ -65,9 +74,18 @@ category. Note that **ingredientSearch** and **ingredientDetails** have not been
 This section provides a list and time plan of 
 work that needs to be done before the final deadline at december 21 2020
 
-## Installation & setup
-***
-... information about installation and setup goes here ...
+### Installation & setup
+*** 
+The application is bootstraped with create-react-app which gives a straight forward setup and installation
+1. install npm dependencies
+````
+> npm install
+````
+2. run the application in development mode
+````
+> npm start
+````
+3. The application will be hosted at localhost:3000
 
 ***
 ## File Structure
@@ -138,7 +156,6 @@ Contains the application domain model
    * Includes **firestoreReducer** and **firebaseReducer** from the ***react-redux-firebase*** API, 
      these reducers are responsible for changes in everything that is persisted in firebase
      which includes user authentication and models like the **userProfile** and **mealPlan**.
-     *(see more detailed information about the react-redux-firebase api under the [Dependencies](#Dependencies) section)*.
 
 
 #### src/view
