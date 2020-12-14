@@ -17,9 +17,9 @@ approximate their total daily energy expenditure. The personal information which
 current physical activity, height, weight, age and gender.
 
 <p float="left">
-  <img src="/doc/screenshots/signup_page1.png" width="100" />
-  <img src="/doc/screenshots/signup_page2.png" width="100" /> 
-  <img src="/doc/screenshots/signup_page3.png" width="100" />
+  <img src="doc/screenshots/signup_page1.png" width="100" />
+  <img src="doc/screenshots/signup_page2.png" width="100" /> 
+  <img src="doc/screenshots/signup_page3.png" width="100" />
 </p>
 
 The user can update their personal information at any given time, 
