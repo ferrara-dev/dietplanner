@@ -39,7 +39,7 @@ export default function IngredientTable({mealPlan,mealTitle, edit, ingredients, 
                 Add ingredients and name your meal
             </Typography>
             <TableContainer className={styles.table}>
-                <Table aria-label="simple table">
+                <Table stickyHeader className={styles.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell align={"left"}>Ingredient</TableCell>
@@ -48,7 +48,14 @@ export default function IngredientTable({mealPlan,mealTitle, edit, ingredients, 
                             <TableCell>Fat</TableCell>
                             <TableCell>Calories</TableCell>
                             <TableCell>Quantity</TableCell>
-                            <TableCell></TableCell>
+                            <TableCell>  <SimpleMediaQuery query={ '(max-width:1050px)'}>
+                                <Button
+                                    component={Link} to={`${url}/${mealTitle || "noName"}/search`}
+                                    startIcon={<FastfoodIcon/>}
+                                >
+                                    Add new ingredient
+                                </Button>
+                            </SimpleMediaQuery></TableCell>
                             <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
@@ -114,14 +121,7 @@ export default function IngredientTable({mealPlan,mealTitle, edit, ingredients, 
                             <TableCell><p className={styles.name}>{mealNutrients.carbs.toFixed(0)}</p></TableCell>
                             <TableCell><p className={styles.name}>{mealNutrients.fat.toFixed(0)}</p></TableCell>
                             <TableCell><p className={styles.name}>{mealNutrients.kcal.toFixed(0)}</p></TableCell>
-                            <TableCell colSpan={3}>  <SimpleMediaQuery query={ '(max-width:1050px)'}>
-                                <Button
-                                    component={Link} to={`${url}/${mealTitle || "noName"}/search`}
-                                    startIcon={<FastfoodIcon/>}
-                                >
-                                    Add new ingredient
-                                </Button>
-                            </SimpleMediaQuery>
+                            <TableCell colSpan={3}>
                             </TableCell>
                         </TableRow>
                     </TableFooter>

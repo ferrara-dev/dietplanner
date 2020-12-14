@@ -63,9 +63,12 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
         },
     },
     table: {
-        minWidth: 650,
+        minWidth: "100%",
         maxHeight: 450,
-        emptyCells : 'show'
+        emptyCells : 'show',
+        [breakpoints.up('lg')]: {
+            minWidth: 960,
+        },
     },
     image: {
         width: '100%',
@@ -147,7 +150,7 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
         [breakpoints.up('lg')]: {
             bottom: 40,
         },
-        [breakpoints.up('md')]: {
+        [breakpoints.up('lg')]: {
             transform: 'scale(0)',
         },
     },

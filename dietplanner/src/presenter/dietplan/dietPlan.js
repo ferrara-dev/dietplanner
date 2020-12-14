@@ -15,6 +15,8 @@ import {resetCurrentMeal, setCurrentMeal} from "../../model/actions/meal";
 import MealPlanSummaryView from "../../view/user/dietplan/mealplan/mealPlanSummaryView";
 import MealPlanTableView from "../../view/user/dietplan/mealplan/mealPlanTable";
 import PageLayout from "../../view/common/layout/pageRoot";
+import MealPlanLayout from "../../view/user/dietplan/mealplan/mealPlanLayout";
+import {Toolbar} from "@material-ui/core";
 
 
 export default function DietPlan() {
@@ -33,17 +35,17 @@ export default function DietPlan() {
     const userUID = useFirebaseAuth().uid;
 
     useFirestoreConnect([{
-        collection : "mealPlans",
+        collection: "mealPlans",
         doc: userUID,
         storeAs: "mealPlan"
-    },{
-        collection : "users",
+    }, {
+        collection: "users",
         doc: userUID,
         storeAs: "user"
     },
     ]);
 
-    const mealPlan = useReduxState(["firestore", "data","mealPlan"]);
+    const mealPlan = useReduxState(["firestore", "data", "mealPlan"]);
     const userProfile = useReduxState(["firestore", "data", "user"]);
 
     const chooseCurrentCategory = (categoryID) => {
@@ -74,11 +76,11 @@ export default function DietPlan() {
         dispatch(resetCurrentMealCategory());
     };
 
-    const editMealCategory  = ({description, priority}, id) => {
+    const editMealCategory = ({description, priority}, id) => {
         dispatch(getCategoryById(id));
         try {
             dispatch(updateCategoryDescriptionAndPriority({description, priority}));
-        } catch (error){
+        } catch (error) {
             setErr(true);
         }
     };

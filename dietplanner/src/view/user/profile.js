@@ -3,6 +3,7 @@ import {Container, Grid,Paper, TableContainer, Table, TableHead, TableRow, Table
 import clsx from "clsx";
 import {calculateBMI, calculateBMR} from "../../helpers/calculation/TdeeCalculator";
 import {averageMealPlanNutrients} from "../../helpers/calculation/MealNutrientCalculator";
+import getAge from 'age-by-birthdate';
 
 export default function UserProfileView({userProfile, mealPlan}){
     const classes = useProfileStyle();
@@ -46,7 +47,7 @@ export default function UserProfileView({userProfile, mealPlan}){
                                                     Age
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    {userProfile.age}
+                                                    {getAge(userProfile.dob)}
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow>
@@ -86,7 +87,12 @@ export default function UserProfileView({userProfile, mealPlan}){
                                                     Approximated TDEE
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    {(calculateBMR(userProfile)*userProfile.activityLevel.factor).toFixed(0) + " (Kcal)"}
+                                                    {(calculateBMR({
+                                                        gender: userProfile.gender,
+                                                        height:userProfile.height,
+                                                        weight:userProfile.weight,
+                                                        age : getAge(userProfile.dob)
+                                                    })*userProfile.activityLevel.factor).toFixed(0) + " (Kcal)"}
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow>
@@ -94,7 +100,12 @@ export default function UserProfileView({userProfile, mealPlan}){
                                                     Kcal netto
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    {mealPlanNutrients.kcal.toFixed(0) - (calculateBMR(userProfile)*userProfile.activityLevel.factor).toFixed(0)}
+                                                    {mealPlanNutrients.kcal.toFixed(0) - (calculateBMR({
+                                                        gender: userProfile.gender,
+                                                        height:userProfile.height,
+                                                        weight:userProfile.weight,
+                                                        age : getAge(userProfile.dob)
+                                                    })*userProfile.activityLevel.factor).toFixed(0)}
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow>

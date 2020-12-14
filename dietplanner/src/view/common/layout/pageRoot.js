@@ -9,32 +9,26 @@ import CreditCard from "@material-ui/icons/CreditCard";
 import React from "react";
 import useStyles from "../../style/mui/mealEditStyle";
 
+const scheme = Layout();
+
+scheme.configureInsetSidebar(builder => {
+    builder
+        .create('insetSidebar', { anchor: 'right' })
+        .registerAbsoluteConfig('lg', {
+            width: '33%'
+        });
+});
+
+scheme.configureEdgeSidebar(builder => {
+    builder
+        .create('edgeSidebar', { anchor: 'right' })
+        .registerTemporaryConfig('xs', {
+            width: '88%',
+        });
+});
 
 export default function PageLayout(props){
     const styles = useStyles();
-    const scheme = Layout();
-    scheme.configureHeader(builder => {
-        builder.create("header")
-            .registerConfig('xs', {
-                clipped: true,
-                initialHeight: 56,
-            })
-    });
-    scheme.configureInsetSidebar(builder => {
-        builder
-            .create('insetSidebar', { anchor: 'right' })
-            .registerAbsoluteConfig('md', {
-                width: '33%'
-            });
-    });
-
-    scheme.configureEdgeSidebar(builder => {
-        builder
-            .create('edgeSidebar', { anchor: 'right' })
-            .registerTemporaryConfig('xs', {
-                width: '88%',
-            });
-    });
 
     return (
 

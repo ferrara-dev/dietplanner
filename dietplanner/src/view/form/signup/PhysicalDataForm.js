@@ -3,12 +3,8 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import {numberSpan, activityLevels} from "../../../helpers/constants";
-import NativeSelect from '@material-ui/core/NativeSelect';
+import {activityLevels} from "../../../helpers/constants";
 import {makeStyles} from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -17,24 +13,16 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Button from "@material-ui/core/Button";
 import {useSignupFormStyle} from "../../style/mui/signupFormStyle";
 
-const useStyles = makeStyles((theme) => ({
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
-    },
-}));
 
 export default function PhysicalDataForm({
                                              validateFields,
                                              validator,
-                                             fields: {age, gender="female", weight, height, activityLevel},
+                                             fields: {dob, gender="female", weight, height, activityLevel},
                                              onChange,
                                              nav: {handleBack, handleNext}
                                          }) {
     const classes = useSignupFormStyle();
+
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -43,22 +31,17 @@ export default function PhysicalDataForm({
             <Grid container spacing={3}>
                 <Grid item xs={12} md={4}>
                     <TextField
-                        id="outlined-select-currency"
-                        label="age"
-                        type="number"
-                        defaultValue={age || 18}
-                        name="age"
-                        onBlur={onChange}
-                        helperText="Please select your age"
-                    >
-                        {numberSpan(18, 100).map((value) => (
-                            <MenuItem key={value} value={value}>
-                                {value}
-                            </MenuItem>
-                        ))}
-                    </TextField>
+                        id="date"
+                        label="Birthday"
+                        type="date"
+                        name="dob"
+                        defaultValue={dob || "2000-01-01"}
+                        onChange={onChange}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
                     <div className={classes.errorMessage}>
-                        {validator.message('age', age, 'required|numeric|min:18,num')}
                     </div>
                 </Grid>
                 <Grid item xs={12} md={4}>
@@ -144,19 +127,11 @@ export default function PhysicalDataForm({
                     color="primary"
                     onClick={handleNext}
                     className={classes.button}
-                    disabled={validateFields({age, gender, weight, height})}
+                    disabled={validateFields({gender, weight, height})}
                 >
                     {'Next'}
                 </Button>
             </div>
         </React.Fragment>
     );
-}
-
-
-function hasEmptyField(fields) {
-    return Object.keys(fields).some((propName) => {
-        if (!fields[propName])
-            return true;
-    });
 }

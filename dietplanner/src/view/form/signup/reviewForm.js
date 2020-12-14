@@ -42,8 +42,8 @@ export default function Review({validator, onChange, fields, nav: {handleBack, h
                     <Typography variant="body2">{fields.gender}</Typography>
                 </ListItem>
                 <ListItem className={classes.listItem}>
-                    <ListItemText primary={"age"}/>
-                    <Typography variant="body2">{fields.age}</Typography>
+                    <ListItemText primary={"dob"}/>
+                    <Typography variant="body2">{fields.dob}</Typography>
                 </ListItem>
                 <ListItem className={classes.listItem}>
                     <ListItemText primary={"height"}/>

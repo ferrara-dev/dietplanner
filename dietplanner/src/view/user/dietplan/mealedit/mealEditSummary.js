@@ -60,53 +60,37 @@ export default function MealEditSummary({
             defaultValue={mealTitle}
             onChange={(e) => setMealTitle(e.target.value)}
         />
-
+        <Box height={24} css={{flex: 'none'}}/>
+        <Box height={24} css={{flex: 'none'}}/>
+        <Divider className={styles.divider}/>
         <Grid container spacing={2}>
-            <SimpleMediaQuery>
-
-              <Grid xs={6} md={12} lg={12} item>
-                  <Typography className={styles.label}>meal details</Typography>
-                  {
-
+              <Grid xs={12} md={12} lg={12} item>
+                  <Typography className={styles.heading2} variant={'h1'}>
+                      Meal details
+                  </Typography>
                       <Grid container spacing={1}>
-                          {Object.entries(mealNutrients).map(([key, val], index) => {
-                              return <Grid key={index} item xs={12}>
-                                  <Typography variant="body1">
-                                      {key + " : " + val.toFixed(1)}
-                                  </Typography>
-                              </Grid>
-                          })}
+                          <Grid item xs={12}>
+                              <Typography variant="body1">
+                                  Protein : {mealNutrients.protein.toFixed(1)}
+                              </Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                              <Typography variant="body1">
+                                  Carbs : {mealNutrients.carbs.toFixed(1)}
+                              </Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                              <Typography variant="body1">
+                                  Fat : {mealNutrients.fat.toFixed(1)}
+                              </Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                              <Typography variant="body1">
+                                  Kcal : {mealNutrients.kcal.toFixed(1)}
+                              </Typography>
+                          </Grid>
                       </Grid>
-                      /*  <Chart
-                        classes={{
-                            root: styles.chartRoot,
-                        }}
-                        height={150}
-                        data={[
-                            {nutrient: "meal plan", val: (mealPlanNutrients.kcal).toFixed(1)},
-                            {nutrient: "current meal", val: (mealNutrients.kcal).toFixed(1)},
-                        ]}
-                    >
-                        <PieSeries
-                            valueField="val"
-                            argumentField="nutrient"
-                            innerRadius={0.6}
-                        />
-                        <Legend
-                            root={<div></div>}
-                        >
-                        </Legend>
-                        <Title
-                            classes={{root: styles.textField}}
-                            text="percentage of total meal plan calories"
-                        />
-                        <Tooltip>
-                        </Tooltip>
-                        <Animation/>
-                    </Chart>*/}
-
                 </Grid>
-            </SimpleMediaQuery>
         </Grid>
         <Box height={24} css={{flex: 'none'}}/>
         <Box height={24} css={{flex: 'none'}}/>

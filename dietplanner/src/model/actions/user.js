@@ -8,10 +8,9 @@ function logout() {
 
 export const registerUser = (email, password, userProfile) => (dispatch, getState, {getFirebase, getFirestore}) => {
     const firebase = getFirebase();
-    const {firstName, lastName, email, age, gender, weight, height, activityLevel, dietGoal} = userProfile;
-    const profileData = {firstName, lastName, email, age, gender, weight, height, activityLevel, newUser : true, dietGoal};
+    const {firstName, lastName, email, dob, gender, weight, height, activityLevel} = userProfile;
+    const profileData = {firstName, lastName, email, dob, gender, weight, height, activityLevel, newUser : true};
 
-    debugger;
     firebase.createUser({email, password}, profileData).then(userData => {
         const userUID = getState().firebase.auth.uid;
         const firestore = getFirestore();

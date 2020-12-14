@@ -12,27 +12,30 @@ import Signup from "../presenter/Signup";
 import ProtectedRoute from "../routing/protectedRoute";
 import Sidebar from "../presenter/navigation/sidebar";
 import RenderRoutes from "../routing/routes";
-import Home from "../app/component/user/home";
+import MainAppLayout from "./style/mainAppLayout";
 
-import "./style/css/home.css"
 
 function App() {
-    const state = useSelector(state=>state);
+    const state = useSelector(state => state);
     console.log(state);
 
     return (
         <AuthIsLoaded>
+            <MainAppLayout>
                 <Navigation/>
+                <Sidebar/>
                 <Switch>
                     <ProtectedRoute path="/home">
-                        <Home/>
+                        <RenderRoutes/>
                     </ProtectedRoute>
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/signup" component={Signup}/>
                 </Switch>
+            </MainAppLayout>
         </AuthIsLoaded>
     );
-};
+}
+;
 
 function AuthIsLoaded({children}) {
     const auth = useSelector(state => state.firebase.auth)

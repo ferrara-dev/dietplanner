@@ -18,8 +18,8 @@ export default function Signup() {
     const dispatch = useDispatch();
     const [registrationError, setRegistrationError] = React.useState(null);
     function register() {
-        const {firstName, lastName, email, password, age, gender, weight, height, activityLevel, dietGoal} = fields;
-        const userProfile = {firstName, lastName, email, age, gender, weight, height, activityLevel, dietGoal};
+        const {firstName, lastName, email, password, dob, gender, weight, height, activityLevel, dietGoal} = fields;
+        const userProfile = {firstName, lastName, email, dob, gender, weight, height, activityLevel, dietGoal};
         try{
             dispatch(registerUser(email, password, userProfile));
         } catch (e) {
@@ -32,7 +32,7 @@ export default function Signup() {
 
     const handleNext = (event) => {
         event.preventDefault();
-        if (activeStep >= 3)
+        if (activeStep >= 2)
             register();
         else {
             setActiveStep(activeStep + 1);
@@ -59,8 +59,6 @@ function getStepContent(step, fields, onChange, navigation, validator, validateF
         case 1:
             return <PhysicalDataForm fields={fields} onChange={onChange} nav={navigation} validator={validator} validateFields={validateFormFields}/>;
         case 2:
-            return <GoalsAndAmbitionsForm fields={fields} onChange={onChange} nav={navigation} validator={validator} validateFields={validateFormFields}/>;
-        case 3:
             return <Review fields={fields} nav={navigation} validator={validator}/>;
         default:
             throw new Error('Unknown step');

@@ -1,4 +1,4 @@
-import {IconButton,Toolbar} from "@material-ui/core";
+import {IconButton, Toolbar} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import React from "react";
 import {makeStyles} from "@material-ui/core";
@@ -23,27 +23,12 @@ export default function SidebarView({nav, open, toggle}) {
     const classes = useStyles();
 
     return <div className={classes.toolbar}>
-        <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="menu" onClick={(e) => toggle(e, true)}>
-                <MenuIcon/>
-            </IconButton>
-        </Toolbar>
-        <Drawer
-            anchor={"left"}
-            open={open}
-            className={classes.drawer}
-            classes={{
-                paper: classes.drawerPaper
-            }}
-            onClose={(e) => toggle(e, false)
-            }>
-            {nav.map((navigation, index) => {
-                return <Button key={index} component={Link} to={navigation.link} edge="start" color="inherit" aria-label="menu"
-                               onClick={(e) => toggle(e, false)}>
-                    {navigation.label}
-                </Button>
-            })
+        {nav.map((navigation, index) => {
+            return <Button key={index} component={Link} to={navigation.link} edge="start" color="inherit"
+                           aria-label="menu">
+                {navigation.label}
+            </Button>
+        })
             }
-        </Drawer>
-    </div>
-}
+            </div>
+        }

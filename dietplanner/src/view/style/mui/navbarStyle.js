@@ -1,4 +1,5 @@
 import {makeStyles} from "@material-ui/core";
+import styled from 'styled-components';
 
 export const useNavbarStyle = makeStyles((theme) => ({
     appBar: {

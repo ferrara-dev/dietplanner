@@ -6,7 +6,35 @@
 ## Project Description
 ***
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+A webb application where users can tailor a diet plan after their own personal taste, goals and approximated energy expenditure. 
+
+The user will be able to register an account 
+by submitting account details (email and password) and personal information that the application uses to
+approximate their total daily energy expenditure. The personal information which is needed includes 
+current physical activity, height, weight, age and gender.
+
+The user can update their personal information at any given time, 
+according to the plan every update will be stored together with 
+their current diet plan so that the users progress can be tracked and visualized.
+
+
+the users will be able to register an account on the website, 
+view trailers, and set/remove favorite movies only if they have an account and are logged in. 
+For more advanced interaction, we are planning to implement dynamic data visualization, 
+for example an interactive graph where the user is able to see the connections between their favorite movies and find related/similar movies.
+We have used Redux with ReactJS and Firebase for authorization and also as our database for storing the users favorite movies. We are using the api themoviedb for retrieving information about movies, genres, actors etc.
+
 ... General description and demo screenshots/videos from the application goes here ...
+## The diet planner application
+
+### What the goal product offers
+
+
+### What the product offers at this point
+
+### Left to do
+
 
 ### Dependencies 
 ... list of dependencies here ...

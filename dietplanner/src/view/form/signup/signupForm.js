@@ -9,7 +9,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const steps = ['Account setup & contact information', 'Personal details','Goals & ambitions' ,'Confirm'];
+const steps = ['Account setup & contact information', 'Personal details','Confirm'];
 
 export default function SignupForm({children, activeStep, handleNext, handleBack, fields, handleChange, fieldError}) {
 

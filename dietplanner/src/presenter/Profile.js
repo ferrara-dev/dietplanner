@@ -23,7 +23,7 @@ export default function UserProfile(){
     const data = useReduxState(["firestore","data"]);
     const user = data.user;
     const mealPlan = data.mealPlan;
-    
+
     console.log(user);
 
     return (!user || !mealPlan) && <LoadingSpinner></LoadingSpinner> || <UserProfileView userProfile={user} mealPlan={mealPlan.mealCategories}/>
