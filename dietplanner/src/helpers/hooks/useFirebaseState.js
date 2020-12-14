@@ -32,7 +32,7 @@ export function useReduxState(propertyChain = []){
             prevState = currentState;
             currentState = currentState[propertyChain[i]];
             if(!currentState)
-                return prevState;
+                return;
         }
         return currentState;
     });

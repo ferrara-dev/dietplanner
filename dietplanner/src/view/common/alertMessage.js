@@ -1,39 +1,36 @@
 import React from "react";
-import Snackbar from "@material-ui/core/Snackbar";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import {Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import Button from "@material-ui/core/Button";
 
-export default function AlertMassage({ message }) {
-    const [open, setOpen] = React.useState(true);
-
+export default function AlertMassage({open, message, title, onClick }) {
     function handleClose(event, reason) {
         if (reason === "clickaway") {
             return;
         }
-        setOpen(false);
+        onClick();
     }
 
     return (
         <div>
-            <Snackbar
-                anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left"
-                }}
+            <Dialog
                 open={open}
-                autoHideDuration={2000}
                 onClose={handleClose}
-                variant="warning"
-                ContentProps={{
-                    "aria-describedby": "message-id"
-                }}
-                message={message}
-                action={[
-                    <IconButton key="close" onClick={handleClose}>
-                        <CloseIcon />
-                    </IconButton>
-                ]}
-            />
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        {message}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary" autoFocus>
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 }

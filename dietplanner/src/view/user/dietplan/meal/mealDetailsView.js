@@ -97,12 +97,6 @@ export default function MealDetailsView({title, ingredients, categoryDescription
                                 </Grid>
                             </Paper>
                         </Grid>
-                        {/* Recent Orders */}
-                        <Grid item xs={12}>
-                            <Paper className={classes.paper}>
-
-                            </Paper>
-                        </Grid>
                     </Grid>
 
                 </Container>

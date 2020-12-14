@@ -18,6 +18,7 @@ export const ingredientActions = {
 
 export const mealCategoryActions = {
     SET_MEAL_CATEGORY_DESCRIPTION : "mealCategory/SET_MEAL_CATEGORY_DESCRIPTION",
+    SET_MEAL_CATEGORY_PRIORITY : "mealCategory/SET_MEAL_CATEGORY_PRIORITY",
     SET_CURRENT_CATEGORY : "mealCategory/SET_CURRENT_CATEGORY",
     RESET_CURRENT_CATEGORY : "mealCategory/RESET_CURRENT_CATEGORY",
 };

@@ -20,15 +20,23 @@ import {Link} from "react-router-dom";
 import {Add} from "@material-ui/icons";
 import AlertDialog from "../../../common/alertDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
+import MealCategoryEditForm from "../../../form/mealCategoryEditForm";
 import {averageMealPlanNutrients} from "../../../../helpers/calculation/MealNutrientCalculator";
 
 
-export default function MealPlanTableView({mealPlan, chooseCategory, deleteCategory, chooseMeal, addMealToCategory}) {
+export default function MealPlanTableView({
+                                              deleteMeal,
+                                              mealPlan,
+                                              chooseCategory,
+                                              deleteCategory,
+                                              chooseMeal,
+                                              addMealToCategory,
+                                              editCategory,
+                                              editCategoryError,
+                                          }) {
     const styles = useStyles();
-    const borderColor = 'grey.500';
     const {url} = useRouteMatch();
     const [edit, setEdit] = React.useState(false);
-    const mealPlanNutrients = averageMealPlanNutrients(mealPlan);
 
     return <Box pt={{xs: 2, sm: 4, md: 6}}>
         <Typography className={styles.heading} variant={'h1'} gutterBottom>
@@ -48,48 +56,89 @@ export default function MealPlanTableView({mealPlan, chooseCategory, deleteCateg
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {mealPlan.map(({description, meals, id}, index) => (
+                    {[...mealPlan].sort((a,b) => {
+                        const aPrio = a.priority;
+                        const bPrio = b.priority;
+                        if(aPrio < bPrio)
+                            return -1;
+                        else if(aPrio > bPrio)
+                            return 1;
+                        else {
+                            const aDesc = a.description.toUpperCase();
+                            const bDesc = b.description.toUpperCase();
+                            if(aDesc < bDesc)
+                                return -1;
+                            else if(aDesc > bDesc)
+                                return 1;
+                            else
+                                return 0;
+                        }
+                    }).map(({description, meals, id, priority}, index) => (
                         <ExpandableTableRow
                             key={id}
                             k={id}
                             expandComponent={
                                 meals.map((meal) => (
-                                    <TableCell key={randomID(12, options.base64)}
-                                               colSpan="3">
+                                    [<TableCell key={randomID(12, options.base64)}
+                                                colSpan="3">
                                         <Button component={Link}
-                                                to={`${url}/${meal.title}`}
+                                                to={`/home/mealplan/${description}/edit`}
                                                 onClick={(e) => {
-                                                    chooseCategory(index);
+                                                    chooseCategory(id);
                                                     chooseMeal(meal)
                                                 }}>{meal.title}
                                         </Button>
-                                    </TableCell>
+                                    </TableCell>,
+                                        <TableCell key={randomID(12, options.base64)}
+                                                   colSpan="3">
+                                            <AlertDialog
+                                                onConfirm={() => {
+                                                    deleteMeal(meal, id);
+                                                }}
+
+                                                content={"Do you want to delete the " + meal.title + " meal?"}
+                                                title={"Delete " + description + "?"}
+                                                OpenIcon={DeleteIcon}
+                                            />
+                                        </TableCell>]
                                 ))
                             }
                         >
-                            <TableCell key={index}><Button
-                                onClick={() => {
-                                    chooseCategory(index);
-                                }}>{description}</Button></TableCell>
-                            <TableCell key={index + 1}>
+                            <TableCell key={index}>
+                                <Button
+                                    onClick={() => {
+                                        chooseCategory(id);
+                                    }}>{description}
+                                </Button>
+                            </TableCell>
+                            <TableCell key={randomID(32, options.base64)}>
                                 {edit && <IconButton key={index - 1} component={Link}
                                                      to={`/home/mealplan/${description}/edit`}
                                                      onClick={() => {
-                                                         addMealToCategory(index);
+                                                         addMealToCategory(id);
                                                      }}>
                                     <Add fontSize="small"/>
                                 </IconButton>}
                             </TableCell>
-                            <TableCell key={index + 2}>
+                            <TableCell key={randomID(32, options.base64)}>
                                 {edit && <AlertDialog
                                     onConfirm={() => {
-                                        deleteCategory(index);
+                                        deleteCategory(id);
                                         setEdit(!edit);
                                     }}
                                     content={"Do you want to delete the " + description + " category?"}
                                     title={"Delete " + description + "?"}
                                     OpenIcon={DeleteIcon}
                                 />}
+                            </TableCell>
+                            <TableCell key={randomID(32, options.base64)}>
+                                <MealCategoryEditForm
+                                    title={description}
+                                    OpenIcon={EditIcon}
+                                    error={editCategoryError}
+                                    onSubmit={(fields) => editCategory(fields, id)}
+                                    _fields={{description : description, priority : priority }}
+                                />
                             </TableCell>
                         </ExpandableTableRow>
                     ))}

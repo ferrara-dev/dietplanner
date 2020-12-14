@@ -13,6 +13,13 @@ import useStyles from "../../style/mui/mealEditStyle";
 export default function PageLayout(props){
     const styles = useStyles();
     const scheme = Layout();
+    scheme.configureHeader(builder => {
+        builder.create("header")
+            .registerConfig('xs', {
+                clipped: true,
+                initialHeight: 56,
+            })
+    });
     scheme.configureInsetSidebar(builder => {
         builder
             .create('insetSidebar', { anchor: 'right' })
@@ -20,6 +27,7 @@ export default function PageLayout(props){
                 width: '33%'
             });
     });
+
     scheme.configureEdgeSidebar(builder => {
         builder
             .create('edgeSidebar', { anchor: 'right' })
@@ -46,7 +54,7 @@ export default function PageLayout(props){
                             PaperProps={{ className: styles.edgeSidebarBody }}
                             sidebarId={'edgeSidebar'}
                         >
-                            {props.children[0]}
+                            {props.children && props.children[0]}
                         </DrawerSidebar>
                         <Content>
                             <InsetContainer
@@ -58,11 +66,11 @@ export default function PageLayout(props){
                                             root : styles.sidebarBody
                                         }}
                                     >
-                                        {props.children[0]}
+                                        {props.children && props.children[0]}
                                     </InsetSidebar>
                                 }
                             >
-                                {props.children[1]}
+                                {props.children && props.children[1]}
                             </InsetContainer>
                         </Content>
                     </>

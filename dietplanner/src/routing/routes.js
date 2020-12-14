@@ -1,6 +1,6 @@
 import Sidebar from "../presenter/navigation/sidebar";
 import UserProfile from "../presenter/Profile";
-import IngredientSearch from "../presenter/nutrition/ingredientSearch";
+import IngredientSearch from "../presenter/dietplan/ingredientSearch";
 import IngredientDetails from "../presenter/dietplan/ingredientDetails";
 import {Route, Switch} from "react-router-dom";
 import React from "react";
@@ -29,14 +29,12 @@ export const routes = [
         main: () => <DietPlan/>,
         nested : [
             {
-                path: "/home/mealPlan/createMealCategory",
-                sidebar: () => <Sidebar/>,
+                path: "/home/mealPlan/category/:description",
                 exact : true,
                 main: () => <CreateMealCategory/>
             },
             {
-                path: "/home/mealPlan/:meal",
-                sidebar: () => <Sidebar/>,
+                path: "/:meal",
                 exact : true,
                 main: () => <MealDetails/>
             }
@@ -46,23 +44,21 @@ export const routes = [
         path: "/home/mealplan/:category/edit",
         sidebar: () => <Sidebar/>,
         main: () => <EditMeal/>,
+        exact: true,
         nested : [
             {
                 path: "/home/mealplan/:category/edit/*/search",
-                sidebar: () => <Sidebar/>,
                 exact : true,
                 main: () => <IngredientSearch/>
             },
             {
                 path: "/home/**/ingredient/:fdcId",
-                sidebar: () => <Sidebar/>,
                 main: () => <IngredientDetails/>
             }
         ]
     },
     {
         path: "/home/**/ingredient/:fdcId",
-        sidebar: () => <Sidebar/>,
         main: () => <IngredientDetails/>
     }
 ]

@@ -12,6 +12,8 @@ import Signup from "../presenter/Signup";
 import ProtectedRoute from "../routing/protectedRoute";
 import Sidebar from "../presenter/navigation/sidebar";
 import RenderRoutes from "../routing/routes";
+import Home from "../app/component/user/home";
+
 import "./style/css/home.css"
 
 function App() {
@@ -23,12 +25,7 @@ function App() {
                 <Navigation/>
                 <Switch>
                     <ProtectedRoute path="/home">
-                        <div className="flex-container">
-                            <Sidebar/>
-                            <div className="user-page-container">
-                                <RenderRoutes/>
-                            </div>
-                        </div>
+                        <Home/>
                     </ProtectedRoute>
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/signup" component={Signup}/>
@@ -39,8 +36,11 @@ function App() {
 
 function AuthIsLoaded({children}) {
     const auth = useSelector(state => state.firebase.auth)
-    if (!isLoaded(auth)) return <div>splash screen...</div>;
-    return children
+    if (!isLoaded(auth))
+        return <div>splash screen...</div>;
+    else {
+        return children
+    }
 }
 
 export default App;

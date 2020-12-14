@@ -6,7 +6,7 @@ import {useHistory} from "react-router";
 
 
 
-const Modal = ({children, Header, Body}) => {
+const Modal = (props) => {
     const history = useHistory();
     const classes = useStyles();
 
@@ -16,12 +16,12 @@ const Modal = ({children, Header, Body}) => {
             history.goBack();
         }}>
 
-            <div className={classes.modalContent} onClick={(e) => {
+            {<div className={classes.modalContent} onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
             }}>
-                {children}
-            </div>
+                {props.children}
+            </div>}
 
         </div>,
         document.getElementById("modal-root"),

@@ -1,16 +1,15 @@
 import IngredientDetailsView from "../../view/user/ingredientsearch/ingredientDetails";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "../../view/common/modal/modal";
-import {resetCurrentIngredient, setIngredientQuantity} from "../../model/actions/ingredient";
+import {setIngredientQuantity} from "../../model/actions/ingredient";
 import {addIngredient} from "../../model/actions/meal";
 import {useHistory} from "react-router";
+import {useReduxState} from "../../helpers/hooks/useFirebaseState";
 
 export default function IngredientDetails() {
     const history = useHistory();
     const currentIngredient = useSelector(state => state.currentIngredient);
-    const state = useSelector(state =>state);
-    console.log(state);
-
+    const currentMeal = useReduxState(["currentMeal"]);
     const dispatch = useDispatch();
 
     function changeQuantity (quantity) {
@@ -23,12 +22,14 @@ export default function IngredientDetails() {
     }
 
     return <Modal>
-        {!currentIngredient && <div>loading...</div> || <IngredientDetailsView
+        {(!currentIngredient || ! currentMeal) && <div>loading...</div> || <IngredientDetailsView
             ingredientDescription={currentIngredient.ingredient.label}
             nutritionData={currentIngredient.ingredient.nutrients}
             quantity={currentIngredient.quantity}
             changeQuantity={changeQuantity}
             addIngredient={addToMeal}
+            image = {currentIngredient.ingredient.image}
+            currentMeal={currentMeal}
         />}
     </Modal>
 

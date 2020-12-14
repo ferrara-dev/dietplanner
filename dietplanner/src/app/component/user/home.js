@@ -11,12 +11,6 @@ export default function Home() {
 
     const userUID = useFirebaseAuth().uid;
 
-    useFirestoreConnect({
-        collection : "mealPlans",
-        doc: userUID,
-        storeAs: "mealPlan"
-    });
-
     return (
         <div className="flex-container">
             <Sidebar/>

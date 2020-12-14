@@ -3,26 +3,27 @@ import UserProfileView from "../view/user/profile";
 import {useFirestoreConnect} from "react-redux-firebase";
 import {useReduxState} from "../helpers/hooks/useFirebaseState";
 import LoadingSpinner from "../view/common/loadingSpinner";
+import useFirebaseAuth from "../helpers/hooks/usefirebaseAuth";
 
 export default function UserProfile(){
-    const userUID = useReduxState(["firebase", "auth","uid"]);
+    const userUID = useFirebaseAuth().uid;
 
-    useFirestoreConnect({
-        collection: "users",
-        doc: userUID,
-        storeAs: "user"
-    });
 
-    useFirestoreConnect({
-        collection: "mealPlans",
+    useFirestoreConnect([{
+        collection : "mealPlans",
         doc: userUID,
         storeAs: "mealPlan"
-    });
-
+    },{
+        collection : "users",
+        doc: userUID,
+        storeAs: "user"
+    },
+    ]);
 
     const data = useReduxState(["firestore","data"]);
     const user = data.user;
     const mealPlan = data.mealPlan;
+    
     console.log(user);
 
     return (!user || !mealPlan) && <LoadingSpinner></LoadingSpinner> || <UserProfileView userProfile={user} mealPlan={mealPlan.mealCategories}/>

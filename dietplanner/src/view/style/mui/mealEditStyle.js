@@ -3,6 +3,15 @@ import {fade} from "@material-ui/core/styles";
 
 
 const useStyles = makeStyles(({palette, breakpoints}) => ({
+    tableFooter : {
+        left: 0,
+        bottom: 0, // <-- KEY
+        zIndex: 2,
+        position: 'sticky'
+    },
+    emptyCell : {
+        emptyCells : 'show'
+    },
     nutrientsCard : {
             color: fade("#22c1b9", 0.5)
     },
@@ -55,6 +64,8 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
     },
     table: {
         minWidth: 650,
+        maxHeight: 450,
+        emptyCells : 'show'
     },
     image: {
         width: '100%',

@@ -1,29 +1,51 @@
-import EditMealView from "../../view/user/dietplan/editMealView";
 import {useRouteMatch} from "react-router-dom";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
 import {setMealTitle, removeIngredient, resetCurrentMeal} from "../../model/actions/meal";
-
 import {Button, Grid} from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-
-import {useFirestore} from "react-redux-firebase";
+import {useFirestore, useFirestoreConnect} from "react-redux-firebase";
 import {setCurrentIngredient, setIngredientQuantity} from "../../model/actions/ingredient";
-import useFirestoreData from "../../helpers/hooks/useFirebaseState";
+
 import {addMealToCategory} from "../../model/actions/mealCategory";
 import MealEditView from "../../view/user/dietplan/mealedit/editMealView";
+import {useReduxState} from "../../helpers/hooks/useFirebaseState";
+import MealEditSummary from "../../view/user/dietplan/mealedit/mealEditSummary";
+import IngredientTable from "../../view/user/dietplan/mealedit/ingredientTable";
+import PageLayout from "../../view/common/layout/pageRoot";
+import useFirebaseAuth from "../../helpers/hooks/usefirebaseAuth";
+
+
 export default function EditMeal() {
-    const {path, url} = useRouteMatch();
+    let isMounted = false;
+
+    React.useEffect(() => {
+        isMounted = true;
+        return () => {
+            isMounted = false
+        };
+    }, []);
+
+    const userUID = useFirebaseAuth().uid;
+
+    useFirestoreConnect([{
+        collection : "mealPlans",
+        doc: userUID,
+        storeAs: "mealPlan"
+    },{
+        collection : "users",
+        doc: userUID,
+        storeAs: "user"
+    },
+    ]);
+
+    const {url} = useRouteMatch();
     const dispatch = useDispatch();
     const history = useHistory();
-    const currentMeal = useSelector(state => state.currentMeal);
-    const state = useSelector(state => state);
-    const mealPlan = useFirestoreData("mealPlan");
-    const firestore = useFirestore();
-
-    console.log(state);
+    const currentMeal = useReduxState(["currentMeal"])
+    const mealPlan = useReduxState(["firestore", "data", "mealPlan"])
 
     function addMeal() {
         dispatch(addMealToCategory(currentMeal));
@@ -45,31 +67,26 @@ export default function EditMeal() {
         dispatch(setMealTitle(name));
     }
 
-    return !currentMeal && <div>...</div> || <React.Fragment>
-        <Grid container spacing={1}>
-            <Grid item xs={12}>
-                <AppBar position="static" className="bg-dark">
-                    <Toolbar className="bg-dark">
-                        <Button onClick={() => {
-                            history.goBack();
-                        }}>Go back</Button>
-                    </Toolbar>
-                </AppBar>
-            </Grid>
-            <Grid item xs={12}>
-                {/*<EditMealView editIngredient={editIngredient} submitMeal={addMeal} setMealName={setMealName}
-                               data={currentMeal.ingredients} removeIngredient={deleteIngredient}
-                               mealTitle={currentMeal.title}/>*/}
-                               <MealEditView
-                                   data={currentMeal.ingredients}
-                                   removeIngredient={deleteIngredient}
-                                   editIngredient={editIngredient}
-                                   setMealName={setMealName}
-                                   submitMeal={addMeal}
-                                   mealTitle={currentMeal.title}
-                               />
-            </Grid>
-        </Grid>
+    return (!currentMeal || !mealPlan) && <div>...</div> || <React.Fragment>
+        <PageLayout>
+            <MealEditSummary
+                mealTitle={currentMeal.title}
+                edit={true}
+                submitMeal={addMeal}
+                setMealTitle={setMealName}
+                goBack={history.goBack}
+                ingredients={currentMeal.ingredients}
+                mealPlan={mealPlan.mealCategories}
+            />
+            <IngredientTable
+                mealTitle={currentMeal.title}
+                mealPlan={mealPlan.mealCategories}
+                edit={true}
+                editIngredient={editIngredient}
+                ingredients={currentMeal.ingredients}
+                deleteIngredient={deleteIngredient}
+            />
+        </PageLayout>
     </React.Fragment>
 
 }
