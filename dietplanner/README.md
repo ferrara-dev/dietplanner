@@ -11,22 +11,30 @@ A webb application where users can tailor a diet plan after their own personal t
 
 
 ### The Application
+
+### Registration
 The user will be able to register an account 
 by submitting account details (email and password) and personal information that the application uses to
 approximate their total daily energy expenditure. The personal information which is needed includes 
-current physical activity, height, weight, age and gender.
+current physical activity, height, weight, age and gender. 
+Screenshots from the signup process are presented below.
 
-<p float="left">
-  <img src="doc/screenshots/signup_page1.png" width="100" />
-  <img src="doc/screenshots/signup_page2.png" width="100" /> 
-  <img src="doc/screenshots/signup_page3.png" width="100" />
-</p>
+![picture](doc/screenshots/signup_page1.png "title-1") 
 
+![picture](doc/screenshots/signup_page2.png "title-2")
+
+![picture](doc/screenshots/signup_page3.png "title-2")
+
+### User profile
 The user can update their personal information at any given time, 
 every update will be stored together with their current diet plan so that the users progress can be tracked and visualized.
 However, tracking and visualization of the users progress has not yet been implemented, more information on what is left to do
 can be found under the [Left to do](#Left-to-do) section of this document.
 
+![picture](doc/screenshots/profile.png "title-2")
+
+
+### The diet plan
 The diet plan that is created by the user consist of meal categories that are given a name and a priority at creation, 
 where the priority indicates in what order to consume the meals.
 (e.g. Breakfast with priority 1, Midday snack with priority 2, Lunch with priority 3 etc).

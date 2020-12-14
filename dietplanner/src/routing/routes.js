@@ -7,6 +7,7 @@ import React from "react";
 import DietPlan from "../presenter/dietplan/dietPlan";
 import CreateMealCategory from "../presenter/dietplan/createMealCategory";
 import MealDetails from "../presenter/dietplan/meal/mealDetails";
+import Update from "../presenter/update";
 
 export const routes = [
     {
@@ -20,6 +21,12 @@ export const routes = [
         exact: true,
         sidebar: () => <Sidebar/>,
         main: () => <UserProfile/>
+    },
+    {
+        path: "/home/update",
+        exact: true,
+        sidebar: () => <Sidebar/>,
+        main: () => <Update/>
     },
     {
         path: "/home/mealplan",

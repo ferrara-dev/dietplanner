@@ -4,7 +4,8 @@ import SidebarView from "../../view/navigation/sidebar";
 export default function Sidebar(){
     const nav = [
         navFactory("profile", "/home/profile"),
-        navFactory("meal plan", "/home/mealplan")
+        navFactory("submit update", "/home/update"),
+        navFactory("meal plan", "/home/mealplan"),
     ];
 
     const [state, setState] = React.useState({
