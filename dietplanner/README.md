@@ -87,7 +87,7 @@ This section provides a list of work that needs to be done before the final dead
 - [ ] Add functionality to track progress
     - Store all updates together and current mealplan with timestamp
     - Functionality to revert your meal plan to how it was at any given update
-    - Add charts etc to visualise progress that has been made
+    - Add charts etc to visualise the users progress in user profile (planning to do so in a sidebar on the right)
  
 ### Installation & setup
 *** 

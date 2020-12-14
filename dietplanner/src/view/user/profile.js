@@ -119,14 +119,6 @@ export default function UserProfileView({userProfile, mealPlan}) {
                                             }) * userProfile.activityLevel.factor).toFixed(0)}
                                         </TableCell>
                                     </TableRow>
-                                    <TableRow>
-                                        <TableCell align="left">
-                                            Protein / Carb / Fat ratio
-                                        </TableCell>
-                                        <TableCell align="right">
-                                            {calculateBMI(userProfile).toFixed(2)}
-                                        </TableCell>
-                                    </TableRow>
                                 </TableBody>
                             </Table>
                         </TableContainer>
