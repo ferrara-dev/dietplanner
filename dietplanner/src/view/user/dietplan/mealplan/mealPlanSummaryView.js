@@ -68,38 +68,6 @@ export default function MealPlanSummaryView({userData, mealPlan, resetCurrentMea
                                 Calories : {mealPlanNutrients.kcal.toFixed(1)}
                             </Typography>
                         </Grid>
-                        <Divider className={styles.divider}/>
-                        <Grid item xs={12}>
-                            <Typography variant="body2">
-                                Calories : {mealPlanNutrients.kcal.toFixed(1)}
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                    <Divider className={styles.divider}/>
-                    <Typography variant="body1" className={styles.label}> Average meal plan nutrients </Typography>
-                    <Grid container spacing={1}>
-                        <Grid item xs={12}>
-                            <Typography variant="body2">
-                                Protein : {mealPlanNutrients.protein.toFixed(1)}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Typography variant="body2">
-                                Carbs : {mealPlanNutrients.carbs.toFixed(1)}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Typography variant="body2">
-                                Fat : {mealPlanNutrients.fat.toFixed(1)}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Typography variant="body2">
-                                Calories : {mealPlanNutrients.kcal.toFixed(1)}
-                            </Typography>
-                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

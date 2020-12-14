@@ -18,25 +18,19 @@ import EditIcon from "@material-ui/icons/Edit";
 import {Link} from "react-router-dom"
 import {useRouteMatch} from "react-router";
 import {averageMealPlanNutrients, mealNutrientCalculator} from "../../../../helpers/calculation/MealNutrientCalculator";
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {Chart, Legend, PieSeries, Title, Tooltip} from "@devexpress/dx-react-chart-material-ui";
-import {Animation} from "@devexpress/dx-react-chart";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
-import cx from "clsx";
 import SimpleMediaQuery from "../../../style/mui/mediaQuery/mealEditMediaQueries";
 
-export default function IngredientTable({mealPlan,mealTitle, edit, ingredients, editIngredient, deleteIngredient}) {
+export default function IngredientTable({mealPlan,mealTitle, ingredients, editIngredient, deleteIngredient}) {
     const styles = useStyles();
-    const colWidth = {xs: 3};
     const borderColor = 'grey.500';
-    const colStyles = useGutterBorderedGridStyles({borderColor, height: '80%'});
     const {url} = useRouteMatch();
     const mealNutrients = mealNutrientCalculator(ingredients);
     const mealPlanNutrients = averageMealPlanNutrients(mealPlan);
     return (
         <Box pt={{xs: 2, sm: 4, md: 6}}>
             <Typography className={styles.heading} variant={'h1'} gutterBottom>
-                Add ingredients and name your meal
+                View and edit your meal
             </Typography>
             <TableContainer className={styles.table}>
                 <Table stickyHeader className={styles.table} aria-label="simple table">

@@ -2,6 +2,7 @@ import {mealActions} from "../actions/ActionTypes";
 
 const initialState = {
     title: null,
+    mealId: null,
     ingredients: [],
 }
 
@@ -12,6 +13,11 @@ export default function mealReducer(state = initialState, action) {
                 ...state,
                 title: action.title
             };
+        case mealActions.CREATE_NEW_MEAL :
+            return {
+                ...state,
+                mealId: action.mealId
+            }
         case mealActions.UPDATE_INGREDIENTS:
             return {
                 ...state,
@@ -25,7 +31,8 @@ export default function mealReducer(state = initialState, action) {
             return {
                 ...state,
                 title: action.meal.title,
-                ingredients: action.meal.ingredients
+                ingredients: action.meal.ingredients,
+                mealId: action.meal.mealId
             }
         default :
             return state;

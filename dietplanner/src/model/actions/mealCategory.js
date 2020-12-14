@@ -55,9 +55,10 @@ export const addMealToCategory = (meal) => (dispatch, getState, {getFirestore, g
     const currentCategoryID = getState().currentMealCategory.id;
     const updatedMealCategories = getState().firestore.data.mealPlan.mealCategories.map(category => {
         if(category.id === currentCategoryID){
-            return {...category, meals : category.meals.filter(m => m.title !== meal.title).concat({
+            return {...category, meals : category.meals.filter(m => (m.title !== meal.title) && (m.mealId !== meal.mealId)).concat({
                     ingredients : meal.ingredients,
-                    title : meal.title
+                    title : meal.title,
+                    mealId: meal.mealId,
                 })}
         }
         else
@@ -78,7 +79,7 @@ export const deleteMealFromCategory = (meal, categoryID) => (dispatch, getState,
     const currentCategoryID = getState().currentMealCategory.id;
     const updatedMealCategories= getState().firestore.data.mealPlan.mealCategories.map(category => {
         if(category.id === currentCategoryID){
-            return {...category, meals : category.meals.filter(m => m.title !== meal.title)}
+            return {...category, meals : category.meals.filter(m => m.mealId !== meal.mealId)}
         }
         else
             return {...category}

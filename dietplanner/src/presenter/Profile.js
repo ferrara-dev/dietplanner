@@ -26,7 +26,8 @@ export default function UserProfile(){
 
     console.log(user);
 
-    return (!user || !mealPlan) && <LoadingSpinner></LoadingSpinner> || <UserProfileView userProfile={user} mealPlan={mealPlan.mealCategories}/>
+    return (!user || !mealPlan) && <LoadingSpinner></LoadingSpinner> ||
+        <UserProfileView userProfile={user} mealPlan={mealPlan.mealCategories}/>
 };
 
 function ShowData({mealPlan, user}){

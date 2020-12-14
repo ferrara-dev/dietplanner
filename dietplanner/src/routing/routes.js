@@ -6,8 +6,7 @@ import {Route, Switch} from "react-router-dom";
 import React from "react";
 import DietPlan from "../presenter/dietplan/dietPlan";
 import CreateMealCategory from "../presenter/dietplan/createMealCategory";
-import EditMeal from "../presenter/dietplan/editMeal";
-import MealDetails from "../presenter/dietplan/mealDetails";
+import MealDetails from "../presenter/dietplan/meal/mealDetails";
 
 export const routes = [
     {
@@ -33,17 +32,12 @@ export const routes = [
                 exact : true,
                 main: () => <CreateMealCategory/>
             },
-            {
-                path: "/:meal",
-                exact : true,
-                main: () => <MealDetails/>
-            }
         ]
     },
     {
         path: "/home/mealplan/:category/edit",
         sidebar: () => <Sidebar/>,
-        main: () => <EditMeal/>,
+        main: () => <MealDetails/>,
         exact: true,
         nested : [
             {

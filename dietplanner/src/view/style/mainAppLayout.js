@@ -10,7 +10,7 @@ import Layout, {
 } from '@mui-treasury/layout';
 import {CssBaseline} from "@material-ui/core";
 import React from "react";
-
+import {dailyShoppingTheme} from "@mui-treasury/mockup/brands/dailyShopping";
 export const SidebarTrigger = getSidebarTrigger(styled)
 export const MainAppHeader = getHeader(styled);
 export const Fullscreen = getFullscreen(styled);
@@ -37,7 +37,7 @@ mainAppScheme.configureEdgeSidebar(builder => {
 
 
 export default function MainAppLayout(props) {
-    return <Root scheme={mainAppScheme}>
+    return <Root scheme={mainAppScheme} theme={dailyShoppingTheme}>
         <CssBaseline></CssBaseline>
         <MainAppHeader>
             {props.children[0]}

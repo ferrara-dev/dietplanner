@@ -7,6 +7,7 @@ export const mealActions = {
     SET_TITLE : "meal/SET_TITLE",
     UPDATE_INGREDIENTS : "meal/UPDATE_INGREDIENTS",
     RESET_CURRENT_MEAL : "meal/RESET_CURRENT_MEAL",
+    CREATE_NEW_MEAL: "meal/CREATE_NEW_MEAL",
     SET_CURRENT_MEAL : "meal/SET_CURRENT_MEAL"
 };
 

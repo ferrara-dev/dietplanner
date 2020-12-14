@@ -10,10 +10,10 @@ export default function TopbarView({onLogout, isAuthenticated}) {
     const classes = useNavbarStyle();
 
     return (
-        <Toolbar>
+        <Toolbar className={classes.root}>
             {isAuthenticated && <SidebarTrigger sidebarId="main-app-sidebar"/>}
-            <Typography edge="start" component={'span'} variant={'body2'} className={classes.title}>
-                Diet planner
+            <Typography edge={"start"} className={classes.heading} variant={'h1'}>
+                {"Diet planner"}
             </Typography>
             {!isAuthenticated && <Button component={NavLink} to="/login" color="inherit">Login</Button>}
             {!isAuthenticated && <Button component={NavLink} to="/signup" color="inherit">Signup</Button>}

@@ -11,7 +11,7 @@ import {
     resetCurrentMealCategory, updateCategoryDescriptionAndPriority, updateCurrentCategory,
 } from "../../model/actions/mealCategory";
 import {resetCurrentIngredient} from "../../model/actions/ingredient";
-import {resetCurrentMeal, setCurrentMeal} from "../../model/actions/meal";
+import {createNewMeal, resetCurrentMeal, setCurrentMeal} from "../../model/actions/meal";
 import MealPlanSummaryView from "../../view/user/dietplan/mealplan/mealPlanSummaryView";
 import MealPlanTableView from "../../view/user/dietplan/mealplan/mealPlanTable";
 import PageLayout from "../../view/common/layout/pageRoot";
@@ -26,6 +26,7 @@ export default function DietPlan() {
 
     React.useEffect(() => {
         dispatch(resetCurrentIngredient());
+        dispatch(resetCurrentMeal());
         isMounted = true;
         return () => {
             isMounted = false
@@ -46,7 +47,10 @@ export default function DietPlan() {
     ]);
 
     const mealPlan = useReduxState(["firestore", "data", "mealPlan"]);
-    const userProfile = useReduxState(["firestore", "data", "user"]);
+    const userProfile = useReduxState(["firestore", "data", "user"])
+    const currentMeal = useReduxState(["currentMeal"])
+    console.log(mealPlan);
+
 
     const chooseCurrentCategory = (categoryID) => {
         dispatch(getCategoryById(categoryID));
@@ -58,7 +62,7 @@ export default function DietPlan() {
 
     const addMealToCategory = (categoryID) => {
         dispatch(getCategoryById(categoryID));
-        dispatch(resetCurrentMeal());
+        dispatch(createNewMeal());
     };
 
     const removeMealFromCategory = (meal, categoryID) => {

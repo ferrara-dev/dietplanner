@@ -42,7 +42,7 @@ export default function Review({validator, onChange, fields, nav: {handleBack, h
                     <Typography variant="body2">{fields.gender}</Typography>
                 </ListItem>
                 <ListItem className={classes.listItem}>
-                    <ListItemText primary={"dob"}/>
+                    <ListItemText primary={"date of birth"}/>
                     <Typography variant="body2">{fields.dob}</Typography>
                 </ListItem>
                 <ListItem className={classes.listItem}>
@@ -56,10 +56,6 @@ export default function Review({validator, onChange, fields, nav: {handleBack, h
                 <ListItem className={classes.listItem}>
                     <ListItemText primary={"activity level"}/>
                     <Typography variant="body2">{fields.activityLevel && fields.activityLevel.description}</Typography>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <ListItemText primary={"Goals"}/>
-                    <Typography variant="body2">{fields.dietGoal}</Typography>
                 </ListItem>
             </List>
 

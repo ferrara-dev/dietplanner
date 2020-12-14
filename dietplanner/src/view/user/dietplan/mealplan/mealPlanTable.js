@@ -36,7 +36,6 @@ export default function MealPlanTableView({
                                           }) {
     const styles = useStyles();
     const {url} = useRouteMatch();
-    const [edit, setEdit] = React.useState(false);
 
     return <Box pt={{xs: 2, sm: 4, md: 6}}>
         <Typography className={styles.heading} variant={'h1'} gutterBottom>
@@ -44,17 +43,6 @@ export default function MealPlanTableView({
         </Typography>
         <TableContainer>
             <Table className={styles.table} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>
-                            <IconButton onClick={() => setEdit(!edit)}>
-                                <EditIcon fontSize="small"/>
-                            </IconButton>
-                        </TableCell>
-                        <TableCell>Meal plan</TableCell>
-                        <TableCell padding="checkbox"/>
-                    </TableRow>
-                </TableHead>
                 <TableBody>
                     {[...mealPlan].sort((a,b) => {
                         const aPrio = a.priority;
@@ -112,7 +100,7 @@ export default function MealPlanTableView({
                                 </Button>
                             </TableCell>
                             <TableCell key={randomID(32, options.base64)}>
-                                {edit && <IconButton key={index - 1} component={Link}
+                                { <IconButton key={index - 1} component={Link}
                                                      to={`/home/mealplan/${description}/edit`}
                                                      onClick={() => {
                                                          addMealToCategory(id);
@@ -121,10 +109,9 @@ export default function MealPlanTableView({
                                 </IconButton>}
                             </TableCell>
                             <TableCell key={randomID(32, options.base64)}>
-                                {edit && <AlertDialog
+                                {<AlertDialog
                                     onConfirm={() => {
                                         deleteCategory(id);
-                                        setEdit(!edit);
                                     }}
                                     content={"Do you want to delete the " + description + " category?"}
                                     title={"Delete " + description + "?"}

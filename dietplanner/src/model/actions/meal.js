@@ -1,4 +1,5 @@
 import {mealActions} from "./ActionTypes";
+import {options, randomID} from "../../helpers/random";
 
 function setMealTitleAction(title){
     return {type : mealActions.SET_TITLE, title : title};
@@ -13,15 +14,19 @@ function updateIngredientsAction(ingredients){
 };
 
 function setCurrentMealAction(meal){
-    return {type : mealActions.SET_CURRENT_MEAL, meal : meal}
+    return {type : mealActions.SET_CURRENT_MEAL, meal : meal};
+};
+
+function createNewMealAction(mealID){
+    return {type : mealActions.CREATE_NEW_MEAL, mealId : mealID};
 };
 
 export const setMealTitle = (mealTitle) => (dispatch) => {
     dispatch(setMealTitleAction(mealTitle));
 };
 
-export const setCurrentMeal = (mealTitle) => (dispatch) => {
-    dispatch(setCurrentMealAction(mealTitle))
+export const setCurrentMeal = (meal) => (dispatch) => {
+    dispatch(setCurrentMealAction(meal))
 };
 
 export const addIngredient = (ingredient) => (dispatch, getState) => {
@@ -34,6 +39,11 @@ export const addIngredient = (ingredient) => (dispatch, getState) => {
 export const removeIngredient = (ingredientID) => (dispatch, getState) => {
     const updatedIngredients = getState().currentMeal.ingredients.filter((ingr, i) => (ingr.ingredient.foodId !== ingredientID))
     dispatch(updateIngredientsAction(updatedIngredients));
+};
+
+export const createNewMeal = () => (dispatch, getState) => {
+    const mealID = randomID(64, options.alphanumeric);
+    dispatch(createNewMealAction(mealID));
 };
 
 export const resetCurrentMeal = () => (dispatch) => {

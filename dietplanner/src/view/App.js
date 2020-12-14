@@ -16,8 +16,6 @@ import MainAppLayout from "./style/mainAppLayout";
 
 
 function App() {
-    const state = useSelector(state => state);
-    console.log(state);
 
     return (
         <AuthIsLoaded>

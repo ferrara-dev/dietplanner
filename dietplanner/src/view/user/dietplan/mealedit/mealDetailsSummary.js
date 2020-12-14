@@ -10,15 +10,16 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 import EditIcon from "@material-ui/icons/Edit";
 import {averageMealPlanNutrients, mealNutrientCalculator} from "../../../../helpers/calculation/MealNutrientCalculator";
 import SimpleMediaQuery from "../../../style/mui/mediaQuery/mealEditMediaQueries";
-export default function MealEditSummary({
-                                            mealPlan,
-                                            ingredients,
-                                            goBack,
-                                            edit,
-                                            mealTitle,
-                                            setMealTitle,
-                                            submitMeal,
-                                        }) {
+
+export default function MealDetailsSummary({
+                                               mealPlan,
+                                               ingredients,
+                                               mealTitle,
+                                               setMealTitle,
+                                               submitMeal,
+                                               goBack,
+                                               submit,
+                                           }) {
     const styles = useStyles();
     const {url} = useRouteMatch();
     const mealNutrients = mealNutrientCalculator(ingredients);
@@ -32,7 +33,7 @@ export default function MealEditSummary({
         <Box height={24} css={{flex: 'none'}}/>
         <Grid container spacing={2}>
             <SimpleMediaQuery
-            query={'(min-width:1050px)'}>
+                query={'(min-width:1050px)'}>
                 <Divider className={styles.divider}/>
                 <Typography className={styles.label}></Typography>
                 <Grid xs={12} item>
@@ -63,35 +64,37 @@ export default function MealEditSummary({
         <Box height={24} css={{flex: 'none'}}/>
         <Box height={24} css={{flex: 'none'}}/>
         <Divider className={styles.divider}/>
+
         <Grid container spacing={2}>
-              <Grid xs={12} md={12} lg={12} item>
-                  <Typography className={styles.heading2} variant={'h1'}>
-                      Meal details
-                  </Typography>
-                      <Grid container spacing={1}>
-                          <Grid item xs={12}>
-                              <Typography variant="body1">
-                                  Protein : {mealNutrients.protein.toFixed(1)}
-                              </Typography>
-                          </Grid>
-                          <Grid item xs={12}>
-                              <Typography variant="body1">
-                                  Carbs : {mealNutrients.carbs.toFixed(1)}
-                              </Typography>
-                          </Grid>
-                          <Grid item xs={12}>
-                              <Typography variant="body1">
-                                  Fat : {mealNutrients.fat.toFixed(1)}
-                              </Typography>
-                          </Grid>
-                          <Grid item xs={12}>
-                              <Typography variant="body1">
-                                  Kcal : {mealNutrients.kcal.toFixed(1)}
-                              </Typography>
-                          </Grid>
-                      </Grid>
+            <Grid xs={12} md={12} lg={12} item>
+                <Typography className={styles.heading2} variant={'h1'}>
+                    Meal details
+                </Typography>
+                <Grid container spacing={1}>
+                    <Grid item xs={12}>
+                        <Typography variant="body1">
+                            Protein : {mealNutrients.protein.toFixed(1)}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="body1">
+                            Carbs : {mealNutrients.carbs.toFixed(1)}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="body1">
+                            Fat : {mealNutrients.fat.toFixed(1)}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant="body1">
+                            Kcal : {mealNutrients.kcal.toFixed(1)}
+                        </Typography>
+                    </Grid>
                 </Grid>
+            </Grid>
         </Grid>
+
         <Box height={24} css={{flex: 'none'}}/>
         <Box height={24} css={{flex: 'none'}}/>
         <Box height={24} css={{flex: 'none'}}/>
@@ -106,8 +109,9 @@ export default function MealEditSummary({
                         root: cx(styles.button, styles.buttonActive),
                         label: styles.creditCardLabel,
                     }}
+                    disabled={!mealTitle && true}
                 >
-                    Submit meal
+                    {"Submit"}
                 </Button>
             </Grid>
             <Grid xs={6} item>

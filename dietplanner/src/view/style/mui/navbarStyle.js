@@ -2,11 +2,14 @@ import {makeStyles} from "@material-ui/core";
 import styled from 'styled-components';
 
 export const useNavbarStyle = makeStyles((theme) => ({
-    appBar: {
-      top: 0,
+    heading: {
+        flexGrow: 1,
+        fontWeight: 900,
+        fontSize: '2.25rem',
     },
     root: {
-        flexGrow: 1,
+        background: 'linear-gradient(45deg, #1F1D29, #Fc5981)',
+        color: '#fff',
     },
     menuButton: {
         marginRight: theme.spacing(2),
