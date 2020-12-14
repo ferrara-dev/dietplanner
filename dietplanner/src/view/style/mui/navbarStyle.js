@@ -8,7 +8,7 @@ export const useNavbarStyle = makeStyles((theme) => ({
         fontSize: '2.25rem',
     },
     root: {
-        background: 'linear-gradient(45deg, #1F1D29, #Fc5981)',
+        background: 'linear-gradient(45deg, #FF1D29, #Fc5981)',
         color: '#fff',
     },
     menuButton: {

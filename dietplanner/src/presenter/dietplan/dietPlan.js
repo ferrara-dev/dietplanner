@@ -15,8 +15,7 @@ import {createNewMeal, resetCurrentMeal, setCurrentMeal} from "../../model/actio
 import MealPlanSummaryView from "../../view/user/dietplan/mealplan/mealPlanSummaryView";
 import MealPlanTableView from "../../view/user/dietplan/mealplan/mealPlanTable";
 import PageLayout from "../../view/common/layout/pageRoot";
-import MealPlanLayout from "../../view/user/dietplan/mealplan/mealPlanLayout";
-import {Toolbar} from "@material-ui/core";
+
 
 
 export default function DietPlan() {

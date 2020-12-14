@@ -34,41 +34,36 @@ can be found under the [Left to do](#Left-to-do) section of this document.
 ![picture](doc/screenshots/profile.png "title-2")
 
 
+Unfortunately the update functionality is not fully styled or implemented yet, 
+when the form is submitted, the profile is updated. 
+However updates are not saved at this point in time.
+
+![picture](doc/screenshots/update.png "title-2")
+
+
 ### The diet plan
 The diet plan that is created by the user consist of meal categories that are given a name and a priority at creation, 
 where the priority indicates in what order to consume the meals.
 (e.g. Breakfast with priority 1, Midday snack with priority 2, Lunch with priority 3 etc).
 
+![picture](doc/screenshots/emptyMealplan.png)
+![picture](doc/screenshots/addCategory.png)
+![picture](doc/screenshots/mealplan.png)
+
 When a category is created, meals can be composed and added by searching and adding ingredients to the  
-category.
+category. Note that **ingredientSearch** and **ingredientDetails** have not been styled yet.
 
-the users will be able to register an account on the website, 
-view trailers, and set/remove favorite movies only if they have an account and are logged in. 
-For more advanced interaction, we are planning to implement dynamic data visualization, 
-for example an interactive graph where the user is able to see the connections between their favorite movies and find related/similar movies.
-We have used Redux with ReactJS and Firebase for authorization and also as our database for storing the users favorite movies. We are using the api themoviedb for retrieving information about movies, genres, actors etc.
+![picture](doc/screenshots/mealcreateAndedit.png)
+![picture](doc/screenshots/ingredientSearch.png)
+![picture](doc/screenshots/ingredientDetails.png)
+![picture](doc/screenshots/mealDetails.png)
 
-... General description and demo screenshots/videos from the application goes here ...
-## The Application
-
-### What the goal product offers
-
-
-### What the product offers at this point
-
-### Left to do
-
-
-### Dependencies 
-... list of dependencies here ...
-
-### Application demo
-... screenshots/videos from the application goes here ...
 
 ##### Live Demo: https://diet-planner-1.herokuapp.com
-## Architecture
-... information about how the model-view-presenter architecture was implemented goes here ...
-***
+
+### Left to do
+This section provides a list and time plan of 
+work that needs to be done before the final deadline at december 21 2020
 
 ## Installation & setup
 ***
@@ -76,6 +71,7 @@ We have used Redux with ReactJS and Firebase for authorization and also as our d
 
 ***
 ## File Structure
+
 ### dietplanner/public
 Contains all global and static files :
 *  public/index.html
@@ -173,8 +169,6 @@ Contain files related to styling of view components
 Contains view components related to the user, such as the user profile and 
 views regarding the meal plan.
 
-
-... description of tle structure goes here ...
 
 
 ***
