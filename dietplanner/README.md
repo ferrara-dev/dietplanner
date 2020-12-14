@@ -9,9 +9,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 A webb application where users can tailor a diet plan after their own personal taste, goals and approximated energy expenditure. 
 
+
 * The project architecture follows the Model-View-Presenter architecture pattern.
   
 
+* [edamam API](https://developer.edamam.com/edamam-docs-nutrition-api) has been used for ingredient data and images
+
+ 
 * Redux and react context has been utilized for state management.
 
 
@@ -71,9 +75,20 @@ category. Note that **ingredientSearch** and **ingredientDetails** have not been
 ##### Live Demo: https://diet-planner-1.herokuapp.com
 
 ### Left to do
-This section provides a list and time plan of 
-work that needs to be done before the final deadline at december 21 2020
+This section provides a list of work that needs to be done before the final deadline at december 21 2020
 
+- [ ] Fix loading screens
+- [ ] Fix alert message in login & signup view
+- [ ] Style UpdateForm view
+- [ ] Fix styling and functionalities in IngredientSearch and IngredientDetails
+    - Add functionality to sort ingredient search results by nutrients
+    - Add functionality to see how total nutrients in current meal is affected by adding an ingredient
+      directly from ingredient details
+- [ ] Add functionality to track progress
+    - Store all updates together and current mealplan with timestamp
+    - Functionality to revert your meal plan to how it was at any given update
+    - Add charts etc to visualise progress that has been made
+ 
 ### Installation & setup
 *** 
 The application is bootstraped with create-react-app which gives a straight forward setup and installation
@@ -185,7 +200,6 @@ Contain files related to styling of view components
 ##### view/user
 Contains view components related to the user, such as the user profile and 
 views regarding the meal plan.
-
 
 
 ***
