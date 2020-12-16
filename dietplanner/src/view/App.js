@@ -11,8 +11,9 @@ import Login from "../presenter/Login";
 import Signup from "../presenter/Signup";
 import ProtectedRoute from "../routing/protectedRoute";
 import Sidebar from "../presenter/navigation/sidebar";
-import RenderRoutes from "../routing/routes";
-import MainAppLayout from "./style/mainAppLayout";
+import RenderRoutes, {RenderContentSidebar} from "../routing/routes";
+import MainAppLayout from "./common/layout/mainAppLayout";
+import PageLayout from "./common/content/pageRoot";
 
 
 function App() {
@@ -24,7 +25,10 @@ function App() {
                 <Sidebar/>
                 <Switch>
                     <ProtectedRoute path="/home">
-                        <RenderRoutes/>
+                        <PageLayout>
+                            <RenderContentSidebar/>
+                            <RenderRoutes/>
+                        </PageLayout>
                     </ProtectedRoute>
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/signup" component={Signup}/>

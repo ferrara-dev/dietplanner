@@ -16,6 +16,7 @@ export default function CreateMealCategory() {
     const currentMealCategory = useReduxState(["currentMealCategory"]);
 
     const [error, setError] = React.useState(undefined);
+    const [success, setSuccess] = React.useState(false);
 
     useFirestoreConnect([{
         collection : "mealPlans",
@@ -38,25 +39,17 @@ export default function CreateMealCategory() {
     const addMealCategory = () => {
         try {
             dispatch(createMealCategory({description: fields.description, priority: fields.priority}));
-            history.goBack();
+            //history.goBack();
+            setSuccess(true);
         } catch (error) {
             if (isMounted)
                 setError(error);
         }
     };
 
-    const cancel = () => {
-        history.goBack();
-    }
-
-    const updateMealCategory = () => {
-
-    };
-
     const {fields, handleChange, handleSubmit} = useForm(addMealCategory);
 
-    return <Modal>
-        <CreateMealForm
+    return <CreateMealForm
             set={handleSubmit}
             fields={fields}
             handleChange={handleChange}
@@ -65,6 +58,7 @@ export default function CreateMealCategory() {
                 reset: () => setError(undefined),
                 err: error,
             }}
+            goBack={history.push}
+            success={success}
         />
-    </Modal>
 }

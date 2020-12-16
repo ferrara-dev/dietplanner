@@ -2,18 +2,18 @@ import {makeStyles} from "@material-ui/core";
 import {fade} from "@material-ui/core/styles";
 
 
-const useStyles = makeStyles(({palette, breakpoints}) => ({
-    tableFooter : {
+const styles = makeStyles(({palette, breakpoints}) => ({
+    tableFooter: {
         left: 0,
         bottom: 0, // <-- KEY
         zIndex: 2,
         position: 'sticky'
     },
-    emptyCell : {
-        emptyCells : 'show'
+    emptyCell: {
+        emptyCells: 'show'
     },
-    nutrientsCard : {
-            color: fade("#22c1b9", 0.5)
+    nutrientsCard: {
+        color: fade("#22c1b9", 0.5)
     },
     chartRoot: {
         display: "block",
@@ -21,7 +21,7 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
         fontSize: 14,
         fontFamily: "Fira Sans Roboto Helvetica Arial sans-serif",
         fontWeight: "300",
-        boxSizing : "border-box",
+        boxSizing: "border-box",
         flexDirection: "column"
     },
     btn: {
@@ -65,7 +65,10 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
     table: {
         minWidth: "100%",
         maxHeight: 450,
-        emptyCells : 'show',
+        emptyCells: 'show',
+        [breakpoints.up('lg')]: {
+            minWidth: 960,
+        },
         [breakpoints.up('lg')]: {
             minWidth: 960,
         },
@@ -100,6 +103,7 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
     sidebarBody: {
         background: 'none',
         overflow: 'visible !important',
+        backgroundColor: "#fff !important"
     },
     sidebarPaper: {
         maxWidth: 400,
@@ -248,4 +252,4 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
     },
 }));
 
-export default useStyles;
+export default styles;

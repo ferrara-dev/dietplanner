@@ -5,7 +5,7 @@ import {useReduxState} from "../helpers/hooks/useFirebaseState";
 import LoadingSpinner from "../view/common/loadingSpinner";
 import useFirebaseAuth from "../helpers/hooks/usefirebaseAuth";
 import UserProfileSidebar from "../view/user/userProfileSidebar";
-import PageLayout from "../view/common/layout/pageRoot";
+import PageLayout from "../view/common/content/pageRoot";
 
 export default function UserProfile(){
     const userUID = useFirebaseAuth().uid;

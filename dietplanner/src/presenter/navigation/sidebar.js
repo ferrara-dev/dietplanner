@@ -5,7 +5,7 @@ export default function Sidebar(){
     const nav = [
         navFactory("profile", "/home/profile"),
         navFactory("submit update", "/home/update"),
-        navFactory("meal plan", "/home/mealplan"),
+        navFactory("meal plan", "/home/meal-plan"),
     ];
 
     const [state, setState] = React.useState({

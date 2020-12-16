@@ -1,29 +1,44 @@
 
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyle = makeStyles((theme) => ({
+export const useStyle = makeStyles(({theme, palette, breakpoints})=> ({
+    heading: {
+        fontWeight: 900,
+        fontSize: '1.75rem',
+        textAlign: 'center',
+        [breakpoints.up('sm')]: {
+            textAlign: 'left',
+        },
+        [breakpoints.up('md')]: {
+            fontSize: '2.25rem',
+        },
+    },
     root: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.paper,
-
-    },
-    paper: {
-        padding: theme.spacing(2),
         display: 'flex',
-        overflow: 'auto',
         flexDirection: 'column',
-        height: "100%",
-        justifyContent: 'center'
+        background: 'linear-gradient(45deg, #191D29, #3c5981)',
+        borderRadius: 12,
+        height: '100vh',
+        '& *': {
+            color: '#fff',
+        },
     },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+    button: {
+        border: 0,
+        borderRadius: 3,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+        height: 48,
+        width : "100%",
+        padding: '0 30px',
     },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
+    buttonSubmit: {
+        background: 'linear-gradient(45deg, #287825 30%, #689602 90%)',
     },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
+    buttonCancel: {
+        background: 'linear-gradient(45deg, #A60000 30%, #CB0000 90%)',
+    },
+    buttonActive: {
+        borderColor: '#fff',
     },
 }));
