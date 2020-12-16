@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import Toolbar from '@material-ui/core/Toolbar';
 import {useNavbarStyle} from "../style/mui/navbarStyle";
 import {NavLink} from "react-router-dom";
-import {SidebarTrigger} from "../style/mainAppLayout";
+import {SidebarTrigger} from "../common/layout/mainAppLayout";
 
 export default function TopbarView({onLogout, isAuthenticated}) {
     const classes = useNavbarStyle();

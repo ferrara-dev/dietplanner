@@ -4,52 +4,54 @@ import IngredientSearch from "../presenter/dietplan/ingredientSearch";
 import IngredientDetails from "../presenter/dietplan/ingredientDetails";
 import {Route, Switch} from "react-router-dom";
 import React from "react";
-import DietPlan from "../presenter/dietplan/dietPlan";
+import DietPlan from "../presenter/dietplan/meal/dietPlan";
 import CreateMealCategory from "../presenter/dietplan/createMealCategory";
 import MealDetails from "../presenter/dietplan/meal/mealDetails";
 import Update from "../presenter/update";
+import ProtectedRoute from "./protectedRoute";
+import PageLayout from "../view/common/content/pageRoot";
+import MealPlanSummary from "../presenter/dietplan/meal/mealPlanSummary";
 
 export const routes = [
     {
         path: "/home",
         exact: true,
-        sidebar: Sidebar,
-        main: () => <UserProfile/>
+        main: () => <UserProfile/>,
     },
     {
         path: "/home/profile",
         exact: true,
-        sidebar: () => <Sidebar/>,
-        main: () => <UserProfile/>
+        main: () => <UserProfile/>,
     },
     {
         path: "/home/update",
         exact: true,
-        sidebar: () => <Sidebar/>,
-        main: () => <Update/>
+        main: () => <Update/>,
     },
     {
-        path: "/home/mealplan",
-        exact: true,
-        sidebar: () => <Sidebar/>,
+        path: "/home/meal-plan",
         main: () => <DietPlan/>,
-        nested : [
+        sidebar:  [
             {
-                path: "/home/mealPlan/category/:description",
-                exact : true,
+                path: "/home/meal-plan",
+                exact: true,
+                main: () => <MealPlanSummary/>
+            },
+            {
+                path: "/home/meal-plan/create-category",
+                exact: true,
                 main: () => <CreateMealCategory/>
             },
-        ]
+        ],
     },
     {
         path: "/home/mealplan/:category/edit",
-        sidebar: () => <Sidebar/>,
         main: () => <MealDetails/>,
         exact: true,
-        nested : [
+        nested: [
             {
                 path: "/home/mealplan/:category/edit/*/search",
-                exact : true,
+                exact: true,
                 main: () => <IngredientSearch/>
             },
             {
@@ -60,34 +62,39 @@ export const routes = [
     },
     {
         path: "/home/**/ingredient/:fdcId",
-        main: () => <IngredientDetails/>
+        main: () => <IngredientDetails/>,
     }
-]
+];
 
-export default function RenderRoutes(){
+export function RenderContentSidebar() {
     return <React.Fragment>
         <Switch>
-            {routes.map((route,index) => {
+        {routes.map((route, index) => {
+            const sidebar = route.sidebar
+            if (sidebar)
+                return sidebar.map((route, index) => {
+                    return <Route
+                        key={index}
+                        path={route.path}
+                        exact={route.exact}
+                        children={<route.main/>}
+                    />
+                })
+        })}
+    </Switch>
+    </React.Fragment>
+};
+
+export default function RenderRoutes() {
+    return <React.Fragment>
+        <Switch>
+            {routes.map((route, index) => {
                 return <Route
                     key={index}
                     path={route.path}
                     exact={route.exact}
-                    children={<route.main />}
+                    children={<route.main/>}
                 />
-            })}
-        </Switch>
-        <Switch>
-            {routes.map((route,index) => {
-                const nestedRoutes = route.nested
-                if(nestedRoutes)
-                    return nestedRoutes.map((route,index) => {
-                        return <Route
-                            key={index}
-                            path={route.path}
-                            exact={route.exact}
-                            children={<route.main />}
-                        />
-                    })
             })}
         </Switch>
     </React.Fragment>

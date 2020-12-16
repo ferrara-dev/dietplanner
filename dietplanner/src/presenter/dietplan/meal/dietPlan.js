@@ -1,7 +1,7 @@
 import React from "react";
 import {useFirestoreConnect} from "react-redux-firebase";
-import useFirebaseAuth from "../../helpers/hooks/usefirebaseAuth";
-import useFirestoreData, {useReduxState} from "../../helpers/hooks/useFirebaseState";
+import useFirebaseAuth from "../../../helpers/hooks/usefirebaseAuth";
+import useFirestoreData, {useReduxState} from "../../../helpers/hooks/useFirebaseState";
 import {useDispatch} from "react-redux";
 import {
     setCurrentCategory,
@@ -9,12 +9,12 @@ import {
     deleteMealFromCategory,
     getCategoryById,
     resetCurrentMealCategory, updateCategoryDescriptionAndPriority, updateCurrentCategory,
-} from "../../model/actions/mealCategory";
-import {resetCurrentIngredient} from "../../model/actions/ingredient";
-import {createNewMeal, resetCurrentMeal, setCurrentMeal} from "../../model/actions/meal";
-import MealPlanSummaryView from "../../view/user/dietplan/mealplan/mealPlanSummaryView";
-import MealPlanTableView from "../../view/user/dietplan/mealplan/mealPlanTable";
-import PageLayout from "../../view/common/layout/pageRoot";
+} from "../../../model/actions/mealCategory";
+import {resetCurrentIngredient} from "../../../model/actions/ingredient";
+import {createNewMeal, resetCurrentMeal, setCurrentMeal} from "../../../model/actions/meal";
+import MealPlanSummaryView from "../../../view/user/dietplan/mealplan/mealPlanSummaryView";
+import MealPlanTableView from "../../../view/user/dietplan/mealplan/mealPlanTable";
+import PageLayout from "../../../view/common/content/pageRoot";
 
 
 
@@ -88,13 +88,7 @@ export default function DietPlan() {
         }
     };
 
-    return (!mealPlan && <div>...</div> || <PageLayout>
-        <MealPlanSummaryView
-            mealPlan={mealPlan.mealCategories}
-            resetCurrentMealCategory={resetMealCategory}
-            userData={userProfile}
-        />
-
+    return (!mealPlan && <div>...</div> ||
         <MealPlanTableView
             deleteMeal={removeMealFromCategory}
             mealPlan={mealPlan.mealCategories}
@@ -104,6 +98,5 @@ export default function DietPlan() {
             chooseCategory={chooseCurrentCategory}
             editCategory={editMealCategory}
             editCategoryError={err}
-        />
-    </PageLayout>);
+        />);
 };

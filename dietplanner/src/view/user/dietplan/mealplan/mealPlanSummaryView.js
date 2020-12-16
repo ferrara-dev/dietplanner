@@ -1,5 +1,4 @@
 import useStyles from "../../../style/mui/mealEditStyle";
-import {useRouteMatch} from "react-router";
 import {Button, Grid, TextField, Typography, Paper, Card, CardContent} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
@@ -9,17 +8,12 @@ import FastfoodIcon from "@material-ui/icons/Fastfood";
 import cx from "clsx";
 import {
     averageMealPlanNutrients,
-    mealNutrientCalculator,
-    pcfRatio
 } from "../../../../helpers/calculation/MealNutrientCalculator";
 
 
-export default function MealPlanSummaryView({userData, mealPlan, resetCurrentMealCategory}) {
+export default function MealPlanSummaryView({mealPlan, resetCurrentMealCategory}) {
     const styles = useStyles();
-    const {url} = useRouteMatch();
     const mealPlanNutrients = averageMealPlanNutrients(mealPlan);
-    const pcf = pcfRatio(averageMealPlanNutrients(mealPlan));
-    const kcalNet = 0;
 
     return (
         <Box className={styles.root} py={3} px={3.5}>
@@ -30,7 +24,7 @@ export default function MealPlanSummaryView({userData, mealPlan, resetCurrentMea
             <Grid container spacing={2}>
                 <Grid xs={12} item>
                     <Button
-                        component={Link} to="/home/mealPlan/category/create-new"
+                        component={Link} to="/home/meal-plan/create-category"
                         startIcon={<FastfoodIcon/>}
                         onClick={() => {
                             resetCurrentMealCategory();
@@ -80,3 +74,4 @@ export default function MealPlanSummaryView({userData, mealPlan, resetCurrentMea
         </Box>
     );
 }
+

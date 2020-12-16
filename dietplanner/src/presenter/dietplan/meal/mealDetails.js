@@ -12,7 +12,7 @@ import {addMealToCategory} from "../../../model/actions/mealCategory";
 import {useReduxState} from "../../../helpers/hooks/useFirebaseState";
 import MealDetailsSummary from "../../../view/user/dietplan/mealedit/mealDetailsSummary";
 import IngredientTable from "../../../view/user/dietplan/mealedit/ingredientTable";
-import PageLayout from "../../../view/common/layout/pageRoot";
+import PageLayout from "../../../view/common/content/pageRoot";
 import useFirebaseAuth from "../../../helpers/hooks/usefirebaseAuth";
 
 
