@@ -3,49 +3,55 @@ import React from "react";
 import {Switch, Route} from "react-router-dom";
 import {isLoaded} from "react-redux-firebase";
 import {useSelector} from "react-redux";
-import Navigation from "../presenter/navigation/Navigation";
+import {paths, RenderContentSidebar, RenderRoutes} from "../routing/routes"
 
 
 /// view presenters
-import Login from "../presenter/Login";
-import Signup from "../presenter/Signup";
-import ProtectedRoute from "../routing/protectedRoute";
-import Sidebar from "../presenter/navigation/sidebar";
-import RenderRoutes, {RenderContentSidebar} from "../routing/routes";
-import MainAppLayout from "./common/layout/mainAppLayout";
-import PageLayout from "./common/content/pageRoot";
+
+import AppContent from "./appContent";
+import SchemeProvider from "./appLayoutProvider";
+import {Layout} from "./common/layout/styled";
+import LayoutBuilder, {Root} from "@mui-treasury/layout";
+import DietPlan from "../presenter/dietplan/mealplan/dietPlan";
+import MealPlanSummary from "../presenter/dietplan/mealplan/mealPlanSummary";
+import CreateMealCategory from "../presenter/dietplan/createMealCategory";
+import MealEdit from "../presenter/dietplan/meal/mealEdit";
+import MealDetails from "../presenter/dietplan/meal/mealDetails";
+import IngredientSearch from "../presenter/dietplan/ingredient/ingredientSearch";
+import IngredientDetails from "../presenter/dietplan/ingredientDetails";
+
 
 
 function App() {
-
     return (
-        <AuthIsLoaded>
-            <MainAppLayout>
-                <Navigation/>
-                <Sidebar/>
+            <AppContent>
                 <Switch>
-                    <ProtectedRoute path="/home">
-                        <PageLayout>
-                            <RenderContentSidebar/>
-                            <RenderRoutes/>
-                        </PageLayout>
-                    </ProtectedRoute>
-                    <Route exact path="/login" component={Login}/>
-                    <Route exact path="/signup" component={Signup}/>
+                    <Route exact path={["/meal-plan", "/meal-plan/create-category"]}>
+                        <DietPlan/>
+                    </Route>
+                    <Route path={"/meal/*/edit"}>
+                        <MealEdit/>
+                    </Route>
                 </Switch>
-            </MainAppLayout>
-        </AuthIsLoaded>
+                <Switch>
+                    <Route exact path={"/meal-plan"}>
+                        <MealPlanSummary/>
+                    </Route>
+                    <Route exact path={"/meal-plan/create-category"}>
+                        <CreateMealCategory/>
+                    </Route>
+                    <Route exact path={"/meal/:description/edit"}>
+                        <MealDetails/>
+                    </Route>
+                    <Route exact path={"/meal/:description/edit/search"}>
+                        <IngredientSearch/>
+                    </Route>
+                    <Route exact path={"/meal/:description/edit/search/ingredient/:foodId"}>
+                        <IngredientDetails/>
+                    </Route>
+                </Switch>
+            </AppContent>
     );
-}
-;
-
-function AuthIsLoaded({children}) {
-    const auth = useSelector(state => state.firebase.auth)
-    if (!isLoaded(auth))
-        return <div>splash screen...</div>;
-    else {
-        return children
-    }
 }
 
 export default App;

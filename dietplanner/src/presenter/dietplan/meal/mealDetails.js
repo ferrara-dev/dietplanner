@@ -11,9 +11,10 @@ import {addMealToCategory} from "../../../model/actions/mealCategory";
 
 import {useReduxState} from "../../../helpers/hooks/useFirebaseState";
 import MealDetailsSummary from "../../../view/user/dietplan/mealedit/mealDetailsSummary";
-import IngredientTable from "../../../view/user/dietplan/mealedit/ingredientTable";
-import PageLayout from "../../../view/common/content/pageRoot";
+import MealEditView from "../../../view/user/dietplan/mealedit/mealEditView";
+import PageLayout from "../../../view/common/content/contentLayout";
 import useFirebaseAuth from "../../../helpers/hooks/usefirebaseAuth";
+import LoadingSpinner from "../../../view/common/loadingSpinner";
 
 
 export default function MealDetails() {
@@ -29,11 +30,11 @@ export default function MealDetails() {
     const userUID = useFirebaseAuth().uid;
 
     useFirestoreConnect([{
-        collection : "mealPlans",
+        collection: "mealPlans",
         doc: userUID,
         storeAs: "mealPlan"
-    },{
-        collection : "users",
+    }, {
+        collection: "users",
         doc: userUID,
         storeAs: "user"
     },
@@ -43,48 +44,22 @@ export default function MealDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
     const currentMeal = useReduxState(["currentMeal"])
+    const currentCategory = useReduxState(["currentMealCategory"]);
     const mealPlan = useReduxState(["firestore", "data", "mealPlan"])
     console.log(currentMeal, mealPlan);
 
     function addMeal() {
         dispatch(addMealToCategory(currentMeal));
-        history.push(`/home/mealplan`);
+        history.push(`/meal-plan`);
     };
 
-    function editIngredient(ingredient, quantity) {
-        dispatch(setCurrentIngredient(ingredient));
-        dispatch(setIngredientQuantity(quantity));
-        history.push(`${url}/ingredient/${ingredient.foodId}`);
-    };
-
-    function deleteIngredient(ingredient) {
-        dispatch(removeIngredient(ingredient.foodId))
-    };
-
-    function setMealName(name) {
-        dispatch(setMealTitle(name));
-    }
-
-    return (!currentMeal || !mealPlan) && <div>...</div> || <React.Fragment>
-        <PageLayout>
-            <MealDetailsSummary
-                mealTitle={currentMeal.title}
-                edit={true}
-                submitMeal={addMeal}
-                setMealTitle={setMealName}
-                goBack={history.goBack}
-                ingredients={currentMeal.ingredients}
-                mealPlan={mealPlan.mealCategories}
-            />
-            <IngredientTable
-                mealTitle={currentMeal.title}
-                mealPlan={mealPlan.mealCategories}
-                edit={true}
-                editIngredient={editIngredient}
-                ingredients={currentMeal.ingredients}
-                deleteIngredient={deleteIngredient}
-            />
-        </PageLayout>
-    </React.Fragment>
-
+    return (!currentMeal || !mealPlan) && <div></div> || <MealDetailsSummary
+        mealTitle={currentMeal.title}
+        submitMeal={addMeal}
+        currentMealPlan={mealPlan.mealCategories}
+        goBack={history.goBack}
+        ingredients={currentMeal.ingredients}
+        mealPlan={mealPlan.mealCategories}
+        categoryDescription={currentCategory.description}
+    />
 }

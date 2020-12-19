@@ -2,7 +2,22 @@ import {makeStyles, fade} from "@material-ui/core/styles";
 
 
 export const useStyles = makeStyles((theme) => ({
-
+    sidebarContent: {
+        display: 'flex',
+        flexDirection: 'column',
+        background: 'linear-gradient(45deg, #191D29, #3c5981)',
+        borderRadius: 12,
+        height: '100vh',
+        '& *': {
+            color: '#fff',
+        },
+    },
+    label: {
+        fontSize: 13,
+        fontWeight: 'bold',
+        marginBottom: 16,
+        opacity: 0.87,
+    },
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -32,6 +47,25 @@ export const useStyles = makeStyles((theme) => ({
                 width: '20ch',
             },
         },
+    },
+    edgeSidebarBody: {
+        padding: '24px 0 40px 24px !important',
+        background: 'none',
+        boxShadow: 'none',
+        overflow: "visible",
+        right: 0,
+    },
+    sidebarBody: {
+        background: 'none',
+        overflow: 'visible !important',
+        backgroundColor: "#fff !important"
+    },
+    sidebarPaper: {
+        maxWidth: 400,
+        padding: 16,
+        background: 'none',
+        boxShadow: 'none',
+        overflow: "visible"
     },
     searchIcon: {
         padding: theme.spacing(0, 2),

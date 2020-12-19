@@ -2,6 +2,22 @@ import {makeStyles} from "@material-ui/core";
 import styled from 'styled-components';
 
 export const useNavbarStyle = makeStyles((theme) => ({
+    navDisplayFlex: {
+        display: `flex`,
+        justifyContent: `space-between`
+    },
+    linkText: {
+        textDecoration: `none`,
+        textTransform: `uppercase`,
+        color: `white`
+    },
+    buttonLink : {
+        textTransform : "capitalize",
+        fontSize : "1.2rem",
+        "&.active": {
+            textDecoration:'underline',
+        },
+    },
     heading: {
         flexGrow: 1,
         fontWeight: 900,

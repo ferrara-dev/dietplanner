@@ -14,7 +14,7 @@ import {resetCurrentIngredient} from "../../../model/actions/ingredient";
 import {createNewMeal, resetCurrentMeal, setCurrentMeal} from "../../../model/actions/meal";
 import MealPlanSummaryView from "../../../view/user/dietplan/mealplan/mealPlanSummaryView";
 import MealPlanTableView from "../../../view/user/dietplan/mealplan/mealPlanTable";
-import PageLayout from "../../../view/common/content/pageRoot";
+import PageLayout from "../../../view/common/content/contentLayout";
 
 
 
@@ -48,7 +48,7 @@ export default function DietPlan() {
     const mealPlan = useReduxState(["firestore", "data", "mealPlan"]);
     const userProfile = useReduxState(["firestore", "data", "user"])
     const currentMeal = useReduxState(["currentMeal"])
-    console.log(mealPlan);
+
 
 
     const chooseCurrentCategory = (categoryID) => {

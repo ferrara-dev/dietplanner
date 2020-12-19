@@ -13,6 +13,7 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {createFirestoreInstance} from "redux-firestore";
 import {createBrowserHistory} from 'history'
 import {PersistGate} from 'redux-persist/integration/react'
+import Main from "./view/Main";
 
 const initialState = {}
 
@@ -30,7 +31,7 @@ ReactDOM.render(
         <ReactReduxFirebaseProvider {...rrfProps}>
             <PersistGate loading={null} persistor={persistor}>
                 <Router>
-                    <App/>
+                    <Main/>
                 </Router>
             </PersistGate>
         </ReactReduxFirebaseProvider>

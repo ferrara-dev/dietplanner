@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -18,34 +18,39 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ProductCard({title, seeMore ,img}) {
+export default function ProductCard({title, seeMore, img}) {
     const classes = useStyles();
 
     return (
-        <Card className={classes.root}>
-            <CardActionArea>
-                <CardMedia
+        <div onClick={(e) => {
+            e.stopPropagation();
+            seeMore();
+        }}>
+            <Card className={classes.root}>
+                <CardActionArea>
+                    <CardMedia
 
-                    className={classes.media}
-                    image={img || "https://via.placeholder.com/728x90.png?text=No+Picture"}
-                    title={title}
-                />
-                <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {title}
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <Button
-                    size="small"
-                    color="primary"
-                    onClick={() => {
-                        seeMore();
-                }}>
-                    Learn More
-                </Button>
-            </CardActions>
-        </Card>
+                        className={classes.media}
+                        image={img || "https://via.placeholder.com/728x90.png?text=No+Picture"}
+                        title={title}
+                    />
+                    <CardContent>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {title}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button
+                        size="small"
+                        color="primary"
+                        onClick={() => {
+                            seeMore();
+                        }}>
+                        Learn More
+                    </Button>
+                </CardActions>
+            </Card>
+        </div>
     );
 }

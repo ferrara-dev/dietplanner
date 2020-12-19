@@ -22,7 +22,6 @@ export default function UserProfileView({userProfile, mealPlan}) {
     const classes = useStyles();
     const mealPlanNutrients = averageMealPlanNutrients(mealPlan);
     return (
-        <div className={classes.mainContent}>
             <Box pt={{xs: 2, sm: 4, md: 6}}>
                 <Typography className={classes.heading} variant={'h1'} gutterBottom>
                     User profile
@@ -31,7 +30,7 @@ export default function UserProfileView({userProfile, mealPlan}) {
                     {/* Stats */}
                     <Grid item xs={12}>
                         <TableContainer component={Paper}>
-                            <Table className={classes.table} aria-label="simple table">
+                            <Table aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
                                         <TableCell colSpan={2} align={"center"}>Physical</TableCell>
@@ -78,7 +77,7 @@ export default function UserProfileView({userProfile, mealPlan}) {
 
                     <Grid item xs={12}>
                         <TableContainer component={Paper}>
-                            <Table className={classes.table} aria-label="simple table">
+                            <Table aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
                                         <TableCell colSpan={2} align={"center"}>Nutrition</TableCell>
@@ -125,6 +124,5 @@ export default function UserProfileView({userProfile, mealPlan}) {
                     </Grid>
                 </Grid>
             </Box>
-        </div>
     );
 }

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8dfff874-20fa-43a6-a278-07b2c8ddb629" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/ingredient/ingredientSearch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/meal/mealEdit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/presenter/profile/userProgress.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/view/Main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/view/ProfilePage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/view/appContent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/view/appLayoutProvider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/view/common/content/contentLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/view/common/styledcomponent/styled.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/view/form/CreateMealFormHeader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/view/style/mui/mealDetailsSummaryStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/view/user/dietplan/mealedit/mealDetailsHeader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dietplanner/src/view/withContentLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/presenter/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/presenter/profile/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/ingredientDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/ingredientDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/ingredientSearch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/meal/dietPlan.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/mealplan/dietPlan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/meal/mealDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/meal/mealDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/meal/mealPlanSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/mealplan/mealPlanSummary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/presenter/navigation/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/presenter/navigation/Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/presenter/navigation/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/presenter/navigation/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/presenter/update.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/presenter/profile/update.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/routing/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/routing/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/service/ConntectToFirestore.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/common/content/pageRoot.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/common/content/withSidebarLayout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/common/layout/mainAppLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/common/layout/mainAppLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/common/layout/styled.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/common/layout/styled.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/form/createMealForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/form/createMealForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/navigation/TopbarView.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/navigation/TopbarView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/style/mui/IngredientDetailStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/style/mui/IngredientDetailStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/style/mui/createMealFormStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/style/mui/createMealFormStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/style/mui/mealBankStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/style/mui/mealBankStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/style/mui/mealEditStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/style/mui/mealEditStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/style/mui/navbarStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/style/mui/navbarStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/user/dietplan/mealedit/ingredientTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/user/dietplan/mealedit/mealEditView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/user/dietplan/mealedit/mealDetailsSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/user/dietplan/mealedit/mealDetailsSummary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/user/dietplan/mealplan/mealPlanSummaryView.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/user/dietplan/mealplan/mealPlanSummaryView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/user/dietplan/mealplan/mealPlanTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/user/dietplan/mealplan/mealPlanTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/user/ingredientsearch/ProductCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/user/ingredientsearch/ProductCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/user/ingredientsearch/ingredientDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/user/ingredientsearch/ingredientDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/user/ingredientsearch/ingredientSearchResultView.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/user/ingredientsearch/ingredientSearchView.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/user/ingredientsearch/ingredientSearchView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/user/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/user/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dietplanner/src/view/user/userProfileSidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/dietplanner/src/view/user/userProgressView.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1lkE0dAZh2vDuz3Tv77NT008fVl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/ingredient" />
+      <recent name="$PROJECT_DIR$/dietplanner/src/view" />
+      <recent name="$PROJECT_DIR$/dietplanner/src/presenter/profile" />
+      <recent name="$PROJECT_DIR$/dietplanner/src/presenter/dietplan/mealplan" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8dfff874-20fa-43a6-a278-07b2c8ddb629" name="Default Changelist" comment="" />
+      <created>1608132472891</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608132472891</updated>
+      <workItem from="1608132475463" duration="118116000" />
+      <workItem from="1608398236375" duration="1110000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

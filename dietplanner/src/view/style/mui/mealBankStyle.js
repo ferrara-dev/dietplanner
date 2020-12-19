@@ -2,7 +2,16 @@ import {makeStyles, fade} from "@material-ui/core/styles";
 
 
 const useStyles = makeStyles((theme) => ({
-
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        background: 'linear-gradient(45deg, #191D29, #3c5981)',
+        borderRadius: 12,
+        height: '100vh',
+        '& *': {
+            color: '#fff',
+        },
+    },
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -43,16 +52,12 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    root: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.paper,
-    },
     list: {
         listStyle: 'none',
         marginBottom: 2,
     },
-    mealPlanBar: {
-        background: '#2E3B55',
+    searchBar: {
+        background: 'linear-gradient(45deg, #f91D29, #fc5981)',
         marginBottom : 10,
     },
     root2: {
@@ -68,19 +73,6 @@ const useStyles = makeStyles((theme) => ({
         padding: '0 8px',
         ...theme.mixins.toolbar,
     },
-    appBar: {
-        zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    menuButton: {
-        marginRight: 36,
-    },
-    menuButtonHidden: {
-        display: 'none',
-    },
     header: {
         borderBottomWidth: 5,
         borderBottomStyle: "inset",
@@ -89,27 +81,19 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flex: '1 1 100%',
     },
-    drawerPaperClose: {
-        overflowX: 'hidden',
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        width: theme.spacing(7),
-        [theme.breakpoints.up('sm')]: {
-            width: theme.spacing(9),
-        },
-    },
     appBarSpacer: theme.mixins.toolbar,
+
     content: {
         flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
     },
+
     container: {
         paddingTop: theme.spacing(4),
         paddingBottom: theme.spacing(4),
     },
+
     resultContainer : {
         padding: theme.spacing(4),
         minHeight : "75%",
@@ -120,6 +104,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems : "center",
         overflowY : "auto"
     },
+
     paper: {
         padding: theme.spacing(2),
         display: 'flex',

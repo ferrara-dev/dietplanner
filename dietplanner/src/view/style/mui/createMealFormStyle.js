@@ -13,6 +13,13 @@ export const useStyle = makeStyles(({theme, palette, breakpoints})=> ({
             fontSize: '2.25rem',
         },
     },
+    edgeSidebarBody: {
+        padding: '80px 0 40px 24px !important',
+        background: 'none',
+        boxShadow: 'none',
+        overflow: "visible",
+        right: 0,
+    },
     root: {
         display: 'flex',
         flexDirection: 'column',

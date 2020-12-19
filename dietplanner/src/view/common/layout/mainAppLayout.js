@@ -27,13 +27,6 @@ mainAppScheme.configureHeader(builder => {
         })
 });
 
-mainAppScheme.configureEdgeSidebar(builder => {
-    builder
-        .create('main-app-sidebar', {anchor: 'left'})
-        .registerTemporaryConfig('xs', {
-            width: 'auto', // 'auto' is only valid for temporary variant
-        });
-});
 
 
 export default function MainAppLayout(props) {
@@ -42,11 +35,8 @@ export default function MainAppLayout(props) {
         <MainAppHeader>
             {props.children[0]}
         </MainAppHeader>
-        <MainAppSidebar sidebarId={"main-app-sidebar"}>
-            {props.children[1]}
-        </MainAppSidebar>
         <MainAppContent>
-            {props.children[2]}
+            {props.children[1]}
         </MainAppContent>
     </Root>
 }

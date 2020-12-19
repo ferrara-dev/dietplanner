@@ -3,9 +3,9 @@ import SidebarView from "../../view/navigation/sidebar";
 
 export default function Sidebar(){
     const nav = [
-        navFactory("profile", "/home/profile"),
+        navFactory("profile", "/profile"),
         navFactory("submit update", "/home/update"),
-        navFactory("meal plan", "/home/meal-plan"),
+        navFactory("meal plan", "/meal-plan"),
     ];
 
     const [state, setState] = React.useState({
