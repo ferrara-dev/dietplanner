@@ -1,7 +1,6 @@
 import {makeStyles} from "@material-ui/core";
 import {fade} from "@material-ui/core/styles";
 
-
 const styles = makeStyles(({palette, breakpoints}) => ({
     tableFooter: {
         left: 0,
