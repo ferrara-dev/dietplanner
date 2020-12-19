@@ -1,99 +1,38 @@
+import {Root} from "@mui-treasury/layout";
+import {dailyShoppingTheme} from "@mui-treasury/mockup/brands/dailyShopping";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Fab from "@material-ui/core/Fab";
+import cx from "clsx";
+import {Switch,Route} from "react-router-dom";
+import {
+    Layout,
+    Header,
+    Content,
+    Fullscreen,
+    DrawerSidebar,
+    InsetSidebar,
+    InsetContainer
+} from "./common/layout/styled"
+import Close from "@material-ui/icons/Close";
+import CreditCard from "@material-ui/icons/CreditCard";
+import React from "react";
+import {useLocation} from "react-router-dom";
+import UserProfile from "../presenter/profile/Profile";
+import {paths} from "../routing/routes";
+
+import UserProgress from "../presenter/profile/userProgress";
+import Update from "../presenter/profile/update";
+
 import {makeStyles} from "@material-ui/core";
-import {fade} from "@material-ui/core/styles";
 
 
-const styles = makeStyles(({theme,palette, breakpoints}) => ({
-    tableFooter: {
-        left: 0,
-        bottom: 0, // <-- KEY
-        zIndex: 2,
-        position: 'sticky'
-    },
-    emptyCell: {
-        emptyCells: 'show'
-    },
-    inline : {
-        display : "flex",
-        flexDirection : "row",
-        justifyContent : "space-between",
-        alignItems : "baseline",
-        marginRight : 15
-    },
-    nutrientsCard: {
-        color: fade("#22c1b9", 0.5)
-    },
-    chartRoot: {
-        display: "block",
-        padding: 10,
-        fontSize: 14,
-        fontFamily: "Fira Sans Roboto Helvetica Arial sans-serif",
-        fontWeight: "300",
-        boxSizing: "border-box",
-        flexDirection: "column"
-    },
-    btn: {
-        width: '100%',
-        paddingTop: 16,
-        paddingBottom: 16,
-        borderRadius: 40,
-        border: '1px solid',
-        borderColor: palette.grey[400],
-        '& > *': {
-            fontWeight: 'bold',
-            textTransform: 'none',
-        },
-        marginRight: 72,
-        [breakpoints.up('sm')]: {
-            marginRight: 'unset',
-        },
-    },
-    big: {
-        fontSize: 16,
-    },
-    large: {
-        fontSize: 24,
-    },
-    mainGrid: {
-        [breakpoints.up('sm')]: {
-            flexDirection: 'row-reverse',
-        },
-    },
-    heading: {
-        fontWeight: 900,
-        fontSize: '1.75rem',
-        textAlign: 'center',
-        [breakpoints.up('sm')]: {
-            textAlign: 'left',
-        },
-        [breakpoints.up('md')]: {
-            fontSize: '2.25rem',
-        },
-    },
-    table: {
-        minWidth: "100%",
-        maxHeight: 450,
-        emptyCells: 'show',
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-        objectFit: 'contain',
-    },
-    name: {
-        fontFamily:
-            '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif',
-        fontWeight: 'bold',
-        fontSize: 16,
-        margin: '0 0 8px 0',
-    },
+const useStyles = makeStyles(({palette, breakpoints}) => ({
     descr: {
         fontSize: 14,
         color: palette.text.secondary,
     },
-    header: {
-        backgroundColor: '#ffffff',
-    },
-    toolbar: {},
+
+
     edgeSidebarBody: {
         padding: '24px 0 40px 24px !important',
         background: 'none',
@@ -148,19 +87,13 @@ const styles = makeStyles(({theme,palette, breakpoints}) => ({
         color: '#2E3B4D',
         '& svg': {
             fontSize: 32,
-            color: '#fedc1f',
+            color: '#fff',
         },
         zIndex: 1500,
         transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
-        [breakpoints.up('sm')]: {
-            bottom: 40,
-        },
-        [breakpoints.up('lg')]: {
-            transform: 'scale(0)',
-        },
     },
     fabClose: {
-        top: 80,
+        top: 8,
         right: 8,
         width: 48,
         height: 48,
@@ -185,7 +118,7 @@ const styles = makeStyles(({theme,palette, breakpoints}) => ({
         margin: '24px 0',
     },
     label: {
-        fontSize: 13,
+        fontSize: 12,
         fontWeight: 'bold',
         marginBottom: 16,
         opacity: 0.87,
@@ -253,4 +186,58 @@ const styles = makeStyles(({theme,palette, breakpoints}) => ({
     },
 }));
 
-export default styles;
+export default function ProfilePage() {
+    const styles = useStyles();
+    const scheme = Layout();
+    const location = useLocation();
+
+    scheme.configureEdgeSidebar(builder => {
+        builder
+            .create('edgeSidebar', {anchor: 'right'})
+            .registerTemporaryConfig('xs', {
+                width: "50%",
+            });
+    });
+
+
+    return (
+        <Root theme={dailyShoppingTheme} scheme={scheme}>
+            {({setOpen, state: {sidebar}}) => {
+                const {open} = sidebar.edgeSidebar;
+                return (
+                    <>
+                        <CssBaseline/>
+                        <Fab
+                            className={cx(styles.fab, open && styles.fabClose)}
+                            color={'primary'}
+                            onClick={() => setOpen('edgeSidebar', !open)}
+                        >
+                            {open ? <Close/> : <CreditCard/>}
+                        </Fab>
+                        <DrawerSidebar
+                            PaperProps={{className: styles.edgeSidebarBody}}
+                            sidebarId={'edgeSidebar'}
+                        >
+                           <UserProfile/>
+                        </DrawerSidebar>
+                        <Content>
+                            <ProfileContent/>
+                        </Content>
+                    </>
+                );
+            }}
+        </Root>
+    );
+};
+
+
+function ProfileContent(){
+    return <Switch>
+        <Route exact path={paths.profile}>
+            <UserProgress/>
+        </Route>
+        <Route  exact path={paths.profileUpdate}>
+            <Update/>
+        </Route>
+    </Switch>
+}

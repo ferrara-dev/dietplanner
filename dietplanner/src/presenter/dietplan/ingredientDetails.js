@@ -11,7 +11,7 @@ export default function IngredientDetails() {
     const currentIngredient = useSelector(state => state.currentIngredient);
     const currentMeal = useReduxState(["currentMeal"]);
     const dispatch = useDispatch();
-
+    console.log(currentMeal, currentIngredient);
     function changeQuantity (quantity) {
         dispatch(setIngredientQuantity(quantity))
     }
@@ -21,16 +21,17 @@ export default function IngredientDetails() {
         history.goBack();
     }
 
-    return <Modal>
-        {(!currentIngredient || ! currentMeal) && <div>loading...</div> || <IngredientDetailsView
+    return (!currentIngredient || ! currentMeal) && <div>loading...</div> ||
+        <IngredientDetailsView
             ingredientDescription={currentIngredient.ingredient.label}
             nutritionData={currentIngredient.ingredient.nutrients}
             quantity={currentIngredient.quantity}
+            ingredientId={currentIngredient.ingredient.foodId}
             changeQuantity={changeQuantity}
             addIngredient={addToMeal}
             image = {currentIngredient.ingredient.image}
             currentMeal={currentMeal}
-        />}
-    </Modal>
+        />
+
 
 }

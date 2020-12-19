@@ -6,34 +6,48 @@ import {
     TableCell,
     TableContainer, TableFooter,
     TableHead,
-    TableRow,
+    TableRow, TextField,
     Typography
 } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Close from "@material-ui/icons/Close";
 import React from "react";
 import useStyles from "../../../style/mui/mealEditStyle";
-import {useGutterBorderedGridStyles} from '@mui-treasury/styles/grid/gutterBordered';
 import EditIcon from "@material-ui/icons/Edit";
 import {Link} from "react-router-dom"
 import {useRouteMatch} from "react-router";
-import {averageMealPlanNutrients, mealNutrientCalculator} from "../../../../helpers/calculation/MealNutrientCalculator";
-import FastfoodIcon from "@material-ui/icons/Fastfood";
-import SimpleMediaQuery from "../../../style/mui/mediaQuery/mealEditMediaQueries";
+import {mealNutrientCalculator} from "../../../../helpers/calculation/MealNutrientCalculator";
+import {Content, DrawerSidebar, Trigger} from "../../../common/layout/styled";
+import cx from "clsx";
+import withContentLayout from "../../../withContentLayout";
+import Toolbar from "@material-ui/core/Toolbar";
 
-export default function IngredientTable({mealPlan,mealTitle, ingredients, editIngredient, deleteIngredient}) {
+function MealEditView({layout,setMealTitle, mealTitle, ingredients, editIngredient, deleteIngredient, goBack,}) {
     const styles = useStyles();
-    const borderColor = 'grey.500';
     const {url} = useRouteMatch();
     const mealNutrients = mealNutrientCalculator(ingredients);
-    const mealPlanNutrients = averageMealPlanNutrients(mealPlan);
+    console.log(layout)
     return (
-        <Box pt={{xs: 2, sm: 4, md: 6}}>
-            <Typography className={styles.heading} variant={'h1'} gutterBottom>
-                View and edit your meal
-            </Typography>
-            <TableContainer className={styles.table}>
-                <Table stickyHeader className={styles.table} aria-label="simple table">
+        <Content>
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <Toolbar>
+                        <div className={cx(styles.fab, styles.fabClose)}><Trigger sidebarId={"edgeSidebar"}/></div>
+                    </Toolbar>
+                </Grid>
+            </Grid>
+            <TextField
+                label={"Meal title"}
+                className={styles.textField}
+                InputProps={{
+                    classes: {root: styles.inputBase, input: styles.input},
+                }}
+                placeholder={"name your meal"}
+                defaultValue={mealTitle}
+                onChange={(e) => setMealTitle(e.target.value)}
+            />
+            <TableContainer>
+                <Table stickyHeader aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell align={"left"}>Ingredient</TableCell>
@@ -42,14 +56,7 @@ export default function IngredientTable({mealPlan,mealTitle, ingredients, editIn
                             <TableCell>Fat</TableCell>
                             <TableCell>Calories</TableCell>
                             <TableCell>Quantity</TableCell>
-                            <TableCell>  <SimpleMediaQuery query={ '(max-width:1050px)'}>
-                                <Button
-                                    component={Link} to={`${url}/${mealTitle || "noName"}/search`}
-                                    startIcon={<FastfoodIcon/>}
-                                >
-                                    Add new ingredient
-                                </Button>
-                            </SimpleMediaQuery></TableCell>
+                            <TableCell></TableCell>
                             <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
@@ -121,5 +128,7 @@ export default function IngredientTable({mealPlan,mealTitle, ingredients, editIn
                     </TableFooter>
                 </Table>
             </TableContainer>
-        </Box>);
-}
+        </Content>);
+};
+
+export default withContentLayout(MealEditView);

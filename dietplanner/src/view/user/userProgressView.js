@@ -9,9 +9,9 @@ import Divider from "@material-ui/core/Divider";
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 
-export default function UserProfileSidebar({userProfile, mealPlan, onChange}) {
+export default function UserProgressView({userProfile, onChange}) {
     const styles = useStyles();
-    const mealPlanNutrients = averageMealPlanNutrients(mealPlan);
+
     return <Box className={styles.root} py={3} px={3.5}>
         <Typography className={styles.heading2} variant={'h1'}>
             {"This sidebar is under development"}
@@ -26,7 +26,7 @@ export default function UserProfileSidebar({userProfile, mealPlan, onChange}) {
         <Divider className={styles.divider}/>
 
         <Typography className={styles.heading2} variant={'h1'}>
-            This sidebar will contain progress statistics
+            This page will contain progress statistics
         </Typography>
 
         <Box height={24} css={{flex: 'none'}}/>

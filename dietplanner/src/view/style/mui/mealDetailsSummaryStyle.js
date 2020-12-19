@@ -155,7 +155,7 @@ const styles = makeStyles(({theme,palette, breakpoints}) => ({
         [breakpoints.up('sm')]: {
             bottom: 40,
         },
-        [breakpoints.up('lg')]: {
+        [breakpoints.up('md')]: {
             transform: 'scale(0)',
         },
     },

@@ -1,5 +1,5 @@
-import UpdateForm from "../view/user/updateView.";
-import useForm from "../helpers/hooks/useForm";
+import UpdateForm from "../../view/user/updateView.";
+import useForm from "../../helpers/hooks/useForm";
 import {useDispatch} from "react-redux";
 import {useFirebase, useFirestore} from "react-redux-firebase";
 

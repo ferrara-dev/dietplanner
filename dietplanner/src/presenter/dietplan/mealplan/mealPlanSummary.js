@@ -3,9 +3,9 @@ import useFirebaseAuth from "../../../helpers/hooks/usefirebaseAuth";
 import {useFirestoreConnect} from "react-redux-firebase";
 import MealPlanSummaryView from "../../../view/user/dietplan/mealplan/mealPlanSummaryView";
 import {resetCurrentMealCategory} from "../../../model/actions/mealCategory";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useReduxState} from "../../../helpers/hooks/useFirebaseState";
-import PageLayout from "../../../view/common/content/pageRoot";
+
 
 export default function MealPlanSummary(){
     const userUID = useFirebaseAuth().uid;
@@ -23,11 +23,12 @@ export default function MealPlanSummary(){
     ]);
 
     const mealPlan = useReduxState(["firestore", "data", "mealPlan"]);
+    const state = useSelector(state => state);
     const resetMealCategory = () => {
         dispatch(resetCurrentMealCategory());
     };
-
-    return    !mealPlan && <div>...</div> || <MealPlanSummaryView
+    console.log(state)
+    return !mealPlan && <div>...</div> || <MealPlanSummaryView
         mealPlan={mealPlan.mealCategories}
         resetCurrentMealCategory={resetMealCategory}
     />
