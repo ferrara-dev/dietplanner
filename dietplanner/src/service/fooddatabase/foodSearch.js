@@ -9,7 +9,7 @@ function apiCall(url){
         else
             throw Error();
     }).catch(error => {
-        console.log(error);
+
     })
 }
 export function EdamamSearch(query){
@@ -27,7 +27,7 @@ export function FDCSearch(search){
     try{
         return apiCall(url).then(res => res.data);
     } catch (e) {
-        console.log(e);
+
     }
 }
 
@@ -38,6 +38,6 @@ export function FDCSearchById(fdcId){
     try{
         return apiCall(url).then(res => res.data);
     } catch (e) {
-        console.log(e);
+
     }
 }

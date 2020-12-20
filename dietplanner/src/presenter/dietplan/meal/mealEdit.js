@@ -32,7 +32,7 @@ export default function MealEdit() {
     const currentMeal = useReduxState(["currentMeal"]);
     const currentCategory = useReduxState(["currentMealCategory"]);
     const mealPlan = useReduxState(["firestore", "data", "mealPlan"]);
-    console.log(currentMeal, mealPlan);
+
 
     React.useEffect(() => {
         mealPlan && dispatch(addMealToCategory(currentMeal));

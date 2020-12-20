@@ -29,7 +29,7 @@ export default function MealPlanSummary(){
         dispatch(resetCurrentMealCategory());
     };
 
-    console.log(state)
+
     return !mealPlan && <div>...</div> || <MealPlanSummaryView
         mealPlan={mealPlan.mealCategories}
         resetCurrentMealCategory={resetMealCategory}

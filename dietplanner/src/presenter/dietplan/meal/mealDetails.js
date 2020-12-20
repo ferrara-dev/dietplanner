@@ -46,7 +46,7 @@ export default function MealDetails() {
     const currentMeal = useReduxState(["currentMeal"])
     const currentCategory = useReduxState(["currentMealCategory"]);
     const mealPlan = useReduxState(["firestore", "data", "mealPlan"]);
-    console.log(currentMeal, mealPlan);
+
 
     function addMeal() {
         dispatch(addMealToCategory(currentMeal));

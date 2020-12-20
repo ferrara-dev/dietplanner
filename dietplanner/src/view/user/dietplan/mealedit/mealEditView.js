@@ -22,11 +22,11 @@ import cx from "clsx";
 import withContentLayout from "../../../../HoC/withContentLayout";
 import Toolbar from "@material-ui/core/Toolbar";
 
-function MealEditView({layout,setMealTitle, mealTitle, ingredients, editIngredient, deleteIngredient, goBack,}) {
+function MealEditView({setMealTitle, mealTitle, ingredients, editIngredient, deleteIngredient, goBack,}) {
     const styles = useStyles();
     const {url} = useRouteMatch();
     const mealNutrients = mealNutrientCalculator(ingredients);
-    console.log(layout)
+
     return (
         <Content>
             <Grid container spacing={2}>

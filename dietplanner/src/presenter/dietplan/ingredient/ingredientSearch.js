@@ -16,7 +16,6 @@ export default function IngredientSearch() {
 
     const searchIngredient = (searchQuery) => {
         EdamamSearch(searchQuery).then(data => {
-            console.log(data);
             setSearchResult(data.hints);
         });
     };
