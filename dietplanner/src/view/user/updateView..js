@@ -75,7 +75,7 @@ function UpdateForm({fields, onChange, onSubmit, submitted,error, goToProfile}) 
                         select
                         label="activityLevel"
                         fullWidth
-                        value={fields.activityLevel && fields.activityLevel.val || 1}
+                        value={fields.activityLevel && fields.activityLevel || activityLevels[0]}
                         name="activityLevel"
                         onChange={onChange}
                         helperText="Please select your activity level"

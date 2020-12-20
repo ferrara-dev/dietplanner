@@ -36,46 +36,50 @@ function UserProgressView({updates, userProfile, onChange, mealPlan, newUpdate})
     const styles = useStyles();
     createData(updates);
     const data = [["update", "weight"], ...createData(updates)]
-
     return <Content>
-        <Typography className={styles.heading2} variant={'h1'}>
-            Your weight change
-        </Typography>
+        <Box className={styles.root} py={3} px={3.5}>
+            <Typography className={styles.heading2} variant={'h1'}>
+                Your weight change
+            </Typography>
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <Chart
+                        chartType="LineChart"
+                        width={'100%'}
+                        height={'400px'}
+                        data={data}
 
-        <Chart
-            chartType="LineChart"
-            width={'100%'}
-            height={'400px'}
-            data={data}
+                        options={{
+                            intervals: {style: 'bars'},
+                            hAxis: {
+                                title: 'Update#',
+                                gridLines: {
+                                    count: 1,
+                                },
+                                ticks: numberSpan(0, updates.length)
+                            },
+                            vAxis: {
+                                title: 'Weight (kg)',
 
-            options={{
-                intervals: { style: 'bars' },
-                hAxis: {
-                    title: 'Update#',
-                    gridLines : {
-                        count : 1,
-                    },
-                    ticks: numberSpan(0,updates.length)
-                },
-                vAxis: {
-                    title: 'Weight (kg)',
+                            },
 
-                },
+                            legend: {position: "bottom"}
+                        }
+                        }
+                        loader={<div>Loading Chart</div>}
+                    />
+                </Grid>
+            </Grid>
 
-                legend: {position: "bottom"}
-            }
-            }
-            loader={<div>Loading Chart</div>}
-        />
-        <Divider className={styles.divider}/>
-        <Box height={24} css={{flex: 'none'}}/>
-        <Box height={24} css={{flex: 'none'}}/>
-        <Divider className={styles.divider}/>
+            <Divider className={styles.divider}/>
+            <Box height={24} css={{flex: 'none'}}/>
+            <Box height={24} css={{flex: 'none'}}/>
+            <Divider className={styles.divider}/>
 
-        <Box height={24} css={{flex: 'none'}}/>
-        <Box height={24} css={{flex: 'none'}}/>
-        <Box height={24} css={{flex: 'none'}}/>
-
+            <Box height={24} css={{flex: 'none'}}/>
+            <Box height={24} css={{flex: 'none'}}/>
+            <Box height={24} css={{flex: 'none'}}/>
+        </Box>
     </Content>
 }
 

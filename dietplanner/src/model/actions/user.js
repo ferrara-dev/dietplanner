@@ -55,6 +55,7 @@ export const submitUpdate = (profileUpdate) => (dispatch, getState, {getFirebase
         const updates = getState().firestore.data.updates;
         const profile = getState().firestore.data.user;
         const firestore = getFirestore();
+        debugger;
         const date = new Date();
         firestore.collection('updates').doc(`${userUID}`).set({
                 updates : updates.updates.concat({
