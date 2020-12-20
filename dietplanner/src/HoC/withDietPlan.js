@@ -61,7 +61,6 @@ export default function withDietPlan(WrappedChild){
 
         const removeMealFromCategory = (meal) => {
             dispatch(deleteMealFromCategory(meal));
-            console.log("deleted meal");
         };
 
 

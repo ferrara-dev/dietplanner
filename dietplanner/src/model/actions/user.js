@@ -32,7 +32,7 @@ export const registerUser = (email, password, userProfile) => (dispatch, getStat
             }],
         });
     }).catch(error => {
-        console.log(error)
+
     });
 };
 
@@ -43,7 +43,7 @@ export const logoutUser = () => (dispatch, getState, {getFirebase}) => {
             dispatch({type : "LOGOUT"})
         }
     ).catch(error => {
-        console.log(error);
+
     });
 };
 

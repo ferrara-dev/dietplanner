@@ -11,7 +11,7 @@ export default function IngredientDetails() {
     const currentIngredient = useSelector(state => state.currentIngredient);
     const currentMeal = useReduxState(["currentMeal"]);
     const dispatch = useDispatch();
-    console.log(currentMeal, currentIngredient);
+
     function changeQuantity (quantity) {
         dispatch(setIngredientQuantity(quantity))
     }

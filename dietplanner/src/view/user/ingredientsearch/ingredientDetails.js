@@ -82,8 +82,6 @@ export default function IngredientDetailsView({
     const listStyles = useGmailListItemStyles({collapsed: false});
     const mealNutrientsAfter = f(currentMeal, ingredientId, nutritionData, quantity);
 
-    console.log(mealNutrientsAfter);
-
     return <DrawerSidebar
         PaperProps={{className: classes.edgeSidebarBody}}
         sidebarId={'edgeSidebar'}

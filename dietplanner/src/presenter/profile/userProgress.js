@@ -31,7 +31,6 @@ export default function UserProgress() {
     const user = data.user;
     const mealPlan = data.mealPlan;
 
-    console.log(user);
 
     return  (!user || !mealPlan || !updates) && <LoadingSpinner></LoadingSpinner>  || <UserProgressView
         userProfile={user}

@@ -24,7 +24,6 @@ export default function UserDetails(){
     const user = data.user;
     const mealPlan = data.mealPlan;
 
-    console.log(user);
 
     return (!user || !mealPlan) && <LoadingSpinner></LoadingSpinner> || <UserProfileView userProfile={user} mealPlan={mealPlan.mealCategories}/>
 };

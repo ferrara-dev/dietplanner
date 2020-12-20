@@ -98,23 +98,6 @@ function MealDetailsSummary({
                 <Box height={24} css={{flex: 'none'}}/>
                 <Box height={24} css={{flex: 'none'}}/>
                 <Box height={24} css={{flex: 'none'}}/>
-                <Grid container spacing={2}>
-                    <Grid xs={12} item>
-                        <Button
-                            className={styles.checkoutBtn}
-                            color={'primary'}
-                            variant={'contained'}
-                            onClick={() => submitMeal()}
-                            classes={{
-                                root: cx(styles.button, styles.buttonActive),
-                                label: styles.creditCardLabel,
-                            }}
-                            disabled={!mealTitle && true}
-                        >
-                            {"Submit"}
-                        </Button>
-                    </Grid>
-                </Grid>
             </Box>
         </DrawerSidebar>
     </React.Fragment>
