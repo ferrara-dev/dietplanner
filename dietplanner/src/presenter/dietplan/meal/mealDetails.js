@@ -63,3 +63,4 @@ export default function MealDetails() {
         categoryDescription={currentCategory.description}
     />
 }
+

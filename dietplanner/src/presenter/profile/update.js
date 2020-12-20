@@ -6,7 +6,8 @@ import {useFirestoreConnect} from "react-redux-firebase";
 import useFirebaseAuth from "../../helpers/hooks/usefirebaseAuth";
 import {submitUpdate} from "../../model/actions/user";
 import {useHistory} from "react-router"
-export default function Update(){
+
+export default function Update() {
     const [submitted, setSubmitted] = React.useState(false);
     const [submissionError, setSubmissionError] = React.useState(undefined);
     const userUID = useFirebaseAuth().uid;
@@ -18,27 +19,33 @@ export default function Update(){
     });
 
     useFirestoreConnect([{
-        collection : "updates",
+        collection: "updates",
         doc: userUID,
         storeAs: "updates"
     },
+        {
+            collection: "users",
+            doc: userUID,
+            storeAs: "user"
+        },
     ]);
 
-    function updateProfile(){
+    function updateProfile() {
         let profileUpdate = {}
 
-        if(fields.weight)
+        if (fields.weight)
             profileUpdate["weight"] = fields.weight;
-        if(fields.activityLevel)
+        if (fields.activityLevel)
             profileUpdate["activityLevel"] = fields.activityLevel;
 
-        try{
+        try {
             setSubmissionError(undefined);
             dispatch(submitUpdate(profileUpdate));
             setSubmitted(true);
         } catch (e) {
             setSubmissionError(e);
-        };
+        }
+        ;
 
     };
 
