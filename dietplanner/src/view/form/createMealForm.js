@@ -6,16 +6,11 @@ import {SidebarHeading, SidebarDivider} from "../common/content/sidebar/sidebarC
 import cx from "clsx";
 import useStyles from "../style/mui/mealEditStyle";
 import {NavLink as Link} from "react-router-dom";
-import {DrawerSidebar, CollapseButton, CustomCollapse, Trigger} from "../common/layout/styled";
+import {DrawerSidebar} from "../common/layout/styled";
 import Box from "@material-ui/core/Box";
-import withContentLayout from "../../HoC/withContentLayout";
 
 
-function CreateMealForm({
-                            trigger,
-                            sidebar,
-                            layout,
-                            screen,
+export default function CreateMealForm({
                             error: {reset, err},
                             fields,
                             set,
@@ -25,8 +20,6 @@ function CreateMealForm({
                         }) {
     const classes = useStyle();
     const styles = useStyles();
-    const collapsed = layout.state.sidebar.edgeSidebar.collapsed;
-    console.log(screen);
 
     return (<>
             <DrawerSidebar
@@ -105,5 +98,3 @@ function CreateMealForm({
         </>
     );
 }
-
-export default withContentLayout(CreateMealForm);

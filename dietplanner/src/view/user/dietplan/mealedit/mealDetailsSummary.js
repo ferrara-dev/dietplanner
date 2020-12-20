@@ -6,14 +6,13 @@ import useStyles from "../../../style/mui/mealDetailsSummaryStyle";
 import {Link} from "react-router-dom";
 import {useRouteMatch} from "react-router";
 import FastfoodIcon from '@material-ui/icons/Fastfood';
-import {averageMealPlanNutrients, mealNutrientCalculator} from "../../../../helpers/calculation/MealNutrientCalculator";
+import {mealNutrientCalculator} from "../../../../helpers/calculation/MealNutrientCalculator";
 import {SidebarHeading} from "../../../common/content/sidebar/sidebarChildren";
 import Toolbar from "@material-ui/core/Toolbar";
-import {DrawerSidebar, Trigger} from "../../../common/layout/styled";
-import withContentLayout from "../../../../HoC/withContentLayout";
-import withFirestoreSubscription from "../../../../HoC/withFirestoreSubscription";
+import {DrawerSidebar} from "../../../common/layout/styled";
 
-function MealDetailsSummary({
+
+export default function MealDetailsSummary({
                                 mealPlan,
                                 ingredients,
                                 mealTitle,
@@ -58,17 +57,12 @@ function MealDetailsSummary({
                             </Grid>
                         </Toolbar>
                     </Grid>
-                    <Grid xs={6} item>
+                    <Grid xs={12} item>
                         <Typography className={styles.heading2} variant={'h1'}>
                             Meal nutrients
                         </Typography>
                     </Grid>
-                    <Grid xs={6} item>
-                        <Typography className={styles.heading2} variant={'h1'}>
-                            Resulting meal plan nutrients
-                        </Typography>
-                    </Grid>
-                    <Grid xs={6} item>
+                    <Grid xs={12} item>
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
                                 <Typography variant="body1">
@@ -103,5 +97,3 @@ function MealDetailsSummary({
         </DrawerSidebar>
     </React.Fragment>
 };
-
-export default withContentLayout(MealDetailsSummary);

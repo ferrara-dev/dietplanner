@@ -21,10 +21,10 @@ export default function MealPlanSummary(){
         storeAs: "user"
     },
     ]);
-
+    debugger;
     const mealPlan = useReduxState(["firestore", "data", "mealPlan"]);
     const state = useSelector(state => state);
-
+    debugger;
     const resetMealCategory = () => {
         dispatch(resetCurrentMealCategory());
     };

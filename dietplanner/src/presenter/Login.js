@@ -20,7 +20,7 @@ export default function Login() {
     const {fields, handleChange, handleSubmit} = useForm(onSubmit);
 
     if (!isEmpty(auth))
-        return <Redirect to="/home/profile"/>
+        return <Redirect to="/profile/personal"/>
 
     return <LoginForm fields={fields} handleChange={handleChange} handleSubmit={handleSubmit} loginError={authError}/>
 }

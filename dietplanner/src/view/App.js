@@ -2,7 +2,7 @@ import './style/css/App.css';
 import React from "react";
 import {Switch, Route} from "react-router-dom";
 
-/// view presenters
+
 import AppContent from "./appContent";
 import MealEdit from "../presenter/dietplan/meal/mealEdit";
 import Profile from "./Profile";
