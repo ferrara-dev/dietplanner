@@ -32,11 +32,13 @@ function CurrentCategoryView({description, meals, chooseMeal, removeMeal, addMea
     const averageNutrients = averageMealCategoryNutrients({meals});
     const [open, setOpen] = React.useState(false);
     const [fields, setFields] = React.useState({});
+    const [disabled, setDisabled] = React.useState(true);
     const {url} = useRouteMatch();
 
     function onFormChange(event) {
         event.preventDefault();
         setFields(fields => ({...fields, [event.target.name]: event.target.value}));
+
     };
 
     return <Content>
@@ -77,7 +79,7 @@ function CurrentCategoryView({description, meals, chooseMeal, removeMeal, addMea
                                             key={1}
                                         />
                                     ]}
-                                    disabled={!fields.description}
+                                    disabled={!fields.title}
                                     title={"Add meal to category"}
                                     buttonSubmitLabel={"add"}
                                     onCancel={() =>
