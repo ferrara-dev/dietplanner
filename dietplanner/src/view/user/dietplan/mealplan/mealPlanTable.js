@@ -1,27 +1,25 @@
 import useStyles from "../../../style/mui/mealPlanStyle";
-import {useRouteMatch} from "react-router";
+
 import {
-    IconButton, Paper,
     Table,
     TableBody,
     TableCell,
     TableContainer,
-    TableHead,
     TableRow,
     Typography
 } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import React from "react";
 import EditIcon from "@material-ui/icons/Edit";
-import ExpandableTableRow from "../../../common/table/expandableTable";
+
 import {options, randomID} from "../../../../helpers/random";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
-import {Add} from "@material-ui/icons";
+
 import AlertDialog from "../../../common/alertDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MealCategoryEditForm from "../../../form/mealCategoryEditForm";
-import withContentLayout from "../../../../HoC/withContentLayout";
+
 import {Content, Trigger} from "../../../common/layout/styled";
 import Toolbar from "@material-ui/core/Toolbar";
 import withDietPlan from "../../../../HoC/withDietPlan";
@@ -107,5 +105,5 @@ function MealPlanTableView({
 
 };
 
-const MealPlanWithLayout = withContentLayout(MealPlanTableView);
-export default withDietPlan(MealPlanWithLayout)
+
+export default withDietPlan(MealPlanTableView)

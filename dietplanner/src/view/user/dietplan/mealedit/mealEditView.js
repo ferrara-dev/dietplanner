@@ -1,5 +1,5 @@
 import {
-    Button, Grid,
+     Grid,
     IconButton,
     Table,
     TableBody,
@@ -7,7 +7,7 @@ import {
     TableContainer, TableFooter,
     TableHead,
     TableRow, TextField,
-    Typography
+
 } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Close from "@material-ui/icons/Close";
@@ -17,25 +17,17 @@ import EditIcon from "@material-ui/icons/Edit";
 import {Link} from "react-router-dom"
 import {useRouteMatch} from "react-router";
 import {mealNutrientCalculator} from "../../../../helpers/calculation/MealNutrientCalculator";
-import {Content, DrawerSidebar, Trigger} from "../../../common/layout/styled";
+import {Content, Trigger} from "../../../common/layout/styled";
 import cx from "clsx";
-import withContentLayout from "../../../../HoC/withContentLayout";
 import Toolbar from "@material-ui/core/Toolbar";
 
-function MealEditView({setMealTitle, mealTitle, ingredients, editIngredient, deleteIngredient, goBack,}) {
+export default function MealEditView({setMealTitle, mealTitle, ingredients, editIngredient, deleteIngredient, goBack,}) {
     const styles = useStyles();
     const {url} = useRouteMatch();
     const mealNutrients = mealNutrientCalculator(ingredients);
 
     return (
         <Content>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <Toolbar>
-                        <div className={cx(styles.fab, styles.fabClose)}><Trigger sidebarId={"edgeSidebar"}/></div>
-                    </Toolbar>
-                </Grid>
-            </Grid>
             <TextField
                 label={"Meal title"}
                 className={styles.textField}
@@ -131,4 +123,3 @@ function MealEditView({setMealTitle, mealTitle, ingredients, editIngredient, del
         </Content>);
 };
 
-export default withContentLayout(MealEditView);

@@ -1,13 +1,9 @@
 import {DrawerSidebar} from "../../common/layout/styled";
-import withContentLayout from "../../../HoC/withContentLayout";
 import withDietPlan from "../../../HoC/withDietPlan";
 import withCurrentCategory from "../../../HoC/withCurrentCategory";
 import Box from "@material-ui/core/Box";
 import {Button, Grid, Typography} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
-import {Link} from "react-router-dom";
-import FastfoodIcon from "@material-ui/icons/Fastfood";
-import cx from "clsx";
 import React from "react";
 import useStyles from "../../style/mui/mealEditStyle";
 import {
@@ -17,11 +13,10 @@ import {
 import Chart from "react-google-charts";
 
 
-function CurrentCategoryDetailsView({layout, meals, mealPlan, priority, addMealToCategory, id, description}){
+function CurrentCategoryDetailsView({ meals, mealPlan, priority, addMealToCategory, id, description}){
     const styles = useStyles();
     const averageNutrients = averageMealCategoryNutrients({meals});
     const mealPlanNutrients = averageMealPlanNutrients(mealPlan);
-    const open = layout.state.sidebar.edgeSidebar.open;
 
     return <DrawerSidebar
         sidebarId={"edgeSidebar"}
@@ -91,7 +86,5 @@ function CurrentCategoryDetailsView({layout, meals, mealPlan, priority, addMealT
     </DrawerSidebar>
 };
 
-const CurrentCategoryDetailsWithLayout = withContentLayout(CurrentCategoryDetailsView);
-const CurrentCategoryDetailsWithDietPlan = withDietPlan(CurrentCategoryDetailsWithLayout);
-const CurrentCategoryDetailsWithCurrentCategory = withCurrentCategory(CurrentCategoryDetailsWithDietPlan);
-export default CurrentCategoryDetailsWithCurrentCategory;
+const CurrentCategoryDetailsWithCurrentCategory = withCurrentCategory(CurrentCategoryDetailsView);
+export default withDietPlan(CurrentCategoryDetailsWithCurrentCategory);

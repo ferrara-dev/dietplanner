@@ -10,7 +10,6 @@ import {Link} from "react-router-dom";
 import cx from "clsx";
 import {Mail} from "@material-ui/icons";
 import {Content, DrawerSidebar} from "../common/layout/styled";
-import withContentLayout from "../../HoC/withContentLayout";
 import AlertMassage from "../common/alertMessage";
 
 function alertMessage(error){
@@ -24,7 +23,7 @@ function alertMessage(error){
     return {title, message};
 };
 
-function UpdateForm({fields, onChange, onSubmit, submitted,error, goToProfile}) {
+export default function UpdateForm({fields, onChange, onSubmit, submitted,error, goToProfile}) {
     const styles = useStyles();
     const message = alertMessage(error);
     return <Content>
@@ -92,5 +91,3 @@ function UpdateForm({fields, onChange, onSubmit, submitted,error, goToProfile}) 
         </Box>
     </Content>
 }
-
-export default withContentLayout(UpdateForm);

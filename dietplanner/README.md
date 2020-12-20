@@ -40,36 +40,32 @@ Screenshots from the signup process are presented below.
 
 #### User profile
 The user can update their personal information at any given time, 
-every update will be stored together with their current diet plan so that the users progress can be tracked and visualized.
-However, tracking and visualization of the users progress has not yet been implemented, more information on what is left to do
-can be found under the [Left to do](#Left-to-do) section of this document.
+every update will be stored so that the users progress can be tracked.
+As of now users can track their weight under the progress tab in the profile.
 
-![picture](doc/screenshots/profile.png "title-2")
+![picture](doc/screenshots/updated-profile.png "title-2")
 
+![picture](doc/screenshots/updated-update.png "title-2")
 
-Unfortunately the update functionality is not fully styled or implemented yet, 
-when the form is submitted, the profile is updated. 
-However updates are not saved at this point in time.
-
-![picture](doc/screenshots/update.png "title-2")
-
+![picture](doc/screenshots/updated_progress.png "title-2")
 
 #### The diet plan
 The diet plan that is created by the user consist of meal categories that are given a name and a priority at creation, 
 where the priority indicates in what order to consume the meals.
 (e.g. Breakfast with priority 1, Midday snack with priority 2, Lunch with priority 3 etc).
 
-![picture](doc/screenshots/emptyMealplan.png)
-![picture](doc/screenshots/addCategory.png)
-![picture](doc/screenshots/mealplan.png)
+![picture](doc/screenshots/update-meal-plan.png)
+![picture](doc/screenshots/update-create-meal-category.png)
+![picture](doc/screenshots/meal-category-view.png)
 
 When a category is created, meals can be composed and added by searching and adding ingredients to the  
-category. Note that **ingredientSearch** and **ingredientDetails** have not been styled yet.
+category.
+![picture](doc/screenshots/updated-ingredientDetails.png)
 
 ![picture](doc/screenshots/mealcreateAndedit.png)
-![picture](doc/screenshots/ingredientSearch.png)
-![picture](doc/screenshots/ingredientDetails.png)
-![picture](doc/screenshots/mealDetails.png)
+![picture](doc/screenshots/updated-ingredient-search.png)
+
+
 
 
 ##### Live Demo: https://diet-planner-1.herokuapp.com
@@ -79,15 +75,15 @@ This section provides a list of work that needs to be done before the final dead
 
 - [ ] Fix loading screens
 - [ ] Fix alert message in login & signup view
-- [ ] Style UpdateForm view
-- [ ] Fix styling and functionalities in IngredientSearch and IngredientDetails
+- [x] Style UpdateForm view
+- [x] Fix styling and functionalities in IngredientSearch and IngredientDetails
     - Add functionality to sort ingredient search results by nutrients
     - Add functionality to see how total nutrients in current meal is affected by adding an ingredient
       directly from ingredient details
-- [ ] Add functionality to track progress
+- [x] Add functionality to track progress
     - Store all updates together and current mealplan with timestamp
     - Functionality to revert your meal plan to how it was at any given update
-    - Add charts etc to visualise the users progress in user profile (planning to do so in a sidebar on the right)
+    - Add charts etc to visualise the users progress in user profile 
  
 ### Installation & setup
 *** 

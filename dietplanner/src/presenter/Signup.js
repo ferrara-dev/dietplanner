@@ -45,7 +45,7 @@ export default function Signup() {
     };
 
     if (!isEmpty(auth))
-        return <Redirect to="/home/profile"/>
+        return <Redirect to="/profile/personal"/>
 
     return <SignupForm activeStep={activeStep}>
         {getStepContent(activeStep, fields, handleChange, {handleNext, handleBack}, validator, validateFormFields)}

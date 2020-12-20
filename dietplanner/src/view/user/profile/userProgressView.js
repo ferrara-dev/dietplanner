@@ -1,10 +1,6 @@
 import useStyles from "../../style/mui/UserProfileSyle";
 import React from "react";
 import {Content} from "../../common/layout/styled";
-import withContentLayout from "../../../HoC/withContentLayout";
-import {Line, ResponsiveContainer, XAxis, YAxis} from "recharts";
-import LineChart from "recharts/lib/chart/LineChart";
-import {useTheme} from '@material-ui/core/styles';
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -20,19 +16,7 @@ function createData(updates) {
     return data;
 };
 
-const options = {
-    title: "Your weight",
-    hAxis: {
-        title: 'Update#',
-    },
-    vAxis: {
-        title: 'Weight (kg)',
-    },
-
-    legend: {position: "bottom"}
-};
-
-function UserProgressView({updates, userProfile, onChange, mealPlan, newUpdate}) {
+export default function UserProgressView({updates, userProfile, onChange, mealPlan, newUpdate}) {
     const styles = useStyles();
     createData(updates);
     const data = [["update", "weight"], ...createData(updates)]
@@ -83,4 +67,3 @@ function UserProgressView({updates, userProfile, onChange, mealPlan, newUpdate})
     </Content>
 }
 
-export default withContentLayout(UserProgressView);

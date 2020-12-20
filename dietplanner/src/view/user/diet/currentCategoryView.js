@@ -19,15 +19,12 @@ import AlertDialog from "../../common/alertDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
 import React from "react";
 import {averageMealCategoryNutrients} from "../../../helpers/calculation/MealNutrientCalculator";
-import withContentLayout from "../../../HoC/withContentLayout";
 import withDietPlan from "../../../HoC/withDietPlan";
 import withCurrentCategory from "../../../HoC/withCurrentCategory";
 import TableHead from "@material-ui/core/TableHead";
 import {Tooltip} from "@material-ui/core"
 import {Add} from "@material-ui/icons";
 import PopUpForm from "../../form/popUpForm";
-import useForm from "../../../helpers/hooks/useForm";
-import {compose} from "recompose"
 import {useRouteMatch} from "react-router";
 
 function CurrentCategoryView({description, meals, chooseMeal, removeMeal, addMeal}) {
@@ -80,7 +77,7 @@ function CurrentCategoryView({description, meals, chooseMeal, removeMeal, addMea
                                             key={1}
                                         />
                                     ]}
-
+                                    disabled={!fields.description}
                                     title={"Add meal to category"}
                                     buttonSubmitLabel={"add"}
                                     onCancel={() =>

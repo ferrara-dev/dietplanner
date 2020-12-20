@@ -1,18 +1,8 @@
-import LayoutBuilder, {Root, useLayoutCtx} from "@mui-treasury/layout";
+import LayoutBuilder, {Root} from "@mui-treasury/layout";
 import {dailyShoppingTheme} from "@mui-treasury/mockup/brands/dailyShopping";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import {Switch, Route} from "react-router-dom";
 import React from "react";
-import MealPlanSummary from "../presenter/dietplan/mealplan/mealPlanSummary";
-import {paths} from "../routing/routes"
-import CreateMealCategory from "../presenter/dietplan/createMealCategory";
-import SchemeProvider, {AppLayoutContext, useSchemeContext} from "./appLayoutProvider";
-import {Layout} from "./common/layout/styled";
-import AppLayoutProvider from "./appLayoutProvider";
-import {useLocation, useRouteMatch, matchPath} from "react-router-dom";
-import useStyles from "./style/mui/mealPlanStyle";
-import {Fullscreen} from "./common/layout/mainAppLayout";
-
+import {useLocation} from "react-router-dom";
 
 export default function AppContent({children}) {
     const location = useLocation();
@@ -98,16 +88,4 @@ function getScheme(location) {
         });
     }
     return scheme;
-}
-
-
-function MealPlanSidebar() {
-    return <Switch>
-        <Route exact path={paths.mealPlan}>
-            <MealPlanSummary/>
-        </Route>
-        <Route exact path={paths.createCategory}>
-            <CreateMealCategory/>
-        </Route>
-    </Switch>
 }

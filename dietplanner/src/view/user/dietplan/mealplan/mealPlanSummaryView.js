@@ -1,5 +1,5 @@
 import useStyles from "../../../style/mui/mealEditStyle";
-import {Button, Grid, TextField, Typography, Paper, Card, CardContent} from "@material-ui/core";
+import {Button, Grid,Typography} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import React from "react";
@@ -10,14 +10,14 @@ import {
     averageMealPlanNutrients,
 } from "../../../../helpers/calculation/MealNutrientCalculator";
 import {DrawerSidebar} from "../../../common/layout/styled";
-import withContentLayout from "../../../../HoC/withContentLayout";
+
 import withDietPlan from "../../../../HoC/withDietPlan";
 
 
-function MealPlanSummaryView({layout, mealPlan, resetCurrentMealCategory}) {
+function MealPlanSummaryView({ mealPlan, resetCurrentMealCategory}) {
     const styles = useStyles();
     const mealPlanNutrients = averageMealPlanNutrients(mealPlan);
-    const open = layout.state.sidebar.edgeSidebar.open;
+
     return <>
         <DrawerSidebar
             PaperProps={{className: styles.edgeSidebarBody}}
@@ -82,4 +82,5 @@ function MealPlanSummaryView({layout, mealPlan, resetCurrentMealCategory}) {
     </>
 };
 
-export default withContentLayout(withDietPlan(MealPlanSummaryView));
+
+export default withDietPlan(MealPlanSummaryView);

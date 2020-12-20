@@ -17,7 +17,7 @@ class OpenIcon extends React.Component {
 }
 
 
-export default function PopUpForm({title, buttonSubmitLabel, inputs, onSubmit,onCancel, open=false}){
+export default function PopUpForm({title, disabled, buttonSubmitLabel, inputs, onSubmit,onCancel, open=false}){
     function handleClose(){
         onSubmit();
     };
@@ -35,7 +35,9 @@ export default function PopUpForm({title, buttonSubmitLabel, inputs, onSubmit,on
                     {inputs.map(input => input)}
                 </DialogContent>
                 <DialogActions>
-                   <Button onClick={handleClose}>
+                   <Button
+                       disabled={disabled}
+                       onClick={handleClose}>
                        {buttonSubmitLabel}
                    </Button>
                     <Button onClick={() => onCancel()}>
