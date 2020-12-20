@@ -11,16 +11,19 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import React from "react";
 import {Button,List} from "@material-ui/core";
 
-const ExpandableTableRow = ({ children, expandComponent, k, ...otherProps }) => {
+const ExpandableTableRow = ({ children, expandComponent, k,buttonLabel, onExpand, ...otherProps }) => {
     const [isExpanded, setIsExpanded] = React.useState(false);
     const classes = useStyles();
     return (
         <>
             <TableRow className={classes.tableRow} key={k}>
                 <TableCell padding="checkbox">
-                    <IconButton onClick={() => setIsExpanded(!isExpanded)}>
-                        {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                    </IconButton>
+                    <Button onClick={() => {
+                        setIsExpanded(!isExpanded)
+                        onExpand();
+                    }}>
+                        {buttonLabel}
+                    </Button>
                 </TableCell>
                 {children}
             </TableRow>

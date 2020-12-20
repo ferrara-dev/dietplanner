@@ -6,7 +6,7 @@ import Layout, {
     getDrawerSidebar,
     getInsetContainer,
     getInsetSidebar,
-    getInsetFooter, getCollapseBtn, getSidebarTrigger,
+    getInsetFooter, getCollapseBtn, getSidebarTrigger, getSubheader,
 } from '@mui-treasury/layout';
 
 import styled from 'styled-components';
@@ -41,6 +41,6 @@ const InsetSidebar = getInsetSidebar(styled);
 const InsetFooter = getInsetFooter(styled);
 const InsetContainer = getInsetContainer(styled);
 const CollapseButton = getCollapseBtn(styled);
-
-export {CustomCollapse,Trigger, Layout, Header, Content,Fullscreen,DrawerSidebar,InsetSidebar,InsetFooter,InsetContainer, CollapseButton};
+const SubHeader = getSubheader(styled);
+export {CustomCollapse,SubHeader,Trigger, Layout, Header, Content,Fullscreen,DrawerSidebar,InsetSidebar,InsetFooter,InsetContainer, CollapseButton};
 

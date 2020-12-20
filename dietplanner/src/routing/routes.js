@@ -1,5 +1,5 @@
 import Sidebar from "../presenter/navigation/sidebar";
-import UserProfile from "../presenter/profile/Profile";
+import UserDetails from "../presenter/profile/userDetails";
 import IngredientSearch from "../presenter/dietplan/ingredient/ingredientSearch";
 import IngredientDetails from "../presenter/dietplan/ingredientDetails";
 import {Route, Switch} from "react-router-dom";
@@ -26,7 +26,7 @@ export const routes = [
     {
         path: ["/profile", "/"],
         exact: true,
-        main: () => <UserProfile/>,
+        main: () => <UserDetails/>,
     },
     {
         path: "/update",

@@ -10,18 +10,21 @@ import SchemeProvider, {AppLayoutContext, useSchemeContext} from "./appLayoutPro
 import {Layout} from "./common/layout/styled";
 import AppLayoutProvider from "./appLayoutProvider";
 import {useLocation, useRouteMatch, matchPath} from "react-router-dom";
+import useStyles from "./style/mui/mealPlanStyle";
+import {Fullscreen} from "./common/layout/mainAppLayout";
 
 
 export default function AppContent({children}) {
     const location = useLocation();
-    const scheme = defaultScheme(location);
-
+    const scheme = getScheme(location);
+    const styles = useStyles();
     return (
+
         <Root theme={dailyShoppingTheme} scheme={scheme}>
             <>
                 <CssBaseline/>
                 <AppLayoutProvider>
-                {children}
+                        {children}
                 </AppLayoutProvider>
             </>
         </Root>
@@ -29,10 +32,12 @@ export default function AppContent({children}) {
 };
 
 
-function defaultScheme(location){
+function getScheme(location){
 
     let reg = /\/meal(\/\w+)\/edit(?!\/\w+)/
     let reg2 = /\/meal(\/\w+)\/edit\/search(?=w*)/
+    let reg3 = /\/profile(?=w*)/
+
     const scheme = LayoutBuilder();
 
     if(location.pathname === "/meal-plan"){
@@ -60,7 +65,53 @@ function defaultScheme(location){
         });
         return scheme;
     }
+    else if(reg3.test(location.pathname)){
 
+        scheme.configureSubheader(builder => {
+            builder.create("profileHeader")
+                .registerConfig('xs', {
+                    position: 'relative',
+                    initialHeight: 40,
+                    layer: 1,
+                });
+        });
+
+        scheme.configureEdgeSidebar(builder => {
+            builder
+                .create('edgeSidebar', { anchor: 'left' })
+                .registerTemporaryConfig('xs', {
+                    width: 256,
+                });
+        });
+
+        return scheme;
+    }
+
+    else if( location.pathname === "/profile" || location.pathname === "/profile/update"){
+        scheme.configureHeader((builder => {
+            builder
+                .create('appHeader')
+                .registerConfig('xs', {
+                    position: 'relative',
+                    clipped: true,
+                    initialHeight: 56,
+                })
+        }))
+        scheme.configureEdgeSidebar((builder) => {
+            builder
+                .create('edgeSidebar', {anchor: 'right'})
+                .registerTemporaryConfig('xs', {
+                    width: "55%",
+                })
+                .registerPermanentConfig('md', {
+                    width: "40%", // recommended width
+                    collapsible: false,
+                    collapsedWidth: 64,
+                    headerMagnetEnabled: true,
+                });
+        });
+        return scheme;
+    }
     else if(location.pathname==="/meal-plan/create-category"){
         scheme.configureEdgeSidebar((builder) => {
             scheme.configureHeader((builder => {

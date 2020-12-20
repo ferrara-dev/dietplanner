@@ -41,7 +41,7 @@ export default function TopbarView({onLogout, isAuthenticated}) {
             {isAuthenticated && <Button
                 component={Link}
                 className={classes.buttonLink}
-                to="/profile"
+                to="/profile/personal"
                 color="inherit"
                 variant="text"
                 startIcon={<PersonIcon />}

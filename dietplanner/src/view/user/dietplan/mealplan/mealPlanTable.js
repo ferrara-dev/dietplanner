@@ -1,4 +1,4 @@
-import useStyles from "../../../style/mui/mealEditStyle";
+import useStyles from "../../../style/mui/mealPlanStyle";
 import {useRouteMatch} from "react-router";
 import {
     IconButton, Paper,
@@ -24,6 +24,7 @@ import MealCategoryEditForm from "../../../form/mealCategoryEditForm";
 import withContentLayout from "../../../withContentLayout";
 import {Content, Trigger} from "../../../common/layout/styled";
 import cx from "clsx";
+import Toolbar from "@material-ui/core/Toolbar";
 
 function MealPlanTableView({
                                deleteMeal,
@@ -39,10 +40,13 @@ function MealPlanTableView({
     const styles = useStyles();
     return <Content>
         <Box pt={{xs: 2, sm: 4, md: 6}}>
-            <Typography className={styles.heading} variant={'h1'} gutterBottom>
-                Your current mealPlan
-            </Typography>
-            <div className={cx(styles.fab, styles.fabClose)}><Trigger sidebarId={"edgeSidebar"}/></div>
+            <Toolbar>
+                <Typography className={styles.heading} variant={'h1'} gutterBottom>
+                    Your current mealPlan
+                </Typography>
+
+                <div className={cx(styles.fab, styles.fabClose)}><Trigger sidebarId={"edgeSidebar"}/></div>
+            </Toolbar>
             <TableContainer>
                 <Table className={styles.table} aria-label="simple table">
                     <TableBody>
@@ -67,6 +71,10 @@ function MealPlanTableView({
                             <ExpandableTableRow
                                 key={id}
                                 k={id}
+                                buttonLabel={description}
+                                onExpand={() => {
+                                    chooseCategory(id);
+                                }}
                                 expandComponent={
                                     meals.map((meal) => (
                                         [<TableCell key={randomID(12, options.base64)}
@@ -94,13 +102,6 @@ function MealPlanTableView({
                                     ))
                                 }
                             >
-                                <TableCell key={index}>
-                                    <Button
-                                        onClick={() => {
-                                            chooseCategory(id);
-                                        }}>{description}
-                                    </Button>
-                                </TableCell>
                                 <TableCell key={randomID(32, options.base64)}>
                                     {<IconButton key={index - 1} component={Link}
                                                  to={`/meal/${description}/edit`}
