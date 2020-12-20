@@ -37,10 +37,12 @@ function getScheme(location){
     let reg = /\/meal(\/\w+)\/edit(?!\/\w+)/
     let reg2 = /\/meal(\/\w+)\/edit\/search(?=w*)/
     let reg3 = /\/profile(?=w*)/
+    let reg4 = /\/diet(?=w*)/
 
     const scheme = LayoutBuilder();
 
-    if(location.pathname === "/meal-plan"){
+
+    if(reg4.test(location.pathname)){
         scheme.configureHeader((builder => {
             builder
                 .create('appHeader')
@@ -50,6 +52,15 @@ function getScheme(location){
                     initialHeight: 56,
                 })
         }))
+        scheme.configureSubheader(builder => {
+            builder.create("dietHeader")
+                .registerConfig('xs', {
+                    position: 'fixed',
+                    initialHeight: 40,
+                    layer: 1,
+                });
+        });
+
         scheme.configureEdgeSidebar((builder) => {
             builder
                 .create('edgeSidebar', {anchor: 'right'})
@@ -57,12 +68,13 @@ function getScheme(location){
                     width: "55%",
                 })
                 .registerPermanentConfig('md', {
-                    width: "55%", // recommended width
+                    width: "40%", // recommended width
                     collapsible: false,
                     collapsedWidth: 64,
-                    headerMagnetEnabled: true,
+                    headerMagnetEnabled : true
                 });
         });
+
         return scheme;
     }
     else if(reg3.test(location.pathname)){
@@ -112,6 +124,7 @@ function getScheme(location){
         });
         return scheme;
     }
+
     else if(location.pathname==="/meal-plan/create-category"){
         scheme.configureEdgeSidebar((builder) => {
             scheme.configureHeader((builder => {

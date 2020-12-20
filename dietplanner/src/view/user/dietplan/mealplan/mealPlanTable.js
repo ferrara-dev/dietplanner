@@ -23,8 +23,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import MealCategoryEditForm from "../../../form/mealCategoryEditForm";
 import withContentLayout from "../../../withContentLayout";
 import {Content, Trigger} from "../../../common/layout/styled";
-import cx from "clsx";
 import Toolbar from "@material-ui/core/Toolbar";
+import withDietPlan from "../../../../presenter/dietplan/withDietPlan";
 
 function MealPlanTableView({
                                deleteMeal,
@@ -44,8 +44,6 @@ function MealPlanTableView({
                 <Typography className={styles.heading} variant={'h1'} gutterBottom>
                     Your current mealPlan
                 </Typography>
-
-                <div className={cx(styles.fab, styles.fabClose)}><Trigger sidebarId={"edgeSidebar"}/></div>
             </Toolbar>
             <TableContainer>
                 <Table className={styles.table} aria-label="simple table">
@@ -80,7 +78,7 @@ function MealPlanTableView({
                                         [<TableCell key={randomID(12, options.base64)}
                                                     colSpan="3">
                                             <Button component={Link}
-                                                    to={`/meal/${description}/edit`}
+                                                    to={`/diet/meal/${description}/edit`}
                                                     onClick={(e) => {
                                                         chooseCategory(id);
                                                         chooseMeal(meal)
@@ -140,4 +138,5 @@ function MealPlanTableView({
 
 };
 
-export default withContentLayout(MealPlanTableView);
+const MealPlanWithLayout = withContentLayout(MealPlanTableView);
+export default withDietPlan(MealPlanWithLayout)

@@ -58,7 +58,7 @@ export default function CreateMealCategory() {
                 reset: () => setError(undefined),
                 err: error,
             }}
-            goBack={history.push}
+            goBack={history.replace}
             success={success}
         />
 }

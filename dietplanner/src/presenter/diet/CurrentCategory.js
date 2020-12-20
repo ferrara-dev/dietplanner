@@ -1,24 +1,20 @@
 import React from "react";
-import {useFirestoreConnect} from "react-redux-firebase";
-import useFirebaseAuth from "../../../helpers/hooks/usefirebaseAuth";
-import useFirestoreData, {useReduxState} from "../../../helpers/hooks/useFirebaseState";
 import {useDispatch} from "react-redux";
+import {resetCurrentIngredient} from "../../model/actions/ingredient";
+import useFirebaseAuth from "../../helpers/hooks/usefirebaseAuth";
+import {useFirestoreConnect} from "react-redux-firebase";
+import {useReduxState} from "../../helpers/hooks/useFirebaseState";
 import {
-    setCurrentCategory,
-    removeCategory,
     deleteMealFromCategory,
     getCategoryById,
-    resetCurrentMealCategory, updateCategoryDescriptionAndPriority, updateCurrentCategory,
-} from "../../../model/actions/mealCategory";
-import {resetCurrentIngredient} from "../../../model/actions/ingredient";
-import {createNewMeal, resetCurrentMeal, setCurrentMeal} from "../../../model/actions/meal";
-import MealPlanSummaryView from "../../../view/user/dietplan/mealplan/mealPlanSummaryView";
-import MealPlanTableView from "../../../view/user/dietplan/mealplan/mealPlanTable";
-import PageLayout from "../../../view/common/content/contentLayout";
+    removeCategory,
+    resetCurrentMealCategory, updateCategoryDescriptionAndPriority
+} from "../../model/actions/mealCategory";
+import {createNewMeal, resetCurrentMeal, setCurrentMeal} from "../../model/actions/meal";
+import CurrentCategoryView from "../../view/user/diet/currentCategoryView";
 
 
-
-export default function DietPlan() {
+export default function CurrentCategory(){
     let isMounted = false;
     const [err, setErr] = React.useState(false);
     const dispatch = useDispatch();
@@ -47,13 +43,7 @@ export default function DietPlan() {
     const mealPlan = useReduxState(["firestore", "data", "mealPlan"]);
     const userProfile = useReduxState(["firestore", "data", "user"])
     const currentMeal = useReduxState(["currentMeal"])
-
-
-
-    const chooseCurrentCategory = (categoryID) => {
-        dispatch(getCategoryById(categoryID));
-        dispatch(resetCurrentMeal());
-    };
+    const currentMealCategory = useReduxState(["currentMealCategory"]);
 
     const chooseMealAlternative = (meal) => {
         dispatch(setCurrentMeal(meal));
@@ -88,15 +78,9 @@ export default function DietPlan() {
         }
     };
 
-    return (!mealPlan && <div>...</div> ||
-        <MealPlanTableView
-            deleteMeal={removeMealFromCategory}
-            mealPlan={mealPlan.mealCategories}
-            chooseMeal={chooseMealAlternative}
-            deleteCategory={removeMealCategory}
-            addMealToCategory={addMealToCategory}
-            chooseCategory={chooseCurrentCategory}
-            editCategory={editMealCategory}
-            editCategoryError={err}
-        />);
-};
+    return !currentMealCategory && <div>...</div> || <CurrentCategoryView
+        chooseMeal={chooseMealAlternative}
+        deleteMeal={deleteMealFromCategory}
+        description={}
+    />
+}

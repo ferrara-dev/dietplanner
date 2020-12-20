@@ -51,7 +51,7 @@ export default function TopbarView({onLogout, isAuthenticated}) {
             {isAuthenticated && <Button
                 component={Link}
                 className={classes.buttonLink}
-                to="/meal-plan"
+                to="/diet/meal-plan"
                 color="inherit"
                 variant={"text"}
                 startIcon={<FavoriteIcon />}

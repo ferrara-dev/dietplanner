@@ -33,7 +33,8 @@ function MealPlanSummaryView({layout, mealPlan, resetCurrentMealCategory}) {
                 <Grid container spacing={2}>
                     <Grid xs={12} item>
                         <Button
-                            component={Link} to="/meal-plan/create-category"
+                            component={Link}
+                            to="meal-plan/create-category"
                             startIcon={<FastfoodIcon/>}
                             onClick={() => {
                                 resetCurrentMealCategory();

@@ -7,13 +7,14 @@ import AppContent from "./appContent";
 import DietPlan from "../presenter/dietplan/mealplan/dietPlan";
 import MealEdit from "../presenter/dietplan/meal/mealEdit";
 import Profile from "./Profile";
+import Diet from "./Diet";
 
 function App() {
     return (
             <AppContent>
                 <Switch>
-                    <Route exact path={["/meal-plan", "/meal-plan/create-category"]}>
-                        <DietPlan/>
+                    <Route path={"/diet"}>
+                        <Diet/>
                     </Route>
                     <Route path={"/meal/*/edit"}>
                         <MealEdit/>

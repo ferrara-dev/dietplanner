@@ -10,8 +10,8 @@ export default function UserProfileNav(){
     React.useEffect(() => {
         history.push(routes[activeIndex]);
     }, []);
-
     history.listen((location) => {
+        debugger;
         if(location.pathname === routes[0]){
             setActiveIndex(0);
         }
