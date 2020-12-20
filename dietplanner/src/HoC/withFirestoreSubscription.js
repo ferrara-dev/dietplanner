@@ -1,20 +1,25 @@
 import useFirebaseAuth from "../helpers/hooks/usefirebaseAuth";
 import {useFirestoreConnect} from "react-redux-firebase";
+import {useReduxState} from "../helpers/hooks/useFirebaseState";
 
 
-export default function withFirestoreSubscription(WrappedComponent, collection){
+export default function withFirestoreSubscription(WrappedComponent, config){
     return (props) => {
 
         const userUID = useFirebaseAuth().uid;
-        useFirestoreConnect(collection.map(col => {
+        useFirestoreConnect(config.map(({collection, as} )=> {
             return {
-                collection: col.name,
+                collection: collection,
                 doc: userUID,
-                storeAs: col.as
+                storeAs: as
             }
         })
         );
 
-        return <WrappedComponent {...props}/>
-    }
+        const firestoreData = useReduxState("firestore","data");
+        const childProps = {firestoreData, ...props};
+
+        return <WrappedComponent {...childProps}/>
+    };
 }
+

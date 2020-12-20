@@ -21,8 +21,11 @@ import {Content, DrawerSidebar, Trigger} from "../../common/layout/styled";
 import withContentLayout from "../../../HoC/withContentLayout";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
+import withFirestoreSubscription from "../../../HoC/withFirestoreSubscription";
+import UserDetails from "../../../presenter/profile/userDetails";
+import LoadingSpinner from "../../common/loadingSpinner";
 
-function UserDetailsView({layout, userProfile, mealPlan}) {
+function UserDetailsView({userProfile, mealPlan}) {
     const classes = useStyles();
     const mealPlanNutrients = averageMealPlanNutrients(mealPlan);
     return (<Content>
@@ -130,7 +133,13 @@ function UserDetailsView({layout, userProfile, mealPlan}) {
             </Box>
         </Content>
     );
-
 }
+
+const UserProfileWithFirestoreSubscription = withFirestoreSubscription(UserDetails, [
+    {collection : "mealPlans",
+        as : "mealPlan"},
+    {collection: "users",
+        as: "user"}
+]);
 
 export default withContentLayout(UserDetailsView);

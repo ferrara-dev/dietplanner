@@ -11,6 +11,7 @@ import {SidebarHeading} from "../../../common/content/sidebar/sidebarChildren";
 import Toolbar from "@material-ui/core/Toolbar";
 import {DrawerSidebar, Trigger} from "../../../common/layout/styled";
 import withContentLayout from "../../../../HoC/withContentLayout";
+import withFirestoreSubscription from "../../../../HoC/withFirestoreSubscription";
 
 function MealDetailsSummary({
                                 mealPlan,

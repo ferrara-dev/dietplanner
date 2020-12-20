@@ -4,6 +4,7 @@ import {useFirestoreConnect} from "react-redux-firebase";
 import {useReduxState} from "../../helpers/hooks/useFirebaseState";
 import LoadingSpinner from "../../view/common/loadingSpinner";
 import useFirebaseAuth from "../../helpers/hooks/usefirebaseAuth";
+import withFirestoreSubscription from "../../HoC/withFirestoreSubscription";
 
 export default function UserDetails(){
     const userUID = useFirebaseAuth().uid;
@@ -25,7 +26,10 @@ export default function UserDetails(){
     const mealPlan = data.mealPlan;
 
 
-    return (!user || !mealPlan) && <LoadingSpinner></LoadingSpinner> || <UserProfileView userProfile={user} mealPlan={mealPlan.mealCategories}/>
+    return (!user || !mealPlan) && <LoadingSpinner></LoadingSpinner> || <UserProfileView
+        userProfile={user}
+        mealPlan={mealPlan.mealCategories}
+    />
 };
 
 function ShowData({mealPlan, user}){

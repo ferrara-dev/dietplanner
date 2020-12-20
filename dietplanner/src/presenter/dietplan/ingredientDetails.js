@@ -1,6 +1,5 @@
 import IngredientDetailsView from "../../view/user/ingredientsearch/ingredientDetails";
 import {useDispatch, useSelector} from "react-redux";
-import Modal from "../../view/common/modal/modal";
 import {setIngredientQuantity} from "../../model/actions/ingredient";
 import {addIngredient} from "../../model/actions/meal";
 import {useHistory} from "react-router";
