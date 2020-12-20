@@ -3,19 +3,19 @@ import {fade} from "@material-ui/core/styles";
 
 
 const useStyles = makeStyles(({palette, breakpoints}) => ({
-    mainContent : {
-        minWidth : "100%"
+    mainContent: {
+        minWidth: "100%"
     },
-    tableFooter : {
+    tableFooter: {
         left: 0,
         bottom: 0, // <-- KEY
         zIndex: 2,
         position: 'sticky'
     },
-    emptyCell : {
-        emptyCells : 'show'
+    emptyCell: {
+        emptyCells: 'show'
     },
-    nutrientsCard : {
+    nutrientsCard: {
         color: fade("#22c1b9", 0.5)
     },
     chartRoot: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
         fontSize: 14,
         fontFamily: "Fira Sans Roboto Helvetica Arial sans-serif",
         fontWeight: "300",
-        boxSizing : "border-box",
+        boxSizing: "border-box",
         flexDirection: "column"
     },
     btn: {
@@ -66,8 +66,8 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
         },
     },
     table: {
-        maxWidth : "77%",
-        emptyCells : 'show',
+        maxWidth: "77%",
+        emptyCells: 'show',
     },
     image: {
         width: '100%',
@@ -90,7 +90,6 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
     },
     toolbar: {},
     edgeSidebarBody: {
-        padding: '24px 0 40px 24px !important',
         background: 'none',
         boxShadow: 'none',
         overflow: "visible",
@@ -142,7 +141,7 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
         color: '#2E3B4D',
         '& svg': {
             fontSize: 32,
-            color: '#fff',
+            color: '#fedc1f',
         },
         zIndex: 1500,
         transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
@@ -154,7 +153,7 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
         },
     },
     fabClose: {
-        top: 8,
+        top: 50,
         right: 8,
         width: 48,
         height: 48,
@@ -162,11 +161,11 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
     root: {
         display: 'flex',
         flexDirection: 'column',
-        background: 'linear-gradient(45deg, #191D29, #3c5981)',
+        background: 'linear-gradient(45deg, #fffeee, #fefeee)',
         borderRadius: 12,
         height: '100vh',
         '& *': {
-            color: '#fff',
+            color: '#123456',
         },
     },
     heading2: {
@@ -191,9 +190,15 @@ const useStyles = makeStyles(({palette, breakpoints}) => ({
         borderStyle: 'solid',
         borderWidth: 1,
         width: '100%',
+        backgroundColor: "#edab33",
         '&:hover': {
             backgroundColor: 'rgba(255, 255, 255, 0.12)',
         },
+    },
+    buttonDisabled: {
+        border: "1px solid #999999",
+        backgroundColor: " #cccccc",
+        color: " #666666",
     },
     buttonActive: {
         borderColor: '#fff',

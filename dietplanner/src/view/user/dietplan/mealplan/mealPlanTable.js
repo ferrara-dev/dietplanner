@@ -1,4 +1,4 @@
-import useStyles from "../../../style/mui/mealEditStyle";
+import useStyles from "../../../style/mui/mealPlanStyle";
 import {useRouteMatch} from "react-router";
 import {
     IconButton, Paper,
@@ -21,9 +21,10 @@ import {Add} from "@material-ui/icons";
 import AlertDialog from "../../../common/alertDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MealCategoryEditForm from "../../../form/mealCategoryEditForm";
-import withContentLayout from "../../../withContentLayout";
+import withContentLayout from "../../../../HoC/withContentLayout";
 import {Content, Trigger} from "../../../common/layout/styled";
-import cx from "clsx";
+import Toolbar from "@material-ui/core/Toolbar";
+import withDietPlan from "../../../../HoC/withDietPlan";
 
 function MealPlanTableView({
                                deleteMeal,
@@ -39,10 +40,11 @@ function MealPlanTableView({
     const styles = useStyles();
     return <Content>
         <Box pt={{xs: 2, sm: 4, md: 6}}>
-            <Typography className={styles.heading} variant={'h1'} gutterBottom>
-                Your current mealPlan
-            </Typography>
-            <div className={cx(styles.fab, styles.fabClose)}><Trigger sidebarId={"edgeSidebar"}/></div>
+            <Toolbar>
+                <Typography className={styles.heading} variant={'h1'} gutterBottom>
+                    Your current mealPlan
+                </Typography>
+            </Toolbar>
             <TableContainer>
                 <Table className={styles.table} aria-label="simple table">
                     <TableBody>
@@ -64,53 +66,19 @@ function MealPlanTableView({
                                     return 0;
                             }
                         }).map(({description, meals, id, priority}, index) => (
-                            <ExpandableTableRow
-                                key={id}
-                                k={id}
-                                expandComponent={
-                                    meals.map((meal) => (
-                                        [<TableCell key={randomID(12, options.base64)}
-                                                    colSpan="3">
-                                            <Button component={Link}
-                                                    to={`/meal/${description}/edit`}
-                                                    onClick={(e) => {
-                                                        chooseCategory(id);
-                                                        chooseMeal(meal)
-                                                    }}>{meal.title}
-                                            </Button>
-                                        </TableCell>,
-                                            <TableCell key={randomID(12, options.base64)}
-                                                       colSpan="3">
-                                                <AlertDialog
-                                                    onConfirm={() => {
-                                                        deleteMeal(meal, id);
-                                                    }}
-
-                                                    content={"Do you want to delete the " + meal.title + " meal?"}
-                                                    title={"Delete " + description + "?"}
-                                                    OpenIcon={DeleteIcon}
-                                                />
-                                            </TableCell>]
-                                    ))
-                                }
-                            >
-                                <TableCell key={index}>
+                            <TableRow key={randomID(12, options.base64)}>
+                                <TableCell key={randomID(12, options.base64)}>
                                     <Button
+                                        component={Link}
+                                        to={`/diet/category/${description}`}
                                         onClick={() => {
                                             chooseCategory(id);
-                                        }}>{description}
+                                        }}
+                                    >
+                                        {description}
                                     </Button>
                                 </TableCell>
-                                <TableCell key={randomID(32, options.base64)}>
-                                    {<IconButton key={index - 1} component={Link}
-                                                 to={`/meal/${description}/edit`}
-                                                 onClick={() => {
-                                                     addMealToCategory(id);
-                                                 }}>
-                                        <Add fontSize="small"/>
-                                    </IconButton>}
-                                </TableCell>
-                                <TableCell key={randomID(32, options.base64)}>
+                                <TableCell key={randomID(12, options.base64)}>
                                     {<AlertDialog
                                         onConfirm={() => {
                                             deleteCategory(id);
@@ -120,7 +88,7 @@ function MealPlanTableView({
                                         OpenIcon={DeleteIcon}
                                     />}
                                 </TableCell>
-                                <TableCell key={randomID(32, options.base64)}>
+                                <TableCell key={randomID(12, options.base64)}>
                                     <MealCategoryEditForm
                                         title={description}
                                         OpenIcon={EditIcon}
@@ -129,7 +97,7 @@ function MealPlanTableView({
                                         _fields={{description: description, priority: priority}}
                                     />
                                 </TableCell>
-                            </ExpandableTableRow>
+                            </TableRow>
                         ))}
                     </TableBody>
                 </Table>
@@ -139,4 +107,5 @@ function MealPlanTableView({
 
 };
 
-export default withContentLayout(MealPlanTableView);
+const MealPlanWithLayout = withContentLayout(MealPlanTableView);
+export default withDietPlan(MealPlanWithLayout)

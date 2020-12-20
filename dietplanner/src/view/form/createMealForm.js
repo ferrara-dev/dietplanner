@@ -5,10 +5,10 @@ import AlertMassage from "../common/alertMessage";
 import {SidebarHeading, SidebarDivider} from "../common/content/sidebar/sidebarChildren";
 import cx from "clsx";
 import useStyles from "../style/mui/mealEditStyle";
-
+import {NavLink as Link} from "react-router-dom";
 import {DrawerSidebar, CollapseButton, CustomCollapse, Trigger} from "../common/layout/styled";
 import Box from "@material-ui/core/Box";
-import withContentLayout from "../withContentLayout";
+import withContentLayout from "../../HoC/withContentLayout";
 
 
 function CreateMealForm({
@@ -46,7 +46,7 @@ function CreateMealForm({
                                 title={"Success !"}
                                 message={"You successfully created a new meal category !"}
                                 open={true}
-                                onClick={() => goBack("/meal-plan")}
+                                onClick={() => goBack("/diet/meal-plan")}
                             />
                         }
                         <SidebarHeading styleProps={{color: "#051937", fontFamily: "verdana"}}>
@@ -84,17 +84,17 @@ function CreateMealForm({
                                         root: cx(classes.button, classes.buttonActive, classes.buttonSubmit),
                                     }}
                                     onClick={set}
-
                                     disabled={!fields.description || fields.description.length <= 0 || !fields.priority}>
                                     submit
                                 </Button>
                             </Grid>
                             <Grid item xs={6}>
                                 <Button
+                                    component={Link}
+                                    to="/diet/meal-plan"
                                     classes={{
                                         root: cx(classes.button, classes.buttonActive, classes.buttonCancel),
                                     }}
-                                    onClick={() => goBack("/meal-plan")}
                                 >
                                     cancel
                                 </Button>

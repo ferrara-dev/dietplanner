@@ -18,15 +18,23 @@ export const registerUser = (email, password, userProfile) => (dispatch, getStat
             owner : userUID,
             mealCategories : []
         });
-
-        firestore.collection('mealBank').doc(`${userUID}`).set({
-            owner : userUID,
-            meals : []
+        const date = new Date();
+        firestore.collection('updates').doc(`${userUID}`).set({
+            updates : [{
+                timeStamp : {
+                    date : date.getTime(),
+                    iso : date.toISOString(),
+                    string : date.toString(),
+                    dateString : date.toDateString(),
+                    json : date.toJSON()
+                },
+                profile : userData
+            }],
         });
     }).catch(error => {
         console.log(error)
     });
-}
+};
 
 export const logoutUser = () => (dispatch, getState, {getFirebase}) => {
     const firebase = getFirebase();
@@ -39,3 +47,26 @@ export const logoutUser = () => (dispatch, getState, {getFirebase}) => {
     });
 };
 
+
+export const submitUpdate = (profileUpdate) => (dispatch, getState, {getFirebase, getFirestore}) => {
+    const firebase = getFirebase();
+    firebase.updateProfile(profileUpdate).then(res => {
+        const userUID = getState().firebase.auth.uid;
+        const updates = getState().firestore.data.updates;
+        const profile = getState().firestore.data.user;
+        const firestore = getFirestore();
+        const date = new Date();
+        firestore.collection('updates').doc(`${userUID}`).set({
+                updates : updates.updates.concat({
+                    timeStamp : {
+                        date : date.getTime(),
+                        iso : date.toISOString(),
+                        string : date.toString(),
+                        dateString : date.toDateString(),
+                        json : date.toJSON()
+                    },
+                    profile : profile
+                })
+        });
+    });
+};

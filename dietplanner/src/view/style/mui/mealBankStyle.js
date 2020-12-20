@@ -154,6 +154,13 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "5px",
         marginBottom: "5px",
     },
+    edgeSidebarBody: {
+        padding: '80px 0 20px 24px !important',
+        background: 'none',
+        boxShadow: 'none',
+        overflow: "visible",
+        right: 0,
+    },
     searchInput: {
         width: "200px",
         margin: "5px",

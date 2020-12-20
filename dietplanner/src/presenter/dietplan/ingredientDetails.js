@@ -31,6 +31,7 @@ export default function IngredientDetails() {
             addIngredient={addToMeal}
             image = {currentIngredient.ingredient.image}
             currentMeal={currentMeal}
+            goBack={history.goBack}
         />
 
 

@@ -45,12 +45,12 @@ export default function MealDetails() {
     const history = useHistory();
     const currentMeal = useReduxState(["currentMeal"])
     const currentCategory = useReduxState(["currentMealCategory"]);
-    const mealPlan = useReduxState(["firestore", "data", "mealPlan"])
+    const mealPlan = useReduxState(["firestore", "data", "mealPlan"]);
     console.log(currentMeal, mealPlan);
 
     function addMeal() {
         dispatch(addMealToCategory(currentMeal));
-        history.push(`/meal-plan`);
+        history.push(`/diet/category/${currentCategory.description}`);
     };
 
     return (!currentMeal || !mealPlan) && <div></div> || <MealDetailsSummary

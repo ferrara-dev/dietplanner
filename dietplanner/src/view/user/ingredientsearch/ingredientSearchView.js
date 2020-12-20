@@ -21,7 +21,7 @@ export default function IngredientSearchView({chooseIngredient, results, loading
         sidebarId={'edgeSidebar'}
     >
         <Toolbar className={classes.searchBar}>
-            <Tooltip title="Back to meal plan">
+            <Tooltip title="Back to details">
                 <IconButton aria-label="delete" onClick={() => goBack()}>
                     <KeyboardBackspaceOutlinedIcon/>
                 </IconButton>

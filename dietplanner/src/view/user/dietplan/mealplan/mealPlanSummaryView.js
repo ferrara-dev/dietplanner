@@ -9,11 +9,9 @@ import cx from "clsx";
 import {
     averageMealPlanNutrients,
 } from "../../../../helpers/calculation/MealNutrientCalculator";
-import Fab from "@material-ui/core/Fab";
-import Close from "@material-ui/icons/Close";
-import CreditCard from "@material-ui/icons/CreditCard";
 import {DrawerSidebar} from "../../../common/layout/styled";
-import withContentLayout from "../../../withContentLayout";
+import withContentLayout from "../../../../HoC/withContentLayout";
+import withDietPlan from "../../../../HoC/withDietPlan";
 
 
 function MealPlanSummaryView({layout, mealPlan, resetCurrentMealCategory}) {
@@ -33,7 +31,8 @@ function MealPlanSummaryView({layout, mealPlan, resetCurrentMealCategory}) {
                 <Grid container spacing={2}>
                     <Grid xs={12} item>
                         <Button
-                            component={Link} to="/meal-plan/create-category"
+                            component={Link}
+                            to="meal-plan/create-category"
                             startIcon={<FastfoodIcon/>}
                             onClick={() => {
                                 resetCurrentMealCategory();
@@ -83,4 +82,4 @@ function MealPlanSummaryView({layout, mealPlan, resetCurrentMealCategory}) {
     </>
 };
 
-export default withContentLayout(MealPlanSummaryView);
+export default withContentLayout(withDietPlan(MealPlanSummaryView));

@@ -1,13 +1,11 @@
 import React from "react"
-import UserProfileView from "../../view/user/profile";
+import UserProfileView from "../../view/user/profile/profile";
 import {useFirestoreConnect} from "react-redux-firebase";
 import {useReduxState} from "../../helpers/hooks/useFirebaseState";
 import LoadingSpinner from "../../view/common/loadingSpinner";
 import useFirebaseAuth from "../../helpers/hooks/usefirebaseAuth";
-import UserProgressView from "../../view/user/userProgressView";
-import PageLayout from "../../view/common/content/contentLayout";
 
-export default function UserProfile(){
+export default function UserDetails(){
     const userUID = useFirebaseAuth().uid;
 
 
