@@ -3,7 +3,6 @@ import {Route, Switch, useHistory, useLocation} from "react-router-dom";
 import DietNav from "../presenter/diet/DietNav";
 import MealDetails from "../presenter/dietplan/meal/mealDetails";
 import CreateMealCategory from "../presenter/dietplan/createMealCategory";
-import DietFooter from "./user/dietplan/mealplan/dietFooter";
 import MealPlanTable from "./user/dietplan/mealplan/mealPlanTable"
 import CurrentCategory from "./user/diet/currentCategoryView";
 import CurrentCategoryDetails from "./user/diet/currentCategoryDetailsView";
@@ -17,7 +16,6 @@ export default function Diet() {
         <DietNav/>
         <DietContent/>
         <DietSidebar/>
-        <DietFooter></DietFooter>
     </React.Fragment>
 }
 
