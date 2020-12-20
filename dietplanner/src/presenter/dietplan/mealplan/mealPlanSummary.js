@@ -24,9 +24,11 @@ export default function MealPlanSummary(){
 
     const mealPlan = useReduxState(["firestore", "data", "mealPlan"]);
     const state = useSelector(state => state);
+
     const resetMealCategory = () => {
         dispatch(resetCurrentMealCategory());
     };
+
     console.log(state)
     return !mealPlan && <div>...</div> || <MealPlanSummaryView
         mealPlan={mealPlan.mealCategories}

@@ -1,7 +1,7 @@
 import useStyles from "../../style/mui/UserProfileSyle";
 import React from "react";
 import {Content} from "../../common/layout/styled";
-import withContentLayout from "../../withContentLayout";
+import withContentLayout from "../../../HoC/withContentLayout";
 import {Line, ResponsiveContainer, XAxis, YAxis} from "recharts";
 import LineChart from "recharts/lib/chart/LineChart";
 import { useTheme } from '@material-ui/core/styles';

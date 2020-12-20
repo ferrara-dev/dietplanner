@@ -18,7 +18,7 @@ import React from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import cx from "clsx";
 import {Content, DrawerSidebar, Trigger} from "../../common/layout/styled";
-import withContentLayout from "../../withContentLayout";
+import withContentLayout from "../../../HoC/withContentLayout";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 

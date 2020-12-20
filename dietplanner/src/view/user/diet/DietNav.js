@@ -1,6 +1,6 @@
 
 import React from "react";
-import {DrawerSidebar, SubHeader, Trigger} from "../../common/layout/styled";
+import {DrawerSidebar, Header, SubHeader, Trigger} from "../../common/layout/styled";
 import {GmailTabItem, GmailTabs} from "@mui-treasury/components/tabs/gmail";
 import {Inbox, ShowChart, Update} from "@material-ui/icons";
 import {List, ListItem, ListItemIcon, ListItemText, makeStyles} from "@material-ui/core";
@@ -22,9 +22,7 @@ const useHiddenStyle = makeStyles(({theme, palette, breakpoints}) => ({
 export default function DietNavView({ activeIndex, onIndexChange, newUpdate}) {
     const hiddenStyle = useHiddenStyle();
     return <>
-        <SubHeader
-            subheaderId={"dietHeader"}
-        >
+        <Header>
             <div className={hiddenStyle.hiddenTrigger}>
                 <Trigger sidebarId={"edgeSidebar"}/>
             </div>
@@ -48,7 +46,7 @@ export default function DietNavView({ activeIndex, onIndexChange, newUpdate}) {
                         />
                     </GmailTabs>
                 </>
-        </SubHeader>
+        </Header>
     </>
 };
 

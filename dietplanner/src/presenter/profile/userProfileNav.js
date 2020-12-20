@@ -11,7 +11,6 @@ export default function UserProfileNav(){
         history.push(routes[activeIndex]);
     }, []);
     history.listen((location) => {
-        debugger;
         if(location.pathname === routes[0]){
             setActiveIndex(0);
         }

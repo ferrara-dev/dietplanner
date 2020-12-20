@@ -95,7 +95,7 @@ const styles = makeStyles(({theme,palette, breakpoints}) => ({
     },
     toolbar: {},
     edgeSidebarBody: {
-        padding: '24px 0 40px 24px !important',
+        padding: '80px 0 40px 24px !important',
         background: 'none',
         boxShadow: 'none',
         overflow: "visible",

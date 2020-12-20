@@ -21,10 +21,10 @@ import {Add} from "@material-ui/icons";
 import AlertDialog from "../../../common/alertDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MealCategoryEditForm from "../../../form/mealCategoryEditForm";
-import withContentLayout from "../../../withContentLayout";
+import withContentLayout from "../../../../HoC/withContentLayout";
 import {Content, Trigger} from "../../../common/layout/styled";
 import Toolbar from "@material-ui/core/Toolbar";
-import withDietPlan from "../../../../presenter/dietplan/withDietPlan";
+import withDietPlan from "../../../../HoC/withDietPlan";
 
 function MealPlanTableView({
                                deleteMeal,
@@ -66,50 +66,19 @@ function MealPlanTableView({
                                     return 0;
                             }
                         }).map(({description, meals, id, priority}, index) => (
-                            <ExpandableTableRow
-                                key={id}
-                                k={id}
-                                buttonLabel={description}
-                                onExpand={() => {
-                                    chooseCategory(id);
-                                }}
-                                expandComponent={
-                                    meals.map((meal) => (
-                                        [<TableCell key={randomID(12, options.base64)}
-                                                    colSpan="3">
-                                            <Button component={Link}
-                                                    to={`/diet/meal/${description}/edit`}
-                                                    onClick={(e) => {
-                                                        chooseCategory(id);
-                                                        chooseMeal(meal)
-                                                    }}>{meal.title}
-                                            </Button>
-                                        </TableCell>,
-                                            <TableCell key={randomID(12, options.base64)}
-                                                       colSpan="3">
-                                                <AlertDialog
-                                                    onConfirm={() => {
-                                                        deleteMeal(meal, id);
-                                                    }}
-
-                                                    content={"Do you want to delete the " + meal.title + " meal?"}
-                                                    title={"Delete " + description + "?"}
-                                                    OpenIcon={DeleteIcon}
-                                                />
-                                            </TableCell>]
-                                    ))
-                                }
-                            >
-                                <TableCell key={randomID(32, options.base64)}>
-                                    {<IconButton key={index - 1} component={Link}
-                                                 to={`/meal/${description}/edit`}
-                                                 onClick={() => {
-                                                     addMealToCategory(id);
-                                                 }}>
-                                        <Add fontSize="small"/>
-                                    </IconButton>}
+                            <TableRow key={randomID(12, options.base64)}>
+                                <TableCell key={randomID(12, options.base64)}>
+                                    <Button
+                                        component={Link}
+                                        to={`/diet/category/${description}`}
+                                        onClick={() => {
+                                            chooseCategory(id);
+                                        }}
+                                    >
+                                        {description}
+                                    </Button>
                                 </TableCell>
-                                <TableCell key={randomID(32, options.base64)}>
+                                <TableCell key={randomID(12, options.base64)}>
                                     {<AlertDialog
                                         onConfirm={() => {
                                             deleteCategory(id);
@@ -119,7 +88,7 @@ function MealPlanTableView({
                                         OpenIcon={DeleteIcon}
                                     />}
                                 </TableCell>
-                                <TableCell key={randomID(32, options.base64)}>
+                                <TableCell key={randomID(12, options.base64)}>
                                     <MealCategoryEditForm
                                         title={description}
                                         OpenIcon={EditIcon}
@@ -128,7 +97,7 @@ function MealPlanTableView({
                                         _fields={{description: description, priority: priority}}
                                     />
                                 </TableCell>
-                            </ExpandableTableRow>
+                            </TableRow>
                         ))}
                     </TableBody>
                 </Table>

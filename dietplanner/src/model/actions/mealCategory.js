@@ -70,12 +70,12 @@ export const addMealToCategory = (meal) => (dispatch, getState, {getFirestore, g
 
     firestore.collection("mealPlans").doc(`${userUID}`).update({
         mealCategories : updatedMealCategories
+    }).then(e => {
+        dispatch(getCategoryById(currentCategoryID))
     });
-
-    dispatch(resetCategoryAction());
 };
 
-export const deleteMealFromCategory = (meal, categoryID) => (dispatch, getState, {getFirestore, getFirebase}) => {
+export const deleteMealFromCategory = (meal) => (dispatch, getState, {getFirestore, getFirebase}) => {
     const currentCategoryID = getState().currentMealCategory.id;
     const updatedMealCategories= getState().firestore.data.mealPlan.mealCategories.map(category => {
         if(category.id === currentCategoryID){
@@ -90,9 +90,10 @@ export const deleteMealFromCategory = (meal, categoryID) => (dispatch, getState,
 
     firestore.collection("mealPlans").doc(`${userUID}`).update({
         mealCategories : updatedMealCategories
+    }).then(e => {
+        dispatch(getCategoryById(currentCategoryID));
     });
 
-    dispatch(resetCategoryAction());
 };
 
 export const createMealCategory = ({description, priority}) => (dispatch, getState, {getFirestore, getFirebase}) => {
@@ -119,6 +120,17 @@ export const createMealCategory = ({description, priority}) => (dispatch, getSta
             })
         });
     }
+};
+
+export const addNewMeal = (mealTitle) =>(dispatch, getState, {getFirestore, getFirebase})=> {
+    const state = getState();
+    const mealID = randomID(64, options.alphanumeric);
+    const meal = {
+        title: mealTitle,
+        mealId: mealID,
+        ingredients: []
+    };
+    dispatch(addMealToCategory(meal));
 };
 
 export const removeCategory = (categoryID) =>  (dispatch, getState, {getFirestore, getFirebase}) => {

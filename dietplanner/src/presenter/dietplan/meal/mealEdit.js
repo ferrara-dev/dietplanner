@@ -9,6 +9,7 @@ import {setCurrentIngredient, setIngredientQuantity} from "../../../model/action
 import {removeIngredient, setMealTitle} from "../../../model/actions/meal";
 import LoadingSpinner from "../../../view/common/loadingSpinner";
 import MealDetailsSummary from "../../../view/user/dietplan/mealedit/mealDetailsSummary";
+import {addMealToCategory} from "../../../model/actions/mealCategory";
 
 
 export default function MealEdit() {
@@ -29,7 +30,13 @@ export default function MealEdit() {
     const dispatch = useDispatch();
     const history = useHistory();
     const currentMeal = useReduxState(["currentMeal"]);
+    const currentCategory = useReduxState(["currentMealCategory"]);
     const mealPlan = useReduxState(["firestore", "data", "mealPlan"]);
+    console.log(currentMeal, mealPlan);
+
+    React.useEffect(() => {
+        mealPlan && dispatch(addMealToCategory(currentMeal));
+    }, [currentMeal]);
 
     function editIngredient(ingredient, quantity) {
         dispatch(setCurrentIngredient(ingredient));
@@ -38,12 +45,14 @@ export default function MealEdit() {
     };
 
     function deleteIngredient(ingredient) {
-        dispatch(removeIngredient(ingredient.foodId))
+        dispatch(removeIngredient(ingredient.foodId));
     };
 
     function setMealName(name) {
         dispatch(setMealTitle(name));
-    }
+    };
+
+
     return (!currentMeal || !mealPlan) && <LoadingSpinner/> || <MealEditView
         mealTitle={currentMeal.title}
         mealPlan={mealPlan.mealCategories}

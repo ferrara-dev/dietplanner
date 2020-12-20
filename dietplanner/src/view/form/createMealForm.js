@@ -8,7 +8,7 @@ import useStyles from "../style/mui/mealEditStyle";
 import {NavLink as Link} from "react-router-dom";
 import {DrawerSidebar, CollapseButton, CustomCollapse, Trigger} from "../common/layout/styled";
 import Box from "@material-ui/core/Box";
-import withContentLayout from "../withContentLayout";
+import withContentLayout from "../../HoC/withContentLayout";
 
 
 function CreateMealForm({
@@ -91,7 +91,7 @@ function CreateMealForm({
                             <Grid item xs={6}>
                                 <Button
                                     component={Link}
-                                    to="diet/meal-plan"
+                                    to="/diet/meal-plan"
                                     classes={{
                                         root: cx(classes.button, classes.buttonActive, classes.buttonCancel),
                                     }}

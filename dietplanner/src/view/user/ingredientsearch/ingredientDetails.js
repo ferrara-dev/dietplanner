@@ -36,6 +36,7 @@ import KeyboardBackspaceOutlinedIcon from "@material-ui/icons/KeyboardBackspaceO
 import Tooltip from "@material-ui/core/Tooltip";
 import {mealNutrientCalculator} from "../../../helpers/calculation/MealNutrientCalculator";
 import {Add} from "@material-ui/icons"
+
 const useCardStyles = makeStyles(() => ({
     root: {
         maxWidth: 304,
@@ -49,15 +50,14 @@ const useCardStyles = makeStyles(() => ({
 function f(meal, ingredientID, nutritionData, quantity) {
     const a = meal.ingredients.find(ingredient => ingredient.ingredient.foodId === ingredientID);
     let nutrients = mealNutrientCalculator(meal.ingredients);
-    if(a){
+    if (a) {
         const aQuantity = a.quantity;
-        const aNutrients= a.ingredient.nutrients;
-        nutrients["protein"] = nutrients["protein"] - aNutrients.PROCNT * (aQuantity / 100)  + nutritionData.PROCNT * (quantity / 100);
+        const aNutrients = a.ingredient.nutrients;
+        nutrients["protein"] = nutrients["protein"] - aNutrients.PROCNT * (aQuantity / 100) + nutritionData.PROCNT * (quantity / 100);
         nutrients["kcal"] = nutrients["kcal"] - aNutrients.ENERC_KCAL * (aQuantity / 100) + nutritionData.ENERC_KCAL * (quantity / 100);
         nutrients["carbs"] = nutrients["carbs"] - aNutrients.CHOCDF * (aQuantity / 100) + nutritionData.CHOCDF * (quantity / 100);
         nutrients["fat"] = nutrients["fat"] - aNutrients.FAT * (aQuantity / 100) + nutritionData.FAT * (quantity / 100);
-    }
-    else {
+    } else {
         nutrients["protein"] = nutrients["protein"] + nutritionData.PROCNT * (quantity / 100);
         nutrients["kcal"] = nutrients["kcal"] + nutritionData.ENERC_KCAL * (quantity / 100);
         nutrients["carbs"] = nutrients["carbs"] + nutritionData.CHOCDF * (quantity / 100);
@@ -74,13 +74,14 @@ export default function IngredientDetailsView({
                                                   ingredientDescription,
                                                   nutritionData,
                                                   quantity,
-                                                  ingredientId
+                                                  ingredientId,
+    goBack
                                               }) {
     const classes = useStyles();
     const styles = useContentStyle();
-    const history = useHistory();
     const listStyles = useGmailListItemStyles({collapsed: false});
     const mealNutrientsAfter = f(currentMeal, ingredientId, nutritionData, quantity);
+
     console.log(mealNutrientsAfter);
 
     return <DrawerSidebar
@@ -90,7 +91,10 @@ export default function IngredientDetailsView({
         <Box className={classes.sidebarContent} py={3} px={3.5}>
             <Toolbar>
                 <Tooltip title="Back to previous page">
-                    <IconButton aria-label="delete" onClick={() => history.goBack()}>
+                    <IconButton aria-label="delete" onClick={(e) => {
+                        e.preventDefault();
+                        goBack()
+                    }}>
                         <KeyboardBackspaceOutlinedIcon/>
                     </IconButton>
                 </Tooltip>
@@ -115,28 +119,28 @@ export default function IngredientDetailsView({
                         >
 
                             Kcal
-                            <span className={'MuiLabel-amount'}>{nutritionData.ENERC_KCAL}</span>
+                            <span className={'MuiLabel-amount'}>{(nutritionData.ENERC_KCAL * 1).toFixed(1)}</span>
                         </ListItem>
                         <ListItem
                             classes={listStyles}
                             button
                         >
                             Protein
-                            <span className={'MuiLabel-amount'}>{nutritionData.PROCNT}</span>
+                            <span className={'MuiLabel-amount'}>{(nutritionData.PROCNT * 1).toFixed(1)}</span>
                         </ListItem>
                         <ListItem
                             classes={listStyles}
                             button
                         >
                             Carbs
-                            <span className={'MuiLabel-amount'}>{nutritionData.CHOCDF}</span>
+                            <span className={'MuiLabel-amount'}>{(nutritionData.CHOCDF * 1).toFixed(1)}</span>
                         </ListItem>
                         <ListItem
                             classes={listStyles}
                             button
                         >
                             Fat
-                            <span className={'MuiLabel-amount'}>{nutritionData.FAT}</span>
+                            <span className={'MuiLabel-amount'}>{(nutritionData.FAT * 1).toFixed(1)}</span>
                         </ListItem>
                     </List>
                 </Grid>
@@ -164,9 +168,10 @@ export default function IngredientDetailsView({
                                     root: cx(styles.button, styles.buttonActive),
                                     label: styles.creditCardLabel,
                                 }}
-                                onClick={() => {
-                                addIngredient();
-                            }}>Add ingredient</Button>
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    addIngredient();
+                                }}>Add ingredient</Button>
                         </Grid>
                     </Grid>
                 </Grid>

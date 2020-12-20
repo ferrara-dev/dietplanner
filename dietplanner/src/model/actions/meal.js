@@ -41,9 +41,15 @@ export const removeIngredient = (ingredientID) => (dispatch, getState) => {
     dispatch(updateIngredientsAction(updatedIngredients));
 };
 
-export const createNewMeal = () => (dispatch, getState) => {
+export const createNewMeal = (mealTitle) => (dispatch, getState) => {
     const mealID = randomID(64, options.alphanumeric);
-    dispatch(createNewMealAction(mealID));
+    const meal = {
+        title: mealTitle,
+        mealId: mealID,
+        ingredients: []
+    };
+
+    dispatch(setCurrentMeal(meal));
 };
 
 export const resetCurrentMeal = () => (dispatch) => {

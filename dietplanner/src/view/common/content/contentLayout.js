@@ -39,7 +39,6 @@ export default function PageLayout(props) {
                 width: "77%",
             });
     });
-    debugger;
     return (
             <Root theme={dailyShoppingTheme} scheme={scheme}>
                 {({setOpen, state: {sidebar}}) => {

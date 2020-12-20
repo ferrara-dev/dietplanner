@@ -49,7 +49,7 @@ export const useStyles = makeStyles((theme) => ({
         },
     },
     edgeSidebarBody: {
-        padding: '24px 0 40px 24px !important',
+        padding: '80px 0 40px 24px !important',
         background: 'none',
         boxShadow: 'none',
         overflow: "visible",

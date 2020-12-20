@@ -19,7 +19,7 @@ import {useRouteMatch} from "react-router";
 import {mealNutrientCalculator} from "../../../../helpers/calculation/MealNutrientCalculator";
 import {Content, DrawerSidebar, Trigger} from "../../../common/layout/styled";
 import cx from "clsx";
-import withContentLayout from "../../../withContentLayout";
+import withContentLayout from "../../../../HoC/withContentLayout";
 import Toolbar from "@material-ui/core/Toolbar";
 
 function MealEditView({layout,setMealTitle, mealTitle, ingredients, editIngredient, deleteIngredient, goBack,}) {
@@ -105,7 +105,7 @@ function MealEditView({layout,setMealTitle, mealTitle, ingredients, editIngredie
                                             onClick={() => {
                                                 editIngredient(ingredient, quantity);
                                             }}
-                                            component={Link} to={`${url}/ingredient/${ingredient.foodId}`}>
+                                            component={Link} to={`${url}/search/ingredient/${ingredient.foodId}`}>
                                             <EditIcon fontSize="small"/>
                                         </IconButton>
                                     </TableCell>}

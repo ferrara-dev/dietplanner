@@ -10,7 +10,7 @@ import {averageMealPlanNutrients, mealNutrientCalculator} from "../../../../help
 import {SidebarHeading} from "../../../common/content/sidebar/sidebarChildren";
 import Toolbar from "@material-ui/core/Toolbar";
 import {DrawerSidebar, Trigger} from "../../../common/layout/styled";
-import withContentLayout from "../../../withContentLayout";
+import withContentLayout from "../../../../HoC/withContentLayout";
 
 function MealDetailsSummary({
                                 mealPlan,
@@ -99,7 +99,7 @@ function MealDetailsSummary({
                 <Box height={24} css={{flex: 'none'}}/>
                 <Box height={24} css={{flex: 'none'}}/>
                 <Grid container spacing={2}>
-                    <Grid xs={6} item>
+                    <Grid xs={12} item>
                         <Button
                             className={styles.checkoutBtn}
                             color={'primary'}
@@ -114,24 +114,10 @@ function MealDetailsSummary({
                             {"Submit"}
                         </Button>
                     </Grid>
-                    <Grid xs={6} item>
-                        <Button
-                            className={styles.checkoutBtn}
-                            color={'primary'}
-                            variant={'contained'}
-                            onClick={() => goBack()}
-                            classes={{
-                                root: cx(styles.button, styles.buttonActive),
-                                label: styles.creditCardLabel,
-                            }}
-                        >
-                            Go back
-                        </Button>
-                    </Grid>
                 </Grid>
             </Box>
         </DrawerSidebar>
     </React.Fragment>
-}
+};
 
 export default withContentLayout(MealDetailsSummary);

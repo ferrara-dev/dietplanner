@@ -17,49 +17,42 @@ import {Fullscreen} from "./common/layout/mainAppLayout";
 export default function AppContent({children}) {
     const location = useLocation();
     const scheme = getScheme(location);
-    const styles = useStyles();
     return (
 
         <Root theme={dailyShoppingTheme} scheme={scheme}>
             <>
                 <CssBaseline/>
-                <AppLayoutProvider>
-                        {children}
-                </AppLayoutProvider>
+                {children}
             </>
         </Root>
     );
 };
 
 
-function getScheme(location){
-
-    let reg = /\/meal(\/\w+)\/edit(?!\/\w+)/
-    let reg2 = /\/meal(\/\w+)\/edit\/search(?=w*)/
+function getScheme(location) {
     let reg3 = /\/profile(?=w*)/
     let reg4 = /\/diet(?=w*)/
 
     const scheme = LayoutBuilder();
 
-
-    if(reg4.test(location.pathname)){
+    if (reg4.test(location.pathname)) {
         scheme.configureHeader((builder => {
             builder
                 .create('appHeader')
                 .registerConfig('xs', {
                     position: 'relative',
-                    clipped: true,
                     initialHeight: 56,
                 })
         }))
         scheme.configureSubheader(builder => {
-            builder.create("dietHeader")
+            builder.create("profileHeader")
                 .registerConfig('xs', {
-                    position: 'fixed',
+                    position: 'relative',
                     initialHeight: 40,
                     layer: 1,
                 });
         });
+
 
         scheme.configureEdgeSidebar((builder) => {
             builder
@@ -71,13 +64,11 @@ function getScheme(location){
                     width: "40%", // recommended width
                     collapsible: false,
                     collapsedWidth: 64,
-                    headerMagnetEnabled : true
                 });
         });
 
         return scheme;
-    }
-    else if(reg3.test(location.pathname)){
+    } else if (reg3.test(location.pathname)) {
 
         scheme.configureSubheader(builder => {
             builder.create("profileHeader")
@@ -90,122 +81,14 @@ function getScheme(location){
 
         scheme.configureEdgeSidebar(builder => {
             builder
-                .create('edgeSidebar', { anchor: 'left' })
+                .create('edgeSidebar', {anchor: 'left'})
                 .registerTemporaryConfig('xs', {
                     width: 256,
                 });
         });
 
         return scheme;
-    }
-
-    else if( location.pathname === "/profile" || location.pathname === "/profile/update"){
-        scheme.configureHeader((builder => {
-            builder
-                .create('appHeader')
-                .registerConfig('xs', {
-                    position: 'relative',
-                    clipped: true,
-                    initialHeight: 56,
-                })
-        }))
-        scheme.configureEdgeSidebar((builder) => {
-            builder
-                .create('edgeSidebar', {anchor: 'right'})
-                .registerTemporaryConfig('xs', {
-                    width: "55%",
-                })
-                .registerPermanentConfig('md', {
-                    width: "40%", // recommended width
-                    collapsible: false,
-                    collapsedWidth: 64,
-                    headerMagnetEnabled: true,
-                });
-        });
-        return scheme;
-    }
-
-    else if(location.pathname==="/meal-plan/create-category"){
-        scheme.configureEdgeSidebar((builder) => {
-            scheme.configureHeader((builder => {
-                builder
-                    .create('appHeader')
-                    .registerConfig('xs', {
-                        position: 'relative',
-                        clipped: false,
-                        initialHeight: 56,
-                    })
-            }))
-
-            builder
-                .create('edgeSidebar', {anchor: 'right'})
-                .registerTemporaryConfig('xs', {
-                    width: "45%", // recommended width
-                })
-                .registerPermanentConfig('md', {
-                    width: "35%", // recommended width
-                    collapsible: false,
-                    collapsedWidth: 64,
-                    headerMagnetEnabled: true,
-                });
-        });
-        return scheme;
-    }
-
-    else if(reg.test(location.pathname)){
-        scheme.configureEdgeSidebar((builder) => {
-            scheme.configureHeader((builder => {
-                builder
-                    .create('appHeader')
-                    .registerConfig('xs', {
-                        position: 'relative',
-                        clipped: true,
-                        initialHeight: 56,
-                    })
-            }))
-
-            builder
-                .create('edgeSidebar', {anchor: 'right'})
-                .registerTemporaryConfig('xs', {
-                    width: "70%",
-                })
-                .registerPermanentConfig('md', {
-                    width: "45%",
-                    collapsible: false,
-                    collapsedWidth: 64,
-                    headerMagnetEnabled: true,
-                });
-        });
-        return scheme;
-    }
-
-    else if(reg2.test(location.pathname)){
-        scheme.configureEdgeSidebar((builder) => {
-            scheme.configureHeader((builder => {
-                builder
-                    .create('appHeader')
-                    .registerConfig('xs', {
-                        position: 'relative',
-                        clipped: true,
-                        initialHeight: 56,
-                    })
-            }))
-
-            builder
-                .create('edgeSidebar', {anchor: 'right'})
-                .registerTemporaryConfig('xs', {
-                    width: "70%",
-                })
-                .registerPermanentConfig('md', {
-                    width: "45%",
-                    collapsible: false,
-                    collapsedWidth: 64,
-                    headerMagnetEnabled: true,
-                });
-        });
-        return scheme;
-    }
-    else {
+    } else {
         scheme.configureEdgeSidebar((builder) => {
             builder
                 .create('edgeSidebar', {anchor: 'right'})

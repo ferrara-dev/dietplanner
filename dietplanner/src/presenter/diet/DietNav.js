@@ -21,18 +21,18 @@ export default function DietNav(){
     const history = useHistory();
     const currentCategory = useReduxState(["currentMealCategory"]);
     const currentMeal = useReduxState(["currentMeal"]);
-    debugger;
+
     React.useEffect(() => {
         history.push(routes[activeIndex]);
     }, []);
 
     history.listen((location) => {
-        if(location.pathname === routes[0]){
+        if(location.pathname === route(0)){
             setActiveIndex(0);
         }
-        else if(location.pathname === routes[1])
+        else if(location.pathname === route(1, [currentCategory.description]))
             setActiveIndex(1);
-        else if(location.pathname === routes[2])
+        else if(location.pathname === route(2, [currentCategory.description,currentMeal.mealId]))
             setActiveIndex(2);
     });
 

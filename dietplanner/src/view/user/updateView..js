@@ -10,7 +10,7 @@ import {Link} from "react-router-dom";
 import cx from "clsx";
 import {Mail} from "@material-ui/icons";
 import {Content, DrawerSidebar} from "../common/layout/styled";
-import withContentLayout from "../withContentLayout";
+import withContentLayout from "../../HoC/withContentLayout";
 import AlertMassage from "../common/alertMessage";
 
 function alertMessage(error){
